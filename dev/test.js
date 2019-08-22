@@ -3,7 +3,8 @@ const Blockchain = require('./blockchain')
 const coin = new Blockchain()
 
 coin.createNewBlock(1111, 'asfasdkjfasd;faj', 'asfdasdfasdfsa')
-coin.createNewBlock(81812, 'asfdasdfasdfsa', 'meowmeowmeow')
-coin.createNewBlock(181239, 'meowmeowmeow', 'yesyesyes')
-
+coin.createNewTransaction('100', 'ALEX', 'MICHELE')
 console.log(coin)
+coin.createNewBlock(8119, 'asfdasdfasdfsa', 'yesyesyesyes') // A block needs to be mined for pending transactions to be added
+console.log(coin)
+
