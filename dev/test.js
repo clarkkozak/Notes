@@ -13,11 +13,6 @@ const currBlockData = [
 
 const nonce = 3212
 
-const hash = coin.hashBlock(prevBlockHash, currBlockData, nonce)
-console.log(hash)
-// coin.createNewBlock(1111, 'asfasdkjfasd;faj', 'asfdasdfasdfsa')
-// coin.createNewTransaction('100', 'ALEX', 'MICHELE')
-// console.log(coin)
-// coin.createNewBlock(8119, 'asfdasdfasdfsa', 'yesyesyesyes') // A block needs to be mined for pending transactions to be added
-// console.log(coin)
-
+const correctNonce = coin.proofOfWork(prevBlockHash, currBlockData) // get the nonce. Lot of work to generate. 
+console.log(correctNonce)
+console.log(coin.hashBlock(prevBlockHash, currBlockData, correctNonce)) // since we know the nonce, we can confirm the hash (a.k.a Proof). Little work to prove. 4 zeros! 

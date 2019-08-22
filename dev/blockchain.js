@@ -43,4 +43,21 @@ Blockchain.prototype.hashBlock = function(previousBlockHash, currentBlockData, n
   return hash
 }
 
+Blockchain.prototype.proofOfWork = function(previousBlockHash, currentBlockData) {
+  // we want to make sure each block is valid
+  // We want to find a special hash. For example, a hash that has 4 zeros. Only way to get a special hash is by trail and error.  
+  // The nonce needs to change (increment) to keep the previousBlockHash and currentBlockData the same
+  // It secures the blockchain because we need to use hashBlock a lot of time and power
+  // Changing a previous block will require a lot of calls to hashBlock, which isn't fesible
+  let nonce = 0
+  let hash =  this.hashBlock(previousBlockHash, currentBlockData, nonce)  
+  while(!hash.startsWith('0000')) {
+    nonce++ 
+    hash = this.hashBlock(previousBlockHash, currentBlockData, nonce)
+    console.log(hash)
+  }
+  return nonce
+}
+
+
 module.exports = Blockchain
