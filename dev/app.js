@@ -17,7 +17,9 @@ app.get('/blockchain', (req, res) => {
 
 app.post('/transaction', (req, res) => {
   const {amount, sender, recipient} = req.body
-  res.json({amount, sender, recipient})
+  const index = ledger.createNewBlock(amount, sender, recipient)
+  console.log(index)
+  res.json({msg: `Transcation will be added to block ${index}`})
 })
 
 app.get('/mine', (req, res) => {
