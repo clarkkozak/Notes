@@ -35,9 +35,8 @@ Blockchain.prototype.createNewTransaction = function(amount, sender, recipient )
   }
 
   this.pendingTransactions.push(newTransactions)
-  const lastBlock = this.getLastBlock()
-  let nextBlockIndex = lastBlock.index + 1 
-  return nextBlockIndex
+
+  return this.getLastBlock()['index'] + 1
 }
 
 Blockchain.prototype.hashBlock = function(previousBlockHash, currentBlockData, nonce) {
