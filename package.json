@@ -4,7 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "node_1": "nodemon dev/networkNode.js 7771 http://localhost:7771",
+    "node_2": "nodemon dev/networkNode.js 7772 http://localhost:7772",
+    "node_3": "nodemon dev/networkNode.js 7773 http://localhost:7773",
+    "node_4": "nodemon dev/networkNode.js 7774 http://localhost:7774",
+    "node_5": "nodemon dev/networkNode.js 7775 http://localhost:7775",
+    "node_6": "nodemon dev/networkNode.js 7776 http://localhost:7776",
+    "node_7": "nodemon dev/networkNode.js 7777 http://localhost:7777"
   },
   "keywords": [],
   "author": "",
