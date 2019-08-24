@@ -10,6 +10,7 @@ const Blockchain = require('./blockchain')
 const ledger = new Blockchain()
 
 const bodyParser = require('body-parser')
+const rp = require('request-promise ')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
@@ -43,6 +44,54 @@ app.get('/mine', (req, res) => {
     msg: 'New block mined',
     block: newBlock
   })
+})
+
+// register a node and broadcast it to the network
+app.post('/register-and-broadcast-node', (req, res) => {
+  const { newNodeUrl } =  req.body
+  if (!ledger.networkNodes.includes(newNodeUrl)) { // if it doesn't has the node URL, then add it
+    ledger.networkNodes.push(newNodeUrl)
+  }
+
+  const regNodesPromises = []
+
+  ledger.networkNodes.forEach(networkNodeUrl => {
+    const optons = {
+      uri: networkNodeUrl + '/register-node',
+      method: 'POST',
+      body: { newNodeUrl },
+      json: true
+    }
+    regNodesPromises.push(rp(options)) // broadcast to the rest of the network the new node
+  })
+    
+  Promise.all(regNodesPromises)
+    .then(data => {
+      const options = {
+        uri: newNodeUrl + '/register-nodes-bulk',
+        method: 'POST',
+        body: { allNetworkNodes: [...ledger.networkNodes, ledger.currentNodeUrl]}, 
+        json: true
+      }
+
+      return rp(options) // Add nodes' URLs to new node
+    })
+    .then(data => {
+      res.json({msg: 'New node registered successfully'})
+    })
+    .catch(err => {
+      console.log(err)
+    })
+})
+
+// register a node with the network
+app.post('/register-node', (req, res) => {
+
+})
+
+// register multiple nodes at once
+app.post('/register-nodes-bulk', (req, res) => {
+
 })
 
 app.listen(port, () => console.log(`Server running on port ${port}`))
