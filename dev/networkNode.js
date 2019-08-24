@@ -10,7 +10,7 @@ const Blockchain = require('./blockchain')
 const ledger = new Blockchain()
 
 const bodyParser = require('body-parser')
-const rp = require('request-promise ')
+const rp = require('request-promise')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
@@ -74,7 +74,7 @@ app.post('/register-and-broadcast-node', (req, res) => {
         json: true
       }
 
-      return rp(options) // Add nodes' URLs to new node
+      return rp(options) // Add nodes' URLs to new node 
     })
     .then(data => {
       res.json({msg: 'New node registered successfully'})
