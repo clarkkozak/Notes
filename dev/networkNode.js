@@ -103,6 +103,16 @@ app.post('/register-node', (req, res) => {
 
 // register multiple nodes at once
 app.post('/register-nodes-bulk', (req, res) => {
+  const { allNetworkNodes } = req.body
+
+    allNetworkNodes.forEach(node => {
+      let nodeNotAlreadyPresent = !ledger.networkNodes.includes(node)
+      let notCurrentNode = ledger.currentNodeUrl !== node
+      if (nodeNotAlreadyPresent && notCurrentNode) { 
+        ledger.networkNodes.push(node)
+      }
+    })
+    res.json({msg: 'Succesfully registered nodes in bulk'})
 
 })
 
