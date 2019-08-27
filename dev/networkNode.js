@@ -86,6 +86,18 @@ app.post('/register-and-broadcast-node', (req, res) => {
 
 // register a node with the network
 app.post('/register-node', (req, res) => {
+  const { newNodeUrl } = req.body
+  try {
+    const nodeNotAlreadyPresent = !ledger.networkNodes.includes(newNodeUrl)
+    const notCurrentNode = ledger.currentNodeUrl !== newNodeUrl
+    if (nodeNotAlreadyPresent && notCurrentNode) { // if it doesn't has the node URL, then add it {
+      ledger.networkNodes.push(newNodeUrl)
+      res.json({msg: 'New node registered successfully with node'})
+    }
+  }
+  catch(err) {
+    res.json({msg: 'An error has occurred', error: err})
+  }
 
 })
 
