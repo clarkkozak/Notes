@@ -15,7 +15,7 @@ const rp = require('request-promise')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
-app.get('/blockchain', (req, res) => {
+app.get('/', (req, res) => {
   res.send(ledger)
 })
 
@@ -47,73 +47,58 @@ app.get('/mine', (req, res) => {
 })
 
 // register a node and broadcast it to the network
-app.post('/register-and-broadcast-node', (req, res) => {
-  const { newNodeUrl } =  req.body
-  if (!ledger.networkNodes.includes(newNodeUrl)) { // if it doesn't has the node URL, then add it
-    ledger.networkNodes.push(newNodeUrl)
-  }
+app.post('/register-and-broadcast-node', function(req, res) {
+	const newNodeUrl = req.body.newNodeUrl;
+	if (ledger.networkNodes.indexOf(newNodeUrl) == -1) ledger.networkNodes.push(newNodeUrl);
 
-  const regNodesPromises = []
+	const regNodesPromises = [];
+	ledger.networkNodes.forEach(networkNodeUrl => {
+		const requestOptions = {
+			uri: networkNodeUrl + '/register-node',
+			method: 'POST',
+			body: { newNodeUrl: newNodeUrl },
+			json: true
+		};
 
-  ledger.networkNodes.forEach(networkNodeUrl => {
-    const optons = {
-      uri: networkNodeUrl + '/register-node',
-      method: 'POST',
-      body: { newNodeUrl },
-      json: true
-    }
-    regNodesPromises.push(rp(options)) // broadcast to the rest of the network the new node
-  })
-    
-  Promise.all(regNodesPromises)
-    .then(data => {
-      const options = {
-        uri: newNodeUrl + '/register-nodes-bulk',
-        method: 'POST',
-        body: { allNetworkNodes: [...ledger.networkNodes, ledger.currentNodeUrl]}, 
-        json: true
-      }
+		regNodesPromises.push(rp(requestOptions));
+	});
 
-      return rp(options) // Add nodes' URLs to new node 
-    })
-    .then(data => {
-      res.json({msg: 'New node registered successfully'})
-    })
-    .catch(err => {
-      console.log(err)
-    })
-})
+	Promise.all(regNodesPromises)
+	.then(data => {
+		const bulkRegisterOptions = {
+			uri: newNodeUrl + '/register-nodes-bulk',
+			method: 'POST',
+			body: { allNetworkNodes: [ ...ledger.networkNodes, ledger.currentNodeUrl ] },
+			json: true
+		};
+
+		return rp(bulkRegisterOptions);
+	})
+	.then(data => {
+		res.json({ note: 'New node registered with network successfully.' });
+	});
+});
 
 // register a node with the network
-app.post('/register-node', (req, res) => {
-  const { newNodeUrl } = req.body
-  try {
-    const nodeNotAlreadyPresent = !ledger.networkNodes.includes(newNodeUrl)
-    const notCurrentNode = ledger.currentNodeUrl !== newNodeUrl
-    if (nodeNotAlreadyPresent && notCurrentNode) { // if it doesn't has the node URL, then add it {
-      ledger.networkNodes.push(newNodeUrl)
-      res.json({msg: 'New node registered successfully with node'})
-    }
-  }
-  catch(err) {
-    res.json({msg: 'An error has occurred', error: err})
-  }
+app.post('/register-node', function(req, res) {
+	const newNodeUrl = req.body.newNodeUrl;
+	const nodeNotAlreadyPresent = ledger.networkNodes.indexOf(newNodeUrl) == -1;
+	const notCurrentNode = ledger.currentNodeUrl !== newNodeUrl;
+	if (nodeNotAlreadyPresent && notCurrentNode) ledger.networkNodes.push(newNodeUrl);
+	res.json({ note: 'New node registered successfully.' });
+});
 
-})
 
 // register multiple nodes at once
-app.post('/register-nodes-bulk', (req, res) => {
-  const { allNetworkNodes } = req.body
+app.post('/register-nodes-bulk', function(req, res) {
+	const allNetworkNodes = req.body.allNetworkNodes;
+	allNetworkNodes.forEach(networkNodeUrl => {
+		const nodeNotAlreadyPresent = ledger.networkNodes.indexOf(networkNodeUrl) == -1;
+		const notCurrentNode = ledger.currentNodeUrl !== networkNodeUrl;
+		if (nodeNotAlreadyPresent && notCurrentNode) ledger.networkNodes.push(networkNodeUrl);
+	});
 
-    allNetworkNodes.forEach(node => {
-      let nodeNotAlreadyPresent = !ledger.networkNodes.includes(node)
-      let notCurrentNode = ledger.currentNodeUrl !== node
-      if (nodeNotAlreadyPresent && notCurrentNode) { 
-        ledger.networkNodes.push(node)
-      }
-    })
-    res.json({msg: 'Succesfully registered nodes in bulk'})
-
-})
+	res.json({ note: 'Bulk registration successful.' });
+});
 
 app.listen(port, () => console.log(`Server running on port ${port}`))
