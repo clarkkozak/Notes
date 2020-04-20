@@ -28,3 +28,8 @@
     - Given, When, then
     - Example: Given notes, when deleting, then remove the notes
     - BDD consists of scenerios / specfications
+
+### Lesson 11
+  - describe to organize the tests
+  - beforeEach to helps for a BDD approach (when clicking)
+  - afterEach helps reset state to prevent test pollution

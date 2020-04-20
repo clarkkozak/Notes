@@ -2,29 +2,37 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import App from './app'
 
-const app = shallow(<App />)
+describe('App', () => {
+  const app = shallow(<App />)
 
-it('App renders properly', () => {
-  expect(app).toMatchSnapshot()
-})
+  it('renders properly', () => {
+    expect(app).toMatchSnapshot()
+  })
+  
+  it('Initalizing `state` with an empty list of `gifts`', () => {
+    // We can access state using enzyme .state() function
+    expect(app.state().gifts).toEqual([])
+  })
+  
+  describe('when clicking the `add gift` button', () => {
 
-it('Initalizing `state` with an empty list of `gifts`', () => {
-  // We can access state using enzyme .state() function
-  expect(app.state().gifts).toEqual([])
-})
+    // Before each do this
+    beforeEach(() => {
+      app.find('.btn-add').simulate('click')
+    })
 
-it('adds a new gift to `state` when clicking the `add gift` button', () => {
-  // we can search to make sure certain nodes exist by using .find()
-  // we can simulate user event by using .simulate()
-  app.find('.btn-add').simulate('click')
+    // After each test do this
+    // Doing this prevents test polution
+    afterEach(() => {
+      app.setState({ gifts: [] })
+    })
 
-  expect(app.state().gifts).toEqual([{ id: 1 }])
+    it('adds a new gift to `state`', () => {
+     expect(app.state().gifts).toEqual([{ id: 1 }])
+    })
 
-})
-
-it('adds a new gift to the render list when clicking the `add gift` button', () => {
-  app.find('.btn-add').simulate('click')
-
-  // Test polution!!!
-  expect(app.find('.gift-list').children().length).toEqual(2)
+    it('adds a new gift to the render list', () => {    
+      expect(app.find('.gift-list').children().length).toEqual(1)
+    })
+  })
 })
