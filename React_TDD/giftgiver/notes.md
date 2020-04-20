@@ -22,3 +22,9 @@
 ### Lesson 9
   - write test to render node in gift list
   - learn about test pollution by simulating 2 clicks to a test
+
+### Lesson 10
+  - Behavior driven development
+    - Given, When, then
+    - Example: Given notes, when deleting, then remove the notes
+    - BDD consists of scenerios / specfications
