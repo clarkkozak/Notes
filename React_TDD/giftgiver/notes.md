@@ -42,3 +42,9 @@
   - learn .exists() .toBe().
     - when expecting a boolean (like .exist), use toBe as an assertion
   - write a test on the App to check if it renders a Gift
+
+### Lesson 14
+  - Finshes app functionality
+  - add removeGift to App (parent) component
+  - learn .instance to test result on parent
+  - learn jest.fn() to test function on child
