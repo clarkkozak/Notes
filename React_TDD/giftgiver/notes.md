@@ -33,3 +33,7 @@
   - describe to organize the tests
   - beforeEach to helps for a BDD approach (when clicking)
   - afterEach helps reset state to prevent test pollution
+
+### Lesson 12
+  - learn .simulate('change', eventObj )
+  
