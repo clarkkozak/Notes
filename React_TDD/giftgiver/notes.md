@@ -48,3 +48,12 @@
   - add removeGift to App (parent) component
   - learn .instance to test result on parent
   - learn jest.fn() to test function on child
+
+### Lesson 15
+  - test coverage
+    - see if you get all the hit points and logic
+    - ` yarn test --coverage --watchAll=false`
+    - adds "jest" to package.json with collectCoverageFrom options
+    - modulizar logic into helpers folder
+      - seperates tests further
+    - Unsure why app.js has a bunch of uncovered lines in coverage report
