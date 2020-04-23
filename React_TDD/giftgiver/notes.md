@@ -36,4 +36,9 @@
 
 ### Lesson 12
   - learn .simulate('change', eventObj )
-  
+
+
+### Lesson 13 
+  - learn .exists() .toBe().
+    - when expecting a boolean (like .exist), use toBe as an assertion
+  - write a test on the App to check if it renders a Gift

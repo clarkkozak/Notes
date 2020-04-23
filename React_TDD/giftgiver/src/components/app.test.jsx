@@ -34,5 +34,9 @@ describe('App', () => {
     it('adds a new gift to the render list', () => {    
       expect(app.find('.gift-list').children().length).toEqual(1)
     })
+
+    it('creates a Gift component', () => {
+      expect(app.find('Gift').exists()).toBe(true)
+    })
   })
 })
