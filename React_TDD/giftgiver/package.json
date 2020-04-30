@@ -20,6 +20,7 @@
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.jsx",
+      "src/**/*.js",
       "!src/index.js"
     ]
   },

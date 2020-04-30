@@ -57,3 +57,13 @@
     - modulizar logic into helpers folder
       - seperates tests further
     - Unsure why app.js has a bunch of uncovered lines in coverage report
+
+### Skip Lessons for style and next project setup setup
+---
+
+### Lesson 22
+  - setBalance action creator
+  - constant
+  - make your functions exportable
+  - what is your expected action?
+    - test action and constant
