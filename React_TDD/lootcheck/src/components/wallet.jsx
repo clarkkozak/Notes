@@ -12,5 +12,5 @@
     }
   }
   
-  export default connect(state => { state }, null)(Wallet)
+  export default connect(state => { return { balance: state }  }, null)(Wallet)
   

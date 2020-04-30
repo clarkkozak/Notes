@@ -73,3 +73,8 @@
   - connect() a componet to the store
   - test that the compoent displays a balance
   - display balance via prop
+
+### Lesson 24
+  - Test that a component exists in another
+    - if it's using redux and connect(), make sure you test for the connected component
+    - log wrapper.debug() to debug
