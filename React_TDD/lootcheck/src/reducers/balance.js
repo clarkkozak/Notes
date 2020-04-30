@@ -5,7 +5,7 @@ const balanceReducer = ( state = 0, action) => {
     case constants.SET_BALANCE:
       return action.balance
     default:
-      return state // perhaps a typo; this was `balance`
+      return state // perhaps a typo; this was `balance` 
   }
 }
 

@@ -67,3 +67,9 @@
   - make your functions exportable
   - what is your expected action?
     - test action and constant
+
+### Lesson 23
+  - Setup a redux store
+  - connect() a componet to the store
+  - test that the compoent displays a balance
+  - display balance via prop
