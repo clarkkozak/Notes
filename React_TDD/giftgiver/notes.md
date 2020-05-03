@@ -78,3 +78,13 @@
   - Test that a component exists in another
     - if it's using redux and connect(), make sure you test for the connected component
     - log wrapper.debug() to debug
+
+### Lesson 25
+  - Adds withdarw and despoit to redux
+  - simiplar pattern each action creator, different logic each reducer
+
+### Lesson 26
+  - test first
+    - does the input exist?
+    - does it update the state properly?
+  - parseInt(number, 10) puts a string into a number using the decimal system
