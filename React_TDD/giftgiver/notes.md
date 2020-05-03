@@ -88,3 +88,14 @@
     - does the input exist?
     - does it update the state properly?
   - parseInt(number, 10) puts a string into a number using the decimal system
+
+### Lesson 27
+  - Withdraw and deposit functionality
+    - we already tested the actions / reducers, we need to test the functionality within `Wallet`
+  - connect reducers to `Wallet`
+  - expect the mock functionality to equal what we expect
+
+### Lesson 28
+  - test to see if the balance exists after re-intializing
+  - use a second reducer, `balanceReducer2` to test this, as if we are "reloading" the browser
+  - jest makes a DOM structure, so cache can be read
