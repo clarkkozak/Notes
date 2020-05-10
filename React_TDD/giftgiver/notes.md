@@ -99,3 +99,19 @@
   - test to see if the balance exists after re-intializing
   - use a second reducer, `balanceReducer2` to test this, as if we are "reloading" the browser
   - jest makes a DOM structure, so cache can be read
+
+### Lesson 29
+  - What are async actions
+    - actions in redux that allow for asynchronous behavior
+    - api request doesn't block the app
+    - api call happens in the background
+  - use redux middleware - Redux Thunk (returns a promise)
+
+### Lesson 30
+  - install redux-mock-store fetch-mock and redux-thunk
+  - get URL for coindesk bitcoin api
+
+### Lesson 31
+  - redux-thunk can take functions and satifiy the api calls within them, and return an action that has the data that we want
+  - using a mock store, a mock fetch method, a mock response, we test the expected action to match our success mockReponse 
+  - we satifiy this test by dispatching the promised data from the fetched command
