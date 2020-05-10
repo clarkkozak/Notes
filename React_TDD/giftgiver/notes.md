@@ -115,3 +115,9 @@
   - redux-thunk can take functions and satifiy the api calls within them, and return an action that has the data that we want
   - using a mock store, a mock fetch method, a mock response, we test the expected action to match our success mockReponse 
   - we satifiy this test by dispatching the promised data from the fetched command
+
+### Lesson 32
+  - bitcoin reducer
+    - expect the reducer to return the bitcoin data properly
+  - Note that a lot of these tests for redux are lonely or solitary tests. The behavior of the application don't work, currenlty, we only know that the reducers work
+  - we need to have both the balance and bitcoin reducers properly functional (next video)
