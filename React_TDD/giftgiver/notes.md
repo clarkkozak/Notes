@@ -121,3 +121,10 @@
     - expect the reducer to return the bitcoin data properly
   - Note that a lot of these tests for redux are lonely or solitary tests. The behavior of the application don't work, currenlty, we only know that the reducers work
   - we need to have both the balance and bitcoin reducers properly functional (next video)
+
+### Lesson 33
+  - combine reducers in a test driven way
+    - first check to see if it initalizes
+  - apply redux thunk middleware
+  - fix bug in wallet.jsx
+    - only return (select) what object in the store is needed 
