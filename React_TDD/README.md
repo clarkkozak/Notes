@@ -8,6 +8,8 @@ Upgrade your React skills with Test Driven Development! Jest, Enzyme, Redux, mid
 ## Review:
 David Katz is a great teacher. Very enthusaic and knows his stuff. The course uses the TDD and BDD best practices. Other courses I've watch does things in a lab and it isn't as easy to translate into real project.
 
+Note that this course uses Class based components; which are currently not as popular. Although I'm unsure, check out his new course as I'm sure he'd use hooks.
+
 ## Where to find the course:
 - https://www.udemy.com/course/react-tdd/
 - New course: https://www.udemy.com/course/react-testing/
