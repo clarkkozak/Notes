@@ -1,6 +1,7 @@
   import React, { Component } from 'react'
   import { connect } from 'react-redux'
   import { deposit, withdraw } from '../actions/balance'
+  import Loot from './loot'
 
 
   export class Wallet extends Component {
@@ -34,6 +35,7 @@
           <input type="text" className="input-wallet" onChange={this.updateBalance}/>
           <button className="btn-deposit" onClick={this.deposit}>Deposit</button>
           <button className="btn-withdraw" onClick={this.withdraw}>Withdraw</button>
+          <Loot />
         </div>
       )
     }

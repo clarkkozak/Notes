@@ -128,3 +128,19 @@
   - apply redux thunk middleware
   - fix bug in wallet.jsx
     - only return (select) what object in the store is needed 
+
+### Lesson 34
+  - The way the test was structure in this part of the video caused some proper. 
+    - I believe this is to reduce test pollution
+  - I didn't write the loot test
+  - the `mount` from enzyme allows to test lifecycle methods
+  
+### Lesson 35
+  - I decided not to finish writing this course up at this point. 
+  - Reasons
+    - debuging class-based components
+    - the code provided seems to not work
+      - perhaps I didn't write it correctly.
+      - yet I would rather work on other courses
+  - note that at this commit, the tests do not all pass 
+  
