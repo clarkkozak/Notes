@@ -1,12 +1,22 @@
 {
   "ids": {
-    "Todo": 4
+    "Todo": 5,
+    "TodoList": 3,
+    "TodoListImage": 2
   },
   "models": {
     "Todo": {
-      "1": "{\"id\":1,\"title\":\"Test\",\"desc\":\"Test\",\"isComplete\":true,\"remindAtAddress\":\"50 Channing Dr. Ringwood, NJ 07456\"}",
-      "2": "{\"title\":\"Eat foot\",\"desc\":\"This is a test\",\"isComplete\":false,\"id\":2}",
-      "3": "{\"title\":\"Eat foot\",\"desc\":\"This is a test\",\"isComplete\":false,\"id\":3}"
+      "1": "{\"title\":\"Take over the galaxy\",\"desc\":\"MWAHAHAHAHAHAHAHAHAHAHAHAHAMWAHAHAHAHAHAHAHAHAHAHAHAHA\",\"todoListId\":1,\"id\":1}",
+      "2": "{\"title\":\"destroy alderaan\",\"desc\":\"Make sure there are no survivors left!\",\"todoListId\":1,\"id\":2}",
+      "3": "{\"title\":\"play space invaders\",\"desc\":\"Become the very best!\",\"todoListId\":2,\"id\":3}",
+      "4": "{\"title\":\"crush rebel scum\",\"desc\":\"Every.Last.One.\",\"todoListId\":1,\"id\":4}"
+    },
+    "TodoList": {
+      "1": "{\"title\":\"Sith lord's check list\",\"lastModified\":\"a long time ago\",\"id\":1}",
+      "2": "{\"title\":\"My daily chores\",\"lastModified\":\"2018-07-13\",\"id\":2}"
+    },
+    "TodoListImage": {
+      "1": "{\"value\":\"https://localhost:3000/image.png\",\"todoListId\":1,\"id\":1}"
     }
   }
 }
