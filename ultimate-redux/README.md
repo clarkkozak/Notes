@@ -458,11 +458,34 @@ See store.js
 
 See store.js
 
+store.dispatch({
+  type: 'bugAdded',
+  payload: {
+    description: 'bug1',
+  },
+});
+
 ### Lesson 9
 #### Subscribing to the Store
 
+See index.js
+
+store.subscribe(() => {
+  console.log('store changed!', store.getState())
+})
+
 ### Lesson 10
 #### Action Types
+
+See index.js
+See types.js
+
+- What's happening with the .dispatch method?
+  - state = reducer (state, action)
+  - notify subscribers
+
+Redux has is quite small
+  - additional libraries will make it easier to maintain
 
 ### Lesson 11
 #### Action Creators

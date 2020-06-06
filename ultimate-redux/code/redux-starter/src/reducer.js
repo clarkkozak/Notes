@@ -1,5 +1,5 @@
 // we assumed it was an []
-
+import * as actions from './types';
 let lastId = 0;
 
 // // state = [] will be our intial state
@@ -27,7 +27,7 @@ let lastId = 0;
 // we can use switch and case too
 export default function reducer(state = [], action) {
   switch (action.type) {
-    case 'bugAdded':
+    case actions.BUG_ADDED:
       return [
         ...state, // use immutablity library later
         {
@@ -39,7 +39,7 @@ export default function reducer(state = [], action) {
           resolved: false,
         },
       ];
-    case 'bugRemoved':
+    case actions.BUG_REMOVED:
       return state.filter((bug) => bug.id !== action.payload.id);
     default:
       return state;
