@@ -42,18 +42,23 @@ export default function reducer(state = [], action) {
     case actions.BUG_REMOVED:
       return state.filter((bug) => bug.id !== action.payload.id);
     case actions.BUG_RESOLVED:
-      const newState = state.map((bug) => {
-        if (bug.id === action.payload.id) {
-          return {
-            ...bug,
-            resolved: true,
-          };
-        } else {
-          return bug;
-        }
-      });
+      // my solution
+      // const newState = state.map((bug) => {
+      //   if (bug.id === action.payload.id) {
+      //     return {
+      //       ...bug,
+      //       resolved: true,
+      //     };
+      //   } else {
+      //     return bug;
+      //   }
+      // });
 
-      return [...newState];
+      // return [...newState];
+
+      return state.map((bug) =>
+        bug.id !== action.payload.id ? bug : { ...bug, resolved: true }
+      );
     default:
       return state;
   }
