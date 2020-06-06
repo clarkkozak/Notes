@@ -431,7 +431,7 @@ id: 1 // payload
 }
 }
 
-```
+````
 
 ### Lesson 6
 #### Creating a Reducer
@@ -490,9 +490,32 @@ Redux has is quite small
 ### Lesson 11
 #### Action Creators
 
+See actionCreators.js
+
+This is a bit verbose:
+  ```js
+  store.dispatch({
+    type: actions.BUG_ADDED,
+    payload: {
+      description: 'bug2',
+    },
+  });
+````
+
+We can make it functional
+
 ### Lesson 12
+
 #### Exercise
 
+- Implement resolving a bug
+
+See my solution in this commit.
+
 ### Lesson 13
+
 #### Solution
+
+```
+
 ```
