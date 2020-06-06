@@ -516,6 +516,4 @@ See my solution in this commit.
 
 #### Solution
 
-```
-
-```
+His solution does it in one line with a ternary
