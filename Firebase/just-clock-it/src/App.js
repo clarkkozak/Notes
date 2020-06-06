@@ -1,8 +1,8 @@
-import React from "react";
-import "./App.css";
+import React from 'react';
+import './App.css';
 
-import TimesList from "./components/TimesList";
-import AddTimeForm from "./components/AddTimeForm";
+import TimesList from './components/TimesList';
+import AddTimeForm from './components/AddTimeForm';
 
 // Proof of concept
 
