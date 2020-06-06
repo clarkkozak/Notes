@@ -1,14 +1,15 @@
-import firebase from "firebase/app";
-import "firebase/firestore";
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 
+// Don't be a fool!
 var firebaseConfig = {
-  apiKey: "AIzaSyBRErdSOysTgPpueIxZ7Bje9JP3jSDenYE",
-  authDomain: "just-clock-it-9da02.firebaseapp.com",
-  databaseURL: "https://just-clock-it-9da02.firebaseio.com",
-  projectId: "just-clock-it-9da02",
-  storageBucket: "just-clock-it-9da02.appspot.com",
-  messagingSenderId: "273380250028",
-  appId: "1:273380250028:web:f4c5858328c36acbc2ea09",
+  apiKey: process.env.APIKEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  databaseURL: process.env.DATABASE_URL,
+  projectId: process.env.PROJECT_ID,
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.MESSAGING_SENDER_ID,
+  appId: process.env.APPID,
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
