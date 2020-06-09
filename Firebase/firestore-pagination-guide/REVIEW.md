@@ -8,13 +8,15 @@
 
 <!-- I'll describe what each means later -->
 
-- 3 / 5
+- 2.9 / 5
 
 ## Review:
 
 <!-- Who, What, Why the rating?  -->
 
 Short and provides enough logic to work with, yet Svelte?
+
+Updated: Yeah the information was deliver quickly and not a broad enough example to bring into any project.
 
 ## Where to find the course:
 
@@ -27,3 +29,4 @@ Short and provides enough logic to work with, yet Svelte?
 <!-- If it's public, share it, if not, don't -->
 
 - [GitHub](https://github.com/fireship-io/215-firestore-pagination)
+- [THis File](https://github.com/fireship-io/215-firestore-pagination/blob/master/src/App.svelte)
