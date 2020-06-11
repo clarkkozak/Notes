@@ -1,12 +1,4 @@
-import firebase from '../firebase';
-
-(async function () {
-  const item = await firebase.firestore().collection('CHANGEME').get();
-
-  console.log(item.docs.length);
-});
-
-(async function () {
+const test = function () {
   const collection = 'info-objects';
 
   function createEmptyInfoObject({ sign = '', planet = '', house = '' }) {
@@ -81,10 +73,12 @@ import firebase from '../firebase';
     Pisces: 'Water',
   };
 
-  const db = firebase.firestore().collection(collection)
+  const db = true // firebase.firestore().collection(collection)
   const res = []
 
-  const item = await db.limit(1).get();
+  const item =  { //await db.limit(1).get();
+    empty: true
+  }
   if (item.empty) {
     const tracker = [];
     for (const sign of signs) {
@@ -101,27 +95,27 @@ import firebase from '../firebase';
           const newDoc = createEmptyInfoObject({ planet })
           res.push(newDoc)
         }
-        // sign-planent
+        // sign-planet
         if (!tracker.includes(`${sign}-${planet}`)) {
-          tracker.push(`${sign}-${planet}`);
-            const newDoc = { sign, planet }
+            tracker.push(`${sign}-${planet}`);
+            const newDoc = createEmptyInfoObject({ sign, planet });
             res.push(newDoc)
         }
         for (const house of houses) {
           // sign-house
           if (!tracker.includes(`${sign}-${house}`)) {
             tracker.push(`${sign}-${house}`);
-            const newDoc = { sign, house }
+            const newDoc = createEmptyInfoObject({ sign, house }) // twas the problem
             res.push(newDoc)
 
           }
           // sign-house
           if (!tracker.includes(`${planet}-${house}`)) {
             tracker.push(`${planet}-${house}`);
-            const newDoc = { planet, house }
+            const newDoc = createEmptyInfoObject({ planet, house })
               res.push(newDoc)
           }
-            const newDoc = { sign, planet, house }
+            const newDoc = createEmptyInfoObject({ sign, planet, house })
             res.push(newDoc)
         }
       }
@@ -130,5 +124,14 @@ import firebase from '../firebase';
     console.log('collection exists');
   }
 
-  console.log(res)
-});
+  // console.log(res)
+  return res
+};
+
+const res = test()
+
+const filter = res.filter(item => {
+  // console.log(item)
+  return item.planet === 'Sun' && item.sign === 'Leo' && !!!item.house
+})
+console.log(filter.slice(0, 5))
