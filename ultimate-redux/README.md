@@ -8,7 +8,7 @@
 
 state management library for JS apps
 
-- use it for all frameworks or vanialla
+- use it for all frameworks or vanilla
 
 Why do we need a state management library?
 
@@ -25,8 +25,8 @@ Store
 
 Benefits
 
-- centrzlied state
-- makes data flow transparent and predicibily
+- centralized state
+- makes data flow transparent and predictability
 
 ### Lesson 2
 
@@ -40,7 +40,7 @@ ui - loading - productPage
 
 Using redux dev tools
 
-- Time travel debugin
+- Time travel debugging
 - log rocket
   - see the state through user log
 
@@ -49,13 +49,13 @@ Redux pros and cons
 - Pros
   - Predictable State Change
   - Centralized state
-  - Easy debuging
-  - Perserve (cache) page state
+  - Easy debugging
+  - Preserve (cache) page state
   - undo / redo page state
   - ecosystem of addons
 - Cons
 
-  - Compelxity
+  - Complexity
   - verbosity
 
 ### Lesson 3
@@ -63,9 +63,9 @@ Redux pros and cons
 #### Is redux for you?
 
 - what problem are you trying to solve
-- what are you contrastnts?
+- what are your constraints?
 
-  - what is the most optimial solutions based on the constraints
+  - what is the most optimal solutions based on the constraints
   - When not to used redux
 
     - Tight budget
@@ -75,9 +75,9 @@ Redux pros and cons
 
 - BE AN ACTIVE PROBLEM SOLVER
   - Always think of your needs
-  - you dont need to start with redux either
+  - you don't need to start with redux either
     - if all you have is a hammer, everything looks like a nail
-    - you dont need to solve all problems with Redux
+    - you don't need to solve all problems with Redux
       - we like to be on autopilot as humans
 
 ### Lesson 4
@@ -109,9 +109,9 @@ Redux pros and cons
   - Procedural
   - Event-driven
 
-Functional programming is decompassing a problem in to small reusable problems
+Functional programming is decomposing a problem in to small reusable problems
 takes some inputs and returns a result
-doesn't mutatue / change data
+doesn't mutate / change data
 we can take each small function to make more complex functions
 
 Benefits
@@ -119,9 +119,9 @@ Benefits
 - more concise
 - easily to debug
 - easily to test
-- more scable
+- more scalable
 
-JS isn't a functional language; it's multi-paratime
+JS isn't a functional language; it's multi-paradigm
 
 ### Lesson 3
 
@@ -131,11 +131,11 @@ JS fundamental refresher
 
 Functions
 
-- Assing them to a varaible
+- Assign them to a variable
 - Pass as an argument
 - Returns from other functions
 
-_Skiped code_
+_Skipped code_
 
 ### Lesson 4
 
@@ -144,7 +144,7 @@ _Skiped code_
 Higher order function
 
 - takes a function
-- returns a funtcion
+- returns a function
 - or both
 
 Examples
@@ -158,7 +158,7 @@ Examples
 
 Coding example
 
-- `wrapInDiv(toLowerCaes(trim(input)))`
+- `wrapInDiv(toLowerCase(trim(input)))`
   - problem -> the logic is going from right to left
     - this isn't human readable!
 
@@ -176,11 +176,11 @@ Using Lodash, a JS functional programming library
 
 #### Currying
 
-- Technique coined by Haskel Curry
+- Technique coined by Haskell Curry
 
 - wrapInDiv + wrapInSpan have a similar structure
 
-  - how can we paramatized it?
+  - how can we parametrized it?
 
 - Use currying to return a function inside `_.pipe`
 
@@ -197,7 +197,7 @@ A pure function takes in the same arguments and returns the same results
 Non-pure function
 
 ```js
-function nonPureFunctino(number) {
+function nonPureFunction(number) {
   return number * Math.random();
 }
 ```
@@ -226,9 +226,9 @@ function isEligiblePure(age, minAge) {
 Benefits
 
 - Self-documenting
-  - all of the what's needed for the function is definied.
+  - all of the what's needed for the function is defined.
   - doesn't depend on global variables
-- Easiliy testable
+- Easily testable
 - Concurrency
   - functions can be run in parallel
 - Cacheable
@@ -239,7 +239,7 @@ Benefits
 
 #### Immutability
 
-Pure functions and Immutatability are concepts that go together
+Pure functions and Immutability are concepts that go together
 
 Immutability
 
@@ -259,7 +259,7 @@ book.title = '...'; // objects and arrays are NOT immutable
 Why immutability
 
 - Predictability
-  - no suprising down the road
+  - no surprises down the road
 - faster to detect change
   - JS compares the references, instead of each property
 - concurrency
@@ -268,7 +268,7 @@ Why immutability
 
   Should we always favor immutability?
 
-- All appraoches has pros and cons
+- All approaches has pros and cons
 
 Cons
 
@@ -298,7 +298,7 @@ See arrays.js
 
 #### Enforcing Immutability
 
-Use libraries to enfocrce immutatilibty
+Use libraries to enforce immutability
 
 Examples:
 
@@ -343,19 +343,19 @@ Store
       categories: [],
       products: [],
       cart: {},
-      uesr: {}
+      user: {}
     }
     ```
 
 - We cannot directly modify the store
 
   - we have to use functional programming
-  - we need a funciton to update the `store` (i.e reducer)
+  - we need a function to update the `store` (i.e reducer)
 
   ```
   function reducer(store, action) {
     // have to make a good copy of the store
-    // using an immutable libray will make this easier
+    // using an immutable library will make this easier
       const updated = {...store}
   }
   ```
@@ -422,13 +422,13 @@ Action example:
 }
 ```
 
-    ```js
+```js
 
 {
-type: 'bugRemoved', // serializable and descriptive (past-tense #opinion)
-payload: {
-id: 1 // payload
-}
+  type: 'bugRemoved', // serializable and descriptive (past-tense #opinion)
+  payload: {
+  id: 1 // payload
+  }
 }
 
 ````
@@ -517,3 +517,49 @@ See my solution in this commit.
 #### Solution
 
 His solution does it in one line with a ternary
+
+
+# Section 4
+
+## Building Redux from Scratch
+
+### Lesson 1
+#### Introduction
+
+Redux is not as complex as we think. In this section we will build Redux from scratch
+
+### Lesson 2
+#### Redux Store
+When learning a new tool, it's good to learn it from the inside out.
+
+```js
+console.log(store)
+/*
+{…}
+​
+dispatch: function dispatch(action)
+​
+getState: function getState()
+​
+replaceReducer: function replaceReducer(nextReducer)
+​
+subscribe: function subscribe(listener)
+​
+Symbol(observable): function observable()
+​
+<prototype>: Object { … }
+store.js:11:9
+
+*/
+```
+
+Main methods for the redux store.
+subscribe
+dispatch
+getState
+
+Try to write your own! 
+
+see my-store.js
+
+###
