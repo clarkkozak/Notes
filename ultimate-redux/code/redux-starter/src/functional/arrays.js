@@ -1,8 +1,9 @@
 const numbers = [1, 2, 3]
 
-// adding
+// Adding
 const addToStart = [4, ...numbers] // [4, 1, 2, 3]
 
+// Inserting
 const insertBefore2 = [
   ...numbers.slice(0, numbers.indexOf(2)),
   4,

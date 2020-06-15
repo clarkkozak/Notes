@@ -2,15 +2,15 @@
 import * as actions from './types';
 let lastId = 0;
 
-// // state = [] will be our intial state
+// // state = [] will be our initial state
 // function reducer(state = [], action) {
 //   if (action.type === 'bugAdded') {
 //     return [
-//       ...state, // use immutablity library later
+//       ...state, // use immutability library later
 //       {
 //         // In reducers, have the payload to have the
 //         // minimum amount of data
-//         // We can implement buisness logic in the reducer
+//         // We can implement business logic in the reducer
 //         id: ++lastId,
 //         description: action.payload.description,
 //         resolved: false,
@@ -29,11 +29,11 @@ export default function reducer(state = [], action) {
   switch (action.type) {
     case actions.BUG_ADDED:
       return [
-        ...state, // use immutablity library later
+        ...state, // use immutability library later
         {
           // In reducers, have the payload to have the
           // minimum amount of data
-          // We can implement buisness logic in the reducer
+          // We can implement business logic in the reducer
           id: ++lastId,
           description: action.payload.description,
           resolved: false,

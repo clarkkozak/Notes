@@ -5,7 +5,7 @@ function add(a , b) {
 }
 
 // add(5, 3)
-// arguments seperated by commas
+// arguments separated by commas
 
 function add(a) {
   return function(b) {
@@ -13,10 +13,10 @@ function add(a) {
   }
 }
 // add(5)(5)
-// arguments seperate by parenthesis
+// arguments separated by parenthesis
 
-// parameters seperated by =>
+// parameters separated by =>
 const add2 = a => b => a + b 
 
 // add2(5)(5)
-//arguments seperated by parenthesis
+//arguments separated by parenthesis
