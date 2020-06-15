@@ -562,4 +562,8 @@ Try to write your own!
 
 see my-store.js
 
-###
+### Lesson 3
+
+#### Private Methods
+
+See customSTore

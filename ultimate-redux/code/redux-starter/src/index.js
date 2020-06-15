@@ -1,5 +1,9 @@
-import store from './store';
-import * as actions from './action';
+// import store from './store';
+import store from './customStore'
+// store.state = 1 // we are directly mutating the store. 
+// console.log(store.state) // we don't want to be able to do this 
+
+// import * as actions from './action';
 
 // console.log(store);
 
@@ -17,7 +21,7 @@ Symbol(observable): ƒ observable()
 //   console.log('store changed!', store.getState());
 // });
 
-store.dispatch(actions.bugAdded('Description'));
+// store.dispatch(actions.bugAdded('Description'));
 
 // we will not get notified by the .subscribe.
 // This allows us to interact with UI
@@ -32,6 +36,6 @@ store.dispatch(actions.bugAdded('Description'));
 //   },
 // });
 
-store.dispatch(actions.bugResolved(1));
+// store.dispatch(actions.bugResolved(1));
 
-console.log({ store: store.getState() });
+// console.log({ store: store.getState() });
