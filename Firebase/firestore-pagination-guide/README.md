@@ -23,9 +23,9 @@ return
 Query
 .orderBy(last[field])
 .startAfter(last[field])
-.limit(pageSize
+.limit(pageSize)
   
- funct prevPage(first) {
+func prevPage(first) {
 return
 Query
 .orderBy(field)
