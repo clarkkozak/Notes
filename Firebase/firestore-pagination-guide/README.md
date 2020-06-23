@@ -5,7 +5,7 @@ Firestore Pagination
 Query.limitToLast(n)
 
 pagination
-divide a larg collection into small pages
+divide a large collection into small pages
 
 next page ->
 prev page...not so easy
@@ -24,14 +24,14 @@ Query
 .orderBy(last[field])
 .startAfter(last[field])
 .limit(pageSize)
-  
+
 func prevPage(first) {
 return
 Query
 .orderBy(field)
 .endBefore(first[field])
 .limitToLast(pageSize)
-  
+
 App
 
 query needs to be a set to a function
