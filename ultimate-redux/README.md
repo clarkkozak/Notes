@@ -535,3 +535,13 @@ See customStore.js
 ## Lesson 4 Inspector Monitor 
 
 Gives general overview on the features of Redux DevTools
+
+## Lesson 5 Tracing
+
+- By default tracing is not enabled.
+  - `npm i redux-devtools-extensions`
+
+- See changes in this commit.
+- Go to Redux DevTools settings and set the path to the project and editor. 
+- Generate a source map to see the trace.
+- Super cool feature that requires some configuration 
