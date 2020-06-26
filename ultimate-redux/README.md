@@ -545,3 +545,9 @@ Gives general overview on the features of Redux DevTools
 - Go to Redux DevTools settings and set the path to the project and editor. 
 - Generate a source map to see the trace.
 - Super cool feature that requires some configuration 
+
+## Lesson 6 Exporting and Importing the Store in Redux DevTools
+
+- Export and Import state so you don't need to repeat yourself
+- You can use service to do this as well, like LogRocket
+- This way we can help users with unique bugs
