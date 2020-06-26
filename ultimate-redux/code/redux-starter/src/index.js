@@ -41,12 +41,12 @@ Symbol(observable): ƒ observable()
 // console.log({ store: store.getState() });
 
 
-// Section 4 Lesson 3
-import store from './customStore'
-import * as actions from './action'
-store.dispatch(actions.bugAdded("Bug 1"))
-store.dispatch(actions.bugAdded("Bug 2"))
-console.log(store.getState()) 
+// Section 4 Lesson 4
+// import store from './customStore'
+// import * as actions from './action'
+// store.dispatch(actions.bugAdded("Bug 1"))
+// store.dispatch(actions.bugAdded("Bug 2"))
+// console.log(store.getState()) 
 /* Out put
 [
   {
@@ -56,3 +56,18 @@ console.log(store.getState())
   }
 ]
 */
+
+// Section 4 Lesson 5
+import store from './customStore'
+import * as actions from './action'
+
+store.subscribe(() => {
+  console.log(' the store was updated')
+})
+
+store.dispatch(actions.bugAdded("Bug 1"))
+
+console.log(store.getState())
+
+
+
