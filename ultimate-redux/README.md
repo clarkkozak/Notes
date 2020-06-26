@@ -1,6 +1,6 @@
-# Section 1
+# Ultimate Redux Course Notes
 
-## Getting Started
+## Section 1 Getting Started
 
 ### Lesson 1 What is Redux
 
@@ -79,9 +79,7 @@ Redux pros and cons
 - use the `redux-starer` that comes with the course
   - it uses webpack, package.json, npm
 
-# Section 2
-
-## Functional Programming in JavaScript
+## Section 2 Functional Programming in JavaScript
 
 ### Lesson 1 Introduction
 
@@ -173,8 +171,8 @@ A pure function takes in the same arguments and returns the same results
 Non-pure function
 
 ```js
-function nonPureFunction(number) {
-  return number * Math.random();
+function nonPureFunction (number) {
+  return number * Math.random()
 }
 ```
 
@@ -190,12 +188,12 @@ Pure functions:
 Examples
 
 ```js
-function isEligibleNonPure(age) {
-  return age > minAge; // minAge is a global variable. Subject to change
+function isEligibleNonPure (age) {
+  return age > minAge // minAge is a global variable. Subject to change
 }
 
-function isEligiblePure(age, minAge) {
-  return age > minAge; // minAge parameter. Allows for the same output each time
+function isEligiblePure (age, minAge) {
+  return age > minAge // minAge parameter. Allows for the same output each time
 }
 ```
 
@@ -221,13 +219,13 @@ Immutability
 - take a copy, then change it
 
 ```js
-let name = 'Jason';
-let newString = name.toUpperCase(); // name is not affected
+let name = 'Jason'
+let newString = name.toUpperCase() // name is not affected
 ```
 
 ```js
-let book = {}; // event with `const`. `const` prevents reassignment, not immutability
-book.title = '...'; // objects and arrays are NOT immutable
+let book = {} // event with `const`. `const` prevents reassignment, not immutability
+book.title = '...' // objects and arrays are NOT immutable
 ```
 
 Why immutability
@@ -252,19 +250,19 @@ Cons
   - libraries try to reduce this as much as possible
     - They use a technique called structural sharing
 
-### Lesson 10  Updating Objects
+### Lesson 10 Updating Objects
 
 Practicing immutability with Objects.
 
 See objects.js
 
-### Lesson 11  Updating Arrays
+### Lesson 11 Updating Arrays
 
 Practicing immutability with Arrays
 
 See arrays.js
 
-### Lesson 12  Enforcing Immutability
+### Lesson 12 Enforcing Immutability
 
 Use libraries to enforce immutability
 
@@ -274,17 +272,15 @@ Examples:
 - Immer (by MobX)
 - Mori
 
-### Lesson 13  Immutable.js
+### Lesson 13 Immutable.js
 
 See immutable.js
 
-### Lesson 14  Immer
+### Lesson 14 Immer
 
 See immer.js
 
-# Section 3
-
-## Redux Fundamentals
+## Section 3 Redux Fundamentals
 
 ### Lesson 1 Introduction
 
@@ -399,7 +395,7 @@ Action example:
   - Will be address later
     - Most be an isolated world
   - 2 arguments, and that's it.
-See reducer.js
+    See reducer.js
 
 ### Lesson 7 the Store
 
@@ -410,10 +406,10 @@ See store.js
 See store.js
 
 store.dispatch({
-  type: 'bugAdded',
-  payload: {
-    description: 'bug1',
-  },
+type: 'bugAdded',
+payload: {
+description: 'bug1',
+},
 });
 
 ### Lesson 9 to the Store
@@ -421,7 +417,7 @@ store.dispatch({
 See index.js
 
 store.subscribe(() => {
-  console.log('store changed!', store.getState())
+console.log('store changed!', store.getState())
 })
 
 ### Lesson 10 Action Types
@@ -434,20 +430,22 @@ See types.js
   - notify subscribers
 
 Redux has is quite small
-  - additional libraries will make it easier to maintain
+
+- additional libraries will make it easier to maintain
 
 ### Lesson 11 Action Creators
 
 See actionCreators.js
 
 This is a bit verbose:
-  ```js
-  store.dispatch({
-    type: actions.BUG_ADDED,
-    payload: {
-      description: 'bug2',
-    },
-  });
+
+```js
+store.dispatch({
+  type: actions.BUG_ADDED,
+  payload: {
+    description: 'bug2'
+  }
+})
 ```
 
 We can make it functional
@@ -462,16 +460,14 @@ See my solution in this commit.
 
 His solution does it in one line with a ternary
 
-
-# Section 4
-
-## Building Redux from Scratch
+## Section 4 Build Redux from Scratch
 
 ### Lesson 1
 
 Redux is not as complex as we think. In this section we will build Redux from scratch
 
 ### Lesson 2 Store
+
 When learning a new tool, it's good to learn it from the inside out.
 
 ```js
@@ -500,9 +496,41 @@ subscribe
 dispatch
 getState
 
-Try to write your own! 
+Try to write your own!
 
 see my-store.js
 
-### Lesson 3
+### Lesson 3 Private Properties
+
 See customStore.js
+
+### Lesson 4 Dispatching Actions
+
+See index.js
+See customStore.js
+
+### Lesson 4 Subscribe to the store
+
+See index.js
+See customStore.js
+
+## Section 5 Debugging Redux Applications
+
+### Lesson 1 Intro
+
+### Lesson 2 Redux DevTools
+
+- Shows how to install the extension extension and set it up in Redux.
+- See store.js
+
+## Lesson 3 Basics of Redux DevTools
+
+  - Access it through developer tools (console)
+  - Different monitors
+    - Log monitor
+    - Inspector
+    - Chart
+  - You can choice tabs of Redux projects. Make sure you select the right one
+
+## Lesson 4 Inspector Monitor 
+

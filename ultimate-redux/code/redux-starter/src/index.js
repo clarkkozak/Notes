@@ -58,7 +58,10 @@ Symbol(observable): ƒ observable()
 */
 
 // Section 4 Lesson 5
-import store from './customStore'
+// import store from './customStore'
+
+// Section 5 Lesson 2
+import store from './store'
 import * as actions from './action'
 
 store.subscribe(() => {
