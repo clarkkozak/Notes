@@ -534,3 +534,4 @@ See customStore.js
 
 ## Lesson 4 Inspector Monitor 
 
+Gives general overview on the features of Redux DevTools
