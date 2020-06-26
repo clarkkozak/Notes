@@ -1,5 +1,5 @@
 // import store from './store';
-import store from './customStore'
+
 // store.state = 1 // we are directly mutating the store. 
 // console.log(store.state) // we don't want to be able to do this 
 
@@ -39,3 +39,20 @@ Symbol(observable): ƒ observable()
 // store.dispatch(actions.bugResolved(1));
 
 // console.log({ store: store.getState() });
+
+
+// Section 4 Lesson 3
+import store from './customStore'
+import * as actions from './action'
+store.dispatch(actions.bugAdded("Bug 1"))
+store.dispatch(actions.bugAdded("Bug 2"))
+console.log(store.getState()) 
+/* Out put
+[
+  {
+    "id": 1,
+    "description": "Bug 1",
+    "resolved": false
+  }
+]
+*/

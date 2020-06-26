@@ -2,9 +2,7 @@
 
 ## Getting Started
 
-### Lesson 1
-
-#### What is Redux
+### Lesson 1 What is Redux
 
 state management library for JS apps
 
@@ -28,9 +26,7 @@ Benefits
 - centralized state
 - makes data flow transparent and predictability
 
-### Lesson 2
-
-#### Pros and Cons of Redux
+### Lesson 2 Pros and Cons of Redux
 
 Store setup:
 entities - products - categories - cart
@@ -58,9 +54,7 @@ Redux pros and cons
   - Complexity
   - verbosity
 
-### Lesson 3
-
-#### Is redux for you?
+### Lesson 3 Is redux for you?
 
 - what problem are you trying to solve
 - what are your constraints?
@@ -80,9 +74,7 @@ Redux pros and cons
     - you don't need to solve all problems with Redux
       - we like to be on autopilot as humans
 
-### Lesson 4
-
-#### Setting up Dev Env
+### Lesson 4 Setting up Dev Env
 
 - use the `redux-starer` that comes with the course
   - it uses webpack, package.json, npm
@@ -91,16 +83,12 @@ Redux pros and cons
 
 ## Functional Programming in JavaScript
 
-### Lesson 1
-
-#### Introduction
+### Lesson 1 Introduction
 
 - Redux is built on functional programming principles
 - Understanding functional programming will make Redux easier to understand and use
 
-### Lesson 2
-
-#### What is Functional Programming
+### Lesson 2 What is Functional Programming
 
 - Functional programming is one of many programming paradigms
 - These paradigms helps guide how we should approach programming problems
@@ -123,9 +111,7 @@ Benefits
 
 JS isn't a functional language; it's multi-paradigm
 
-### Lesson 3
-
-#### Functions as First-class Citizens
+### Lesson 3 Functions as First-class Citizens
 
 JS fundamental refresher
 
@@ -137,9 +123,7 @@ Functions
 
 _Skipped code_
 
-### Lesson 4
-
-#### Higher-order Functions
+### Lesson 4 Higher-order Functions
 
 Higher order function
 
@@ -152,9 +136,7 @@ Examples
 - Array.map(function)
 - setTime(function, 1000)
 
-### Lesson 5
-
-#### Function Composition
+### Lesson 5 Function Composition
 
 Coding example
 
@@ -162,9 +144,7 @@ Coding example
   - problem -> the logic is going from right to left
     - this isn't human readable!
 
-### Lesson 6
-
-#### Composing and Piping
+### Lesson 6 Composing and Piping
 
 Using Lodash, a JS functional programming library
 
@@ -172,9 +152,7 @@ Using Lodash, a JS functional programming library
 - pipe (left to right)
 - both take in functions and returns a function that runs each of them
 
-### Lesson 7
-
-#### Currying
+### Lesson 7 Currying
 
 - Technique coined by Haskell Curry
 
@@ -186,9 +164,7 @@ Using Lodash, a JS functional programming library
 
 - See comments in currying.js and composition.js
 
-### Lesson 8
-
-#### Pure Functions
+### Lesson 8 Pure Functions
 
 Another core concept in functional program
 
@@ -219,7 +195,7 @@ function isEligibleNonPure(age) {
 }
 
 function isEligiblePure(age, minAge) {
-  return age > minAge; // minAge is a global variable. Subject to change
+  return age > minAge; // minAge parameter. Allows for the same output each time
 }
 ```
 
@@ -235,9 +211,7 @@ Benefits
   - if it's gonna be the same each time, we know the results each time
     - especially if they are intensive
 
-### Lesson 9
-
-#### Immutability
+### Lesson 9 Immutability
 
 Pure functions and Immutability are concepts that go together
 
@@ -278,25 +252,19 @@ Cons
   - libraries try to reduce this as much as possible
     - They use a technique called structural sharing
 
-### Lesson 10
-
-#### Updating Objects
+### Lesson 10  Updating Objects
 
 Practicing immutability with Objects.
 
 See objects.js
 
-### Lesson 11
-
-#### Updating Arrays
+### Lesson 11  Updating Arrays
 
 Practicing immutability with Arrays
 
 See arrays.js
 
-### Lesson 12
-
-#### Enforcing Immutability
+### Lesson 12  Enforcing Immutability
 
 Use libraries to enforce immutability
 
@@ -306,15 +274,11 @@ Examples:
 - Immer (by MobX)
 - Mori
 
-### Lesson 13
-
-#### Immutable.js
+### Lesson 13  Immutable.js
 
 See immutable.js
 
-### Lesson 14
-
-#### Immer
+### Lesson 14  Immer
 
 See immer.js
 
@@ -322,15 +286,11 @@ See immer.js
 
 ## Redux Fundamentals
 
-### Lesson 1
-
-#### Introduction
+### Lesson 1 Introduction
 
 Once you understand functional programming, you can move onto learning redux
 
-### Lesson 2
-
-#### Redux Architecture
+### Lesson 2 Redux Architecture
 
 Store
 
@@ -368,9 +328,7 @@ Building blocks: - action (event) - dispatches an action to the store - store (f
 
 Why dispatch actions like this? - Send the actions through the same entrance point - allows to log each action - allows to add middleware
 
-### Lesson 3
-
-#### Your First Redux App
+### Lesson 3 Your First Redux App
 
 Creating a bug tracker
 
@@ -385,9 +343,7 @@ Steps to do so
 
 No UI for now
 
-### Lesson 4
-
-#### Designing the Store
+### Lesson 4 Designing the Store
 
 What does our app have?
 
@@ -404,9 +360,7 @@ Bugs:
 }
 ```
 
-### Lesson 5
-
-#### Defining the Actions
+### Lesson 5 Defining the Actions
 
 What does our app do?
 It can: - Add a bug - Mark a bug resolve - Delete a bug
@@ -431,10 +385,9 @@ Action example:
   }
 }
 
-````
+```
 
-### Lesson 6
-#### Creating a Reducer
+### Lesson 6 a Reducer
 
 - Pure function is will always return the same thing
 - Reducers must be a pure function
@@ -448,13 +401,11 @@ Action example:
   - 2 arguments, and that's it.
 See reducer.js
 
-### Lesson 7
-#### Creating the Store
+### Lesson 7 the Store
 
 See store.js
 
-### Lesson 8
-#### Dispatching Actions
+### Lesson 8 Actions
 
 See store.js
 
@@ -465,8 +416,7 @@ store.dispatch({
   },
 });
 
-### Lesson 9
-#### Subscribing to the Store
+### Lesson 9 to the Store
 
 See index.js
 
@@ -474,8 +424,7 @@ store.subscribe(() => {
   console.log('store changed!', store.getState())
 })
 
-### Lesson 10
-#### Action Types
+### Lesson 10 Action Types
 
 See index.js
 See types.js
@@ -487,8 +436,7 @@ See types.js
 Redux has is quite small
   - additional libraries will make it easier to maintain
 
-### Lesson 11
-#### Action Creators
+### Lesson 11 Action Creators
 
 See actionCreators.js
 
@@ -500,21 +448,17 @@ This is a bit verbose:
       description: 'bug2',
     },
   });
-````
+```
 
 We can make it functional
 
-### Lesson 12
-
-#### Exercise
+### Lesson 12 Exercise
 
 - Implement resolving a bug
 
 See my solution in this commit.
 
-### Lesson 13
-
-#### Solution
+### Lesson 13 Solution
 
 His solution does it in one line with a ternary
 
@@ -524,12 +468,10 @@ His solution does it in one line with a ternary
 ## Building Redux from Scratch
 
 ### Lesson 1
-#### Introduction
 
 Redux is not as complex as we think. In this section we will build Redux from scratch
 
-### Lesson 2
-#### Redux Store
+### Lesson 2 Store
 When learning a new tool, it's good to learn it from the inside out.
 
 ```js
@@ -563,7 +505,4 @@ Try to write your own!
 see my-store.js
 
 ### Lesson 3
-
-#### Private Methods
-
-See customSTore
+See customStore.js
