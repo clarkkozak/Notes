@@ -1,5 +1,29 @@
-// we assumed it was an []
-import * as actions from './types';
+// Types
+export const BUG_ADDED = 'bugAdded';
+export const BUG_REMOVED = 'bugRemoved';
+export const BUG_RESOLVED = 'bugResolved';
+// Actions
+
+// Now with an arrow func
+export const bugAdded = (description) => {
+  return {
+    type: BUG_ADDED,
+    payload: {
+      description,
+    },
+  };
+};
+
+export const bugResolved = (id) => {
+  return {
+    type: BUG_RESOLVED,
+    payload: {
+      id,
+    },
+  };
+};
+
+// Reducers
 let lastId = 0;
 
 // // state = [] will be our initial state
@@ -27,7 +51,7 @@ let lastId = 0;
 // we can use switch and case too
 export default function reducer(state = [], action) {
   switch (action.type) {
-    case actions.BUG_ADDED:
+    case BUG_ADDED:
       return [
         ...state, // use immutability library later
         {
@@ -39,9 +63,9 @@ export default function reducer(state = [], action) {
           resolved: false,
         },
       ];
-    case actions.BUG_REMOVED:
+    case BUG_REMOVED:
       return state.filter((bug) => bug.id !== action.payload.id);
-    case actions.BUG_RESOLVED:
+    case BUG_RESOLVED:
       // my solution
       // const newState = state.map((bug) => {
       //   if (bug.id === action.payload.id) {

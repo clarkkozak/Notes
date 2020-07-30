@@ -28,11 +28,24 @@ Benefits
 
 ### Lesson 2 Pros and Cons of Redux
 
-Store setup:
-entities - products - categories - cart
-auth - authToken - currentUser
-ui - loading - productPage
-...
+Example store setup:
+
+- entities
+
+  - products
+  - categories
+  - cart
+
+- auth
+
+  - authToken
+  - currentUser
+
+- ui
+  - loading
+  - productPage
+
+etc.
 
 Using redux dev tools
 
@@ -320,9 +333,20 @@ Store
   - uses an `action`
   - each reducer will be responsible of updated a certain part of the store
 
-Building blocks: - action (event) - dispatches an action to the store - store (frontend db) - the store is forwards the action to the reducer - reducer (event handler, pure functions) - takes the actions and returns the new state to the store
+Building blocks:
 
-Why dispatch actions like this? - Send the actions through the same entrance point - allows to log each action - allows to add middleware
+- action (event)
+  - dispatches an action to the store
+- store (frontend db)
+  - the store is forwards the action to the reducer
+- reducer (event handler, pure functions)
+  - takes the actions and returns the new state to the store
+
+Why dispatch actions like this?
+
+- Send the actions through the same entrance point
+- allows to log each action
+- allows to add middleware
 
 ### Lesson 3 Your First Redux App
 
@@ -359,7 +383,11 @@ Bugs:
 ### Lesson 5 Defining the Actions
 
 What does our app do?
-It can: - Add a bug - Mark a bug resolve - Delete a bug
+It can:
+
+- Add a bug
+- Mark a bug resolve
+- Delete a bug
 
 Action example:
 
@@ -435,7 +463,7 @@ Redux has is quite small
 
 ### Lesson 11 Action Creators
 
-See actionCreators.js
+See actionCreators.js (now called action.js)
 
 This is a bit verbose:
 
@@ -523,31 +551,89 @@ See customStore.js
 - Shows how to install the extension extension and set it up in Redux.
 - See store.js
 
-## Lesson 3 Basics of Redux DevTools
+### Lesson 3 Basics of Redux DevTools
 
-  - Access it through developer tools (console)
-  - Different monitors
-    - Log monitor
-    - Inspector
-    - Chart
-  - You can choice tabs of Redux projects. Make sure you select the right one
+- Access it through developer tools (console)
+- Different monitors
+  - Log monitor
+  - Inspector
+  - Chart
+- You can choice tabs of Redux projects. Make sure you select the right one
 
-## Lesson 4 Inspector Monitor 
+### Lesson 4 Inspector Monitor
 
 Gives general overview on the features of Redux DevTools
 
-## Lesson 5 Tracing
+### Lesson 5 Tracing
 
 - By default tracing is not enabled.
+
   - `npm i redux-devtools-extensions`
 
 - See changes in this commit.
-- Go to Redux DevTools settings and set the path to the project and editor. 
+- Go to Redux DevTools settings and set the path to the project and editor.
 - Generate a source map to see the trace.
-- Super cool feature that requires some configuration 
+- Super cool feature that requires some configuration
 
-## Lesson 6 Exporting and Importing the Store in Redux DevTools
+### Lesson 6 Exporting and Importing the Store in Redux DevTools
 
 - Export and Import state so you don't need to repeat yourself
 - You can use service to do this as well, like LogRocket
 - This way we can help users with unique bugs
+
+## Section 7 Writing Clean Code
+
+### Lesson 1 Introduction
+
+Redux is know for having to write a lot of boilerplate code (i.e. code that is the same when you start out each time)
+
+### Lesson 2 Structuring Files and Folders
+
+current structure:
+
+- src:
+  - actions.js
+  - reducers.s
+  - types.js
+
+new structure:
+
+- src/:
+  - store/
+    - auth/
+      - actions.js
+      - reducers.s
+      - types.js
+    - bugs/
+    - projects/
+    - featureName/
+
+ducks pattern:
+
+- src/:
+  - store/
+    - auth.js
+    - bugs.js
+    - projects.js
+    - featureName.js
+
+Redux handles state management and shouldn't be coupled with UI
+
+_don't name it redux_
+name your artifacts (modules / components) based on their _roles_, not the name of the tech
+
+### Lesson 3 Ducks Pattern
+
+Implementing Ducks pattern. See difference in code commits
+
+### Lesson 4 Redux Toolkit
+
+### Lesson 5 Creating the Store
+
+### Lesson 6 Creating Actions
+
+### Lesson 7 Creating Reducers
+
+### Lesson 8 Creating Slices
+
+### Lesson 9 Exercise
