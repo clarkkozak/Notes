@@ -61,8 +61,10 @@ Symbol(observable): ƒ observable()
 // import store from './customStore'
 
 // Section 5 Lesson 2
-import store from './store'
-import * as actions from './action'
+import configureStore from './store/configureStore'
+import * as actions from './store/bugs'
+
+const store = configureStore()
 
 store.subscribe(() => {
   console.log('the store was updated')
