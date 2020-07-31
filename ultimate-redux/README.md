@@ -653,6 +653,15 @@ Reduce object pattern that is so common.
 
 ### Lesson 7 Creating Reducers
 
+Why use createReducer?
+
+Some people aren't familiar
+
+- switch statements
+- writing immutable code for state
+
+See bugs.js and index.js in git diff
+
 ### Lesson 8 Creating Slices
 
 ### Lesson 9 Exercise
