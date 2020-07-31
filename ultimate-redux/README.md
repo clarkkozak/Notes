@@ -184,8 +184,8 @@ A pure function takes in the same arguments and returns the same results
 Non-pure function
 
 ```js
-function nonPureFunction (number) {
-  return number * Math.random()
+function nonPureFunction(number) {
+  return number * Math.random();
 }
 ```
 
@@ -201,12 +201,12 @@ Pure functions:
 Examples
 
 ```js
-function isEligibleNonPure (age) {
-  return age > minAge // minAge is a global variable. Subject to change
+function isEligibleNonPure(age) {
+  return age > minAge; // minAge is a global variable. Subject to change
 }
 
-function isEligiblePure (age, minAge) {
-  return age > minAge // minAge parameter. Allows for the same output each time
+function isEligiblePure(age, minAge) {
+  return age > minAge; // minAge parameter. Allows for the same output each time
 }
 ```
 
@@ -232,13 +232,13 @@ Immutability
 - take a copy, then change it
 
 ```js
-let name = 'Jason'
-let newString = name.toUpperCase() // name is not affected
+let name = 'Jason';
+let newString = name.toUpperCase(); // name is not affected
 ```
 
 ```js
-let book = {} // event with `const`. `const` prevents reassignment, not immutability
-book.title = '...' // objects and arrays are NOT immutable
+let book = {}; // event with `const`. `const` prevents reassignment, not immutability
+book.title = '...'; // objects and arrays are NOT immutable
 ```
 
 Why immutability
@@ -471,9 +471,9 @@ This is a bit verbose:
 store.dispatch({
   type: actions.BUG_ADDED,
   payload: {
-    description: 'bug2'
-  }
-})
+    description: 'bug2',
+  },
+});
 ```
 
 We can make it functional
@@ -499,7 +499,7 @@ Redux is not as complex as we think. In this section we will build Redux from sc
 When learning a new tool, it's good to learn it from the inside out.
 
 ```js
-console.log(store)
+console.log(store);
 /*
 {…}
 ​
@@ -628,9 +628,23 @@ Implementing Ducks pattern. See difference in code commits
 
 ### Lesson 4 Redux Toolkit
 
-### Lesson 5 Creating the Store
+Redux tool kit reduces boilerplate code and attempts to implement best practices
+
+### Lesson 5 Creating the Store:
+
+See configureStore.js code diff
+
+Why use RTK for configuring the store?
+
+- dev tools are put in automatically
+- thunk is installed by default
+- serialization and other default middleware
 
 ### Lesson 6 Creating Actions
+
+Why use create action?
+
+Reduce object pattern that is so common.
 
 ### Lesson 7 Creating Reducers
 
