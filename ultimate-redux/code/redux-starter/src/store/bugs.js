@@ -1,57 +1,16 @@
-// Types
-export const BUG_ADDED = 'bugAdded';
-export const BUG_REMOVED = 'bugRemoved';
-export const BUG_RESOLVED = 'bugResolved';
-// Actions
+import { createAction } from "@reduxjs/toolkit"
 
-// Now with an arrow func
-export const bugAdded = (description) => {
-  return {
-    type: BUG_ADDED,
-    payload: {
-      description,
-    },
-  };
-};
+export const bugAdded = createAction('bugAdded')
+export const bugRemoved = createAction('bugRemoved')
+export const bugUpdated = createAction('bugUpdated')
+export const bugResolved = createAction('bugResolved')
 
-export const bugResolved = (id) => {
-  return {
-    type: BUG_RESOLVED,
-    payload: {
-      id,
-    },
-  };
-};
-
-// Reducers
 let lastId = 0;
-
-// // state = [] will be our initial state
-// function reducer(state = [], action) {
-//   if (action.type === 'bugAdded') {
-//     return [
-//       ...state, // use immutability library later
-//       {
-//         // In reducers, have the payload to have the
-//         // minimum amount of data
-//         // We can implement business logic in the reducer
-//         id: ++lastId,
-//         description: action.payload.description,
-//         resolved: false,
-//       },
-//     ];
-//   } else if (action.type === 'bugRemoved') {
-//     return state.filter((bug) => bug.id !== action.payload.id);
-//   }
-
-//   // If action doesn't exist, return state.
-//   return state
-// }
 
 // we can use switch and case too
 export default function reducer(state = [], action) {
   switch (action.type) {
-    case BUG_ADDED:
+    case bugAdded.type:
       return [
         ...state, // use immutability library later
         {
@@ -63,11 +22,11 @@ export default function reducer(state = [], action) {
           resolved: false,
         },
       ];
-    case BUG_REMOVED:
+    case bugRemoved.type:
       return state.filter((bug) => bug.id !== action.payload.id);
-    case BUG_RESOLVED:
+    case bugResolved.type:
       // my solution
-      // const newState = state.map((bug) => {
+      // const  newState = state.map((bug) => {
       //   if (bug.id === action.payload.id) {
       //     return {
       //       ...bug,

@@ -646,6 +646,11 @@ Why use create action?
 
 Reduce object pattern that is so common.
 
+`const action = createAction('action-ed')`
+`action.type` and `action.toString()` are the same
+
+`action.action({ mustByIn: 'Object for the payload'})`
+
 ### Lesson 7 Creating Reducers
 
 ### Lesson 8 Creating Slices
