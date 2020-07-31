@@ -70,12 +70,12 @@ store.subscribe(() => {
   console.log('the store was updated')
 })
 
-store.dispatch(actions.bugAdded("Bug 1"))
-store.dispatch(actions.bugAdded("Bug 2"))
-store.dispatch(actions.bugAdded("Bug 3"))
+store.dispatch(actions.bugAdded({ description: "Bug 1"}))
+store.dispatch(actions.bugAdded({ description: "Bug 2"}))
+store.dispatch(actions.bugAdded({ description: "Bug 3"}))
 // Be careful of coercion. This did not dispatch the action properly.
 // store.dispatch(actions.bugResolved("2"))
-store.dispatch(actions.bugResolved(2))
+store.dispatch(actions.bugResolved({id: 2}))
 
 console.log(store.getState())
 
