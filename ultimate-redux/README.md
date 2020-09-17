@@ -672,3 +672,83 @@ See bugs.js and index.js in git diff
 ### Lesson 9 Exercise
 
 See projects.js and index.js
+
+## Section 7 Designing The Store
+
+### Lesson 1 Introduction
+
+### Lesson 2 Redux State vs Local State
+
+Common question: Do we store all state in redux?
+
+Approaches:
+- Store Global State
+  - Doesn't allow maximize redux
+  - Better off using context 
+    - it's easy to implement
+- Store All State
+  - Unified data access
+    - capability
+    - debugging   
+  - Requires more Redux code
+ 
+***Exception***
+- Form state
+  - Temporary variables don't have value in the store
+  - Too many dispatches (on each keystroke)
+    - makes debugging harder
+  - Store form state locally in the components
+    - don't update the store until the user submits the form
+  
+Use local state when it makes sense
+
+### Lesson 3 Structuring a Redux Store
+
+Know which data structure you are using. 
+
+- Arrays can be expensive if search by idea 
+- Objects will be quick as you can access a specific ID with a name
+
+*Does order matter?*
+- What problem do you need to solve? Fast look ups? Does order matter?
+- What if you need both?
+
+```
+  {
+    byId: {
+      1: { ... },
+      2: { ... },
+      3: { ... },
+    },
+    allIds: [3, 1, 2]
+  }
+```
+- Now we can order the array at the bottom without much difficult, and have speedy look ups
+
+We will probably have many slices. Having a generic parent keeps them well organized.
+
+```
+  entities: {
+    projects: [],
+    bugs: [],
+    tags: []
+  },
+  auth: { userId: 1, name: "John" },
+  ui: {
+    bugs: { query: "...", sortBy: "..." }
+  }
+```
+
+### Lesson 4 Combining Reducers
+
+### Lesson 5 Normalization
+
+### Lesson 6 Exporting and Importing
+
+### Lesson 6 Selectors
+
+### Lesson 7 Memoizing Selectors with Reselect
+
+### Lesson 8 Exercise
+
+### Lesson 9 Solution
