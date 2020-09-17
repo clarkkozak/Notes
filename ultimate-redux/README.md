@@ -581,7 +581,7 @@ Gives general overview on the features of Redux DevTools
 - You can use service to do this as well, like LogRocket
 - This way we can help users with unique bugs
 
-## Section 7 Writing Clean Code
+## Section 6 Writing Clean Code
 
 ### Lesson 1 Introduction
 
@@ -664,4 +664,11 @@ See bugs.js and index.js in git diff
 
 ### Lesson 8 Creating Slices
 
+`createSlice` take an object with a few options:
+- `name`: The name of obj. Helps for organization
+- `initialState`: The initial state of the slice
+- `reducers`: an object of reducer functions
+
 ### Lesson 9 Exercise
+
+See projects.js and index.js

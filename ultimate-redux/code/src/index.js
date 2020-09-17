@@ -62,7 +62,8 @@ Symbol(observable): ƒ observable()
 
 // Section 5 Lesson 2
 import configureStore from './store/configureStore'
-import * as actions from './store/bugs'
+import * as bugActions from './store/bugs'
+import * as projectActions from './store/projects'
 
 const store = configureStore()
 
@@ -70,12 +71,16 @@ store.subscribe(() => {
   console.log('the store was updated')
 })
 
-store.dispatch(actions.bugAdded({ description: "Bug 1"}))
-store.dispatch(actions.bugAdded({ description: "Bug 2"}))
-store.dispatch(actions.bugAdded({ description: "Bug 3"}))
+store.dispatch(projectActions.projectAdded({ name: "project 1"}))
+store.dispatch(projectActions.projectAdded({ name: "project 2"}))
+store.dispatch(projectActions.projectRemoved({id: 0}))
+// Without combined reducers, these actions do not change our state!
+store.dispatch(bugActions.bugAdded({ description: "bug 1"}))
+store.dispatch(bugActions.bugAdded({ description: "bug 2"}))
+store.dispatch(bugActions.bugAdded({ description: "bug 3"}))
 // Be careful of coercion. This did not dispatch the action properly.
 // store.dispatch(actions.bugResolved("2"))
-store.dispatch(actions.bugResolved({id: 2}))
+store.dispatch(bugActions.bugResolved({id: 1}))
 
 console.log(store.getState())
 
