@@ -16,6 +16,11 @@ const bugSlice = createSlice({
     bugResolved: (state, action) => {
       const index = state.findIndex(bug => bug.id ===action.payload.id)
       state[index].resolved = true
+    },
+    assignedBugToUser(state, action) {
+      const { bugId, userId } = action.payload
+      const index = state.findIndex(bug => bug.id === bugId)
+      state[index].userId = userId
     }
   }
 })
@@ -34,5 +39,11 @@ export const getUnResolvedBugs = createSelector(
   (bugs, projects) => bugs.filter(bug => !bug.resolved) // result function
 )
 
-export const { bugAdded, bugResolved } = bugSlice.actions
+// This function returns a selector function
+export const getBugsByUser = userId => createSelector(
+  state => state.entities.bugs,
+  bugs => bugs.filter(bug => bug.userId === userId)
+)
+
+export const { bugAdded, bugResolved, assignedBugToUser } = bugSlice.actions
 export default bugSlice.reducer
