@@ -849,4 +849,37 @@ Add the ability to
   - assign a bug to a team member
   - get the list of bugs assigned to a team member
 
+See commit cdd67f7
+
 ### Lesson 9 Solution
+
+Things I didn't do right:
+- Have an ID for each member
+- Name variables to the smallest unit
+- Use `createSelector`
+- if `bugs` are being assigned to `users`
+  - it belongs in the `bugs` slice
+
+Why I didn't use a `createSelector`
+
+This is what stumped me 
+
+```js
+export const getBugsByUser = createSelector(
+  state => state.entities.bugs,
+  bugs => bugs.filter(bug => bug.userId === ???
+)
+```
+Wrap it in a function! It returns the selector function
+
+```js
+export const getBugsByUser = userId => createSelector(
+  state => state.entities.bugs,
+  bugs => bugs.filter(bug => bug.userId === userId)
+)
+```
+
+Call it like this
+```js
+const bugsFromFirstUser = getBugsByUser(1)(store.getState())
+```

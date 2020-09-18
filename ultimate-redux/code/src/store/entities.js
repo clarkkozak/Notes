@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
 import bugsReducers from './bugs' ;
 import projectReducers from './projects';
-import memberReducers from './members';
+import userReducers from './users';
 
 export default combineReducers({
   bugs: bugsReducers,
   projects: projectReducers,
-  members: memberReducers,
+  users: userReducers,
 })

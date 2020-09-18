@@ -1,7 +1,7 @@
 import configureStore from './store/configureStore'
-import { bugAdded, bugResolved, getUnResolvedBugs } from './store/bugs'
+import { bugAdded, bugResolved, getBugsByUser, assignedBugToUser } from './store/bugs'
 import * as projectActions from './store/projects'
-import { memberAdded, assignedBugToMember, getBugsFromMember } from './store/members'
+import { userAdded } from './store/users'
 
 const store = configureStore()
 
@@ -16,17 +16,14 @@ store.dispatch(bugAdded({ description: "bug 1"}))
 store.dispatch(bugAdded({ description: "bug 2"}))
 store.dispatch(bugAdded({ description: "bug 3"}))
 store.dispatch(bugResolved({id: 1}))
-store.dispatch(memberAdded({ name: 'clarkkozak'}))
-store.dispatch(memberAdded({ name: 'juxley'}))
-store.dispatch(assignedBugToMember({ id: 0, bug: 0 }))
-store.dispatch(assignedBugToMember({ id: 0, bug: 1 }))
-store.dispatch(assignedBugToMember({ id: 1, bug: 2 }))
+store.dispatch(userAdded({ name: 'clarkkozak'}))
+store.dispatch(userAdded({ name: 'juxley'}))
+store.dispatch(assignedBugToUser({ userId: 1, bugId: 1 }))
+store.dispatch(assignedBugToUser({ userId: 1, bugId: 2 }))
+store.dispatch(assignedBugToUser({ userId: 2, bugId: 3 }))
 
-const bugsFromClark = getBugsFromMember(store.getState(), 'clarkkozak')
-console.log(bugsFromClark)
+const bugsFromFirstUser = getBugsByUser(1)(store.getState())
 
-const x = getUnResolvedBugs(store.getState())
-const y = getUnResolvedBugs(store.getState())
-console.log(x === y)
+console.log(bugsFromFirstUser)
 
 // console.log(store.getState())
