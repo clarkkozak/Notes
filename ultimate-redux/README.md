@@ -741,14 +741,112 @@ We will probably have many slices. Having a generic parent keeps them well organ
 
 ### Lesson 4 Combining Reducers
 
+- Store talks to the root reducer. 
+- The parent reducer passes it to its children until it finds the right action.
+
+"What you understand is that in redux, multiple reducers can handle the same action"
+"Each reducer is responsible for updating a slice in the store"
+
+`bugsReducer` can only update the `bugs` property
+
+See entities.js and reducers.js
+
+
 ### Lesson 5 Normalization
 
-### Lesson 6 Exporting and Importing
+- We should not duplicate data in our store
+  - we don't want to update multiple things in our store
+- We do not want nested structures; as it's difficult to access
+  - keep it as flat as possible 
+
+Wrong:
+```js
+[
+  { 
+    id: 1, 
+    description: "" , 
+    project: { id: 1, name: "a" }
+  },
+  { 
+    id: 1, 
+    description: "" , 
+    project: { id: 1, name: "a" }
+  },
+]
+```
+Right:
+```js
+[
+  { 
+    id: 1, 
+    description: "" , 
+    projectId: 1
+  }
+]
+```
+
+If using an API with non-normalized data, use [normalizr](https://www.npmjs.com/package/normalizr)
 
 ### Lesson 6 Selectors
 
+What's wrong with this code?
+```js
+const unResolvedBugs = store.getState().entities.bugs.filter(bug => !bug.resolved)
+```
+
+What if we want to use it in many places? Or change it's logic if our data structure changes?
+
+```js
+// Selector
+// Takes state and return computed state
+const getUnResolvedBugs = state => {
+  state.entities.bugs.filter(bug => !bug.resolved)
+}
+```
+
+Naming convention:
+  - getThing
+  - selectThing
+  - thingSelector
+
 ### Lesson 7 Memoizing Selectors with Reselect
 
+What's the problem with our selector `getUnResolvedBugs`?
+
+```js
+export const getUnResolvedBugs = state => 
+  state.entities.bugs.filter(bug => !bug.resolved);
+
+const x = getUnResolvedBugs(store.getState())
+const y = getUnResolvedBugs(store.getState())
+console.log(x === y) // false
+```
+
+We'd get 2 different arrays in memory. Therefore it's not optimized.
+Say in React, if state changes, things are re-rendered.
+
+Memoization is a technique for optimizing expensive functions. 
+Say we have a pure function: `f(x) => y`.
+We can build a cache of inputs and outputs in an object: `{ input: 2, output: 2}`.
+No need to re-computer the output. It's a single array in function.
+
+Use a library called [reselect](https://www.npmjs.com/package/reselect)
+(Note that we actually don't need to install it now, because it's included in `@reduxjs/toolkit`)
+
+```js
+export const getUnResolvedBugs = createSelector(
+  state => state.entities.bugs,
+  bugs => bugs.filter(bug => !bug.resolved)
+)
+
+const x = getUnResolvedBugs(store.getState())
+const y = getUnResolvedBugs(store.getState())
+console.log(x == y) // true 
+```
+
 ### Lesson 8 Exercise
+Add the ability to 
+  - assign a bug to a team member
+  - get the list of bugs assigned to a team member
 
 ### Lesson 9 Solution

@@ -1,4 +1,4 @@
-import { createAction, createReducer, createSlice } from "@reduxjs/toolkit"
+import { createSelector, createSlice } from "@reduxjs/toolkit"
 
 let lastId = 0;
 const bugSlice = createSlice({
@@ -20,30 +20,19 @@ const bugSlice = createSlice({
   }
 })
 
-console.log(bugSlice)
+
+// Selector
+// export const getUnResolvedBugs = state => 
+//   state.entities.bugs.filter(bug => !bug.resolved);
+
+
+// Memoization
+// get unresolved bugs from cache
+export const getUnResolvedBugs = createSelector(
+  state => state.entities.bugs, // gives it the state,
+  state => state.entities.projects, // we can give it more selectors. this way we can keep track of projects too
+  (bugs, projects) => bugs.filter(bug => !bug.resolved) // result function
+)
 
 export const { bugAdded, bugResolved } = bugSlice.actions
 export default bugSlice.reducer
-
-
-// export const bugAdded = createAction('bugAdded')
-// export const bugRemoved = createAction('bugRemoved')
-// export const bugUpdated = createAction('bugUpdated')
-// export const bugResolved = createAction('bugResolved')
-
-
-// export default createReducer([], {
-//   // key : value
-//   // actions: function(event => event handler)
-//   [bugAdded.type]: (state, action) => {
-//     state.push({
-//       id: ++lastId,
-//       description: action.payload.description,
-//       resolved: false,
-//     })
-//   },
-//   [bugResolved.type]: (state, action) => {
-//     const index = state.findIndex(bug => bug.id ===action.payload.id)
-//     state[index].resolved = true
-//   }
-// })
