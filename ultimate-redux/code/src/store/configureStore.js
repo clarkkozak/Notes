@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import reducer from './projects';
+import reducer from './reducers'
 
 // createStore is a higher order function,
 export default function () {
