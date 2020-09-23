@@ -923,6 +923,8 @@ We can Log and authorize the action,
 
 ### Lesson 3 Creating Middleware
 
+See middleware/logger.js
+
 Create a `middleware` folder
 
 ```js
@@ -950,6 +952,39 @@ const logger = (param) => (store) => (next) => (action) => {};
 Make sure to call it if you don't want answer params
 
 ### Lesson 5 Dispatching Functions
+
+See middleware/func.js
+
+```js
+store.dispatch(); // must dispatch a plain object
+store.dispatch(() => {}); // cannot dispatch functions
+```
+
+Why dispatch a function?
+
+```js
+store.dispatch(() => {
+  // Calls API -> We can have an API called and wait for it to complete
+  // When the promise is resolved, dispatch()
+  // We can also have logic if it fails or succeeds
+});
+```
+
+Remember, in arrays, order matters! First function goes is used first.
+
+We usually do not have access to the `store.dispatch()` or `store` values in our actions.
+
+If we try to call `configureStore` function, we would create another store instead of a reference.
+
+So, we must pass the `dispatch` function In our `func` middleware.
+
+```js
+const func = ({ dispatch, getState }) => next => action => {
+```
+
+We can use `getState` for decision making based on what's already in the store.
+
+Luckily, we can use `redux-thunk` in RTK, just make sure you use `getDefaultMiddleware` from them
 
 ### Lesson 6 Exercise
 
