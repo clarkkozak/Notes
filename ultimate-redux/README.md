@@ -665,6 +665,7 @@ See bugs.js and index.js in git diff
 ### Lesson 8 Creating Slices
 
 `createSlice` take an object with a few options:
+
 - `name`: The name of obj. Helps for organization
 - `initialState`: The initial state of the slice
 - `reducers`: an object of reducer functions
@@ -682,34 +683,37 @@ See projects.js and index.js
 Common question: Do we store all state in redux?
 
 Approaches:
+
 - Store Global State
   - Doesn't allow maximize redux
-  - Better off using context 
+  - Better off using context
     - it's easy to implement
 - Store All State
   - Unified data access
     - capability
-    - debugging   
+    - debugging
   - Requires more Redux code
- 
-***Exception***
+
+**_Exception_**
+
 - Form state
   - Temporary variables don't have value in the store
   - Too many dispatches (on each keystroke)
     - makes debugging harder
   - Store form state locally in the components
     - don't update the store until the user submits the form
-  
+
 Use local state when it makes sense
 
 ### Lesson 3 Structuring a Redux Store
 
-Know which data structure you are using. 
+Know which data structure you are using.
 
-- Arrays can be expensive if search by idea 
+- Arrays can be expensive if search by idea
 - Objects will be quick as you can access a specific ID with a name
 
-*Does order matter?*
+_Does order matter?_
+
 - What problem do you need to solve? Fast look ups? Does order matter?
 - What if you need both?
 
@@ -723,6 +727,7 @@ Know which data structure you are using.
     allIds: [3, 1, 2]
   }
 ```
+
 - Now we can order the array at the bottom without much difficult, and have speedy look ups
 
 We will probably have many slices. Having a generic parent keeps them well organized.
@@ -741,7 +746,7 @@ We will probably have many slices. Having a generic parent keeps them well organ
 
 ### Lesson 4 Combining Reducers
 
-- Store talks to the root reducer. 
+- Store talks to the root reducer.
 - The parent reducer passes it to its children until it finds the right action.
 
 "What you understand is that in redux, multiple reducers can handle the same action"
@@ -751,38 +756,40 @@ We will probably have many slices. Having a generic parent keeps them well organ
 
 See entities.js and reducers.js
 
-
 ### Lesson 5 Normalization
 
 - We should not duplicate data in our store
   - we don't want to update multiple things in our store
 - We do not want nested structures; as it's difficult to access
-  - keep it as flat as possible 
+  - keep it as flat as possible
 
 Wrong:
+
 ```js
 [
-  { 
-    id: 1, 
-    description: "" , 
-    project: { id: 1, name: "a" }
+  {
+    id: 1,
+    description: '',
+    project: { id: 1, name: 'a' },
   },
-  { 
-    id: 1, 
-    description: "" , 
-    project: { id: 1, name: "a" }
+  {
+    id: 1,
+    description: '',
+    project: { id: 1, name: 'a' },
   },
-]
+];
 ```
+
 Right:
+
 ```js
 [
-  { 
-    id: 1, 
-    description: "" , 
-    projectId: 1
-  }
-]
+  {
+    id: 1,
+    description: '',
+    projectId: 1,
+  },
+];
 ```
 
 If using an API with non-normalized data, use [normalizr](https://www.npmjs.com/package/normalizr)
@@ -790,8 +797,9 @@ If using an API with non-normalized data, use [normalizr](https://www.npmjs.com/
 ### Lesson 6 Selectors
 
 What's wrong with this code?
+
 ```js
-const unResolvedBugs = store.getState().entities.bugs.filter(bug => !bug.resolved)
+const unResolvedBugs = store.getState().entities.bugs.filter((bug) => !bug.resolved);
 ```
 
 What if we want to use it in many places? Or change it's logic if our data structure changes?
@@ -799,33 +807,33 @@ What if we want to use it in many places? Or change it's logic if our data struc
 ```js
 // Selector
 // Takes state and return computed state
-const getUnResolvedBugs = state => {
-  state.entities.bugs.filter(bug => !bug.resolved)
-}
+const getUnResolvedBugs = (state) => {
+  state.entities.bugs.filter((bug) => !bug.resolved);
+};
 ```
 
 Naming convention:
-  - getThing
-  - selectThing
-  - thingSelector
+
+- getThing
+- selectThing
+- thingSelector
 
 ### Lesson 7 Memoizing Selectors with Reselect
 
 What's the problem with our selector `getUnResolvedBugs`?
 
 ```js
-export const getUnResolvedBugs = state => 
-  state.entities.bugs.filter(bug => !bug.resolved);
+export const getUnResolvedBugs = (state) => state.entities.bugs.filter((bug) => !bug.resolved);
 
-const x = getUnResolvedBugs(store.getState())
-const y = getUnResolvedBugs(store.getState())
-console.log(x === y) // false
+const x = getUnResolvedBugs(store.getState());
+const y = getUnResolvedBugs(store.getState());
+console.log(x === y); // false
 ```
 
 We'd get 2 different arrays in memory. Therefore it's not optimized.
 Say in React, if state changes, things are re-rendered.
 
-Memoization is a technique for optimizing expensive functions. 
+Memoization is a technique for optimizing expensive functions.
 Say we have a pure function: `f(x) => y`.
 We can build a cache of inputs and outputs in an object: `{ input: 2, output: 2}`.
 No need to re-computer the output. It's a single array in function.
@@ -835,25 +843,28 @@ Use a library called [reselect](https://www.npmjs.com/package/reselect)
 
 ```js
 export const getUnResolvedBugs = createSelector(
-  state => state.entities.bugs,
-  bugs => bugs.filter(bug => !bug.resolved)
-)
+  (state) => state.entities.bugs,
+  (bugs) => bugs.filter((bug) => !bug.resolved)
+);
 
-const x = getUnResolvedBugs(store.getState())
-const y = getUnResolvedBugs(store.getState())
-console.log(x == y) // true 
+const x = getUnResolvedBugs(store.getState());
+const y = getUnResolvedBugs(store.getState());
+console.log(x == y); // true
 ```
 
 ### Lesson 8 Exercise
-Add the ability to 
-  - assign a bug to a team member
-  - get the list of bugs assigned to a team member
+
+Add the ability to
+
+- assign a bug to a team member
+- get the list of bugs assigned to a team member
 
 See commit cdd67f7
 
 ### Lesson 9 Solution
 
 Things I didn't do right:
+
 - Have an ID for each member
 - Name variables to the smallest unit
 - Use `createSelector`
@@ -862,7 +873,7 @@ Things I didn't do right:
 
 Why I didn't use a `createSelector`
 
-This is what stumped me 
+This is what stumped me
 
 ```js
 export const getBugsByUser = createSelector(
@@ -870,16 +881,37 @@ export const getBugsByUser = createSelector(
   bugs => bugs.filter(bug => bug.userId === ???
 )
 ```
+
 Wrap it in a function! It returns the selector function
 
 ```js
-export const getBugsByUser = userId => createSelector(
-  state => state.entities.bugs,
-  bugs => bugs.filter(bug => bug.userId === userId)
-)
+export const getBugsByUser = (userId) =>
+  createSelector(
+    (state) => state.entities.bugs,
+    (bugs) => bugs.filter((bug) => bug.userId === userId)
+  );
 ```
 
 Call it like this
+
 ```js
-const bugsFromFirstUser = getBugsByUser(1)(store.getState())
+const bugsFromFirstUser = getBugsByUser(1)(store.getState());
 ```
+
+## Section 8 Middleware
+
+Building block that allows us to cause side effects
+
+### Lesson 1 Introduction
+
+### Lesson 2 What is Middleware
+
+### Lesson 3 Creating Middleware
+
+### Lesson 4 Parameterizing Middleware
+
+### Lesson 5 Dispatching Functions
+
+### Lesson 6 Exercise
+
+### Lesson 7 Solution
