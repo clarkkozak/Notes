@@ -939,6 +939,16 @@ Use the `applyMiddleware` as the 2nd parameter in `createStore` function from `r
 
 ### Lesson 4 Parameterizing Middleware
 
+What if you want to add a options for a middleware function?
+
+Wrap it in a function! (seems to be Mosh's answer for everything)
+
+```js
+const logger = (param) => (store) => (next) => (action) => {};
+```
+
+Make sure to call it if you don't want answer params
+
 ### Lesson 5 Dispatching Functions
 
 ### Lesson 6 Exercise

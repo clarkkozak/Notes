@@ -8,7 +8,7 @@ export default function () {
   return configureStore({
     reducer,
     middleware: [
-      logger
+      logger('console')
     ]
   })
 }

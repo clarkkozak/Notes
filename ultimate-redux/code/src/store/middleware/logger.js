@@ -2,7 +2,8 @@
 // Action = what was dispatched
 // Next = reference to next middleware function
 // store = not actually the store. Object the looks like the store
-const logger = store => next => action => {
+const logger = param => store => next => action => {
+  console.log("param:", param)
   console.log("store:", store) //
   // store: 
   // {
