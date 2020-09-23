@@ -991,3 +991,5 @@ Luckily, we can use `redux-thunk` in RTK, just make sure you use `getDefaultMidd
 See middleware/toast.js
 
 ### Lesson 7 Solution
+
+Same answer!
