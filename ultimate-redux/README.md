@@ -923,6 +923,20 @@ We can Log and authorize the action,
 
 ### Lesson 3 Creating Middleware
 
+Create a `middleware` folder
+
+```js
+const logger = (store) => (next) => (action) => {};
+```
+
+- 3 parameters
+- Action = what was dispatched
+- Next = reference to next middleware function
+- store = not actually the store. Object the looks like the store
+  - `getState` and `dispatch` can be destructed
+
+Use the `applyMiddleware` as the 2nd parameter in `createStore` function from `redux` if not using RTK
+
 ### Lesson 4 Parameterizing Middleware
 
 ### Lesson 5 Dispatching Functions
