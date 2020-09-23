@@ -3,15 +3,15 @@
 // Next = reference to next middleware function
 // store = not actually the store. Object the looks like the store
 const logger = param => store => next => action => {
-  console.log("param:", param)
-  console.log("store:", store) //
+  // console.log("param:", param)
+  // console.log("store:", store) //
   // store: 
   // {
   //   dispatch: function dispatch()​
   //   getState: function f()​
     
   //  }
-  console.log("next:", next)
+  // console.log("next:", next)
   // We don't have other middleware, so it's the 
 
   console.log("action:", action)
