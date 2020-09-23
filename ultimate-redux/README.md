@@ -900,11 +900,26 @@ const bugsFromFirstUser = getBugsByUser(1)(store.getState());
 
 ## Section 8 Middleware
 
-Building block that allows us to cause side effects
-
 ### Lesson 1 Introduction
 
+Building block that allows us to cause side effects
+
 ### Lesson 2 What is Middleware
+
+Action -> Single entry point (a pipe line; middleware!) -> Reducers (root reducers that will pass it to it's children reducers)
+
+Redux Middleware: After an action is dispatched and before it goes to root reducer
+
+Existing Middleware:
+
+- Calling APIs
+- Error Reporting
+- Analytics
+- Authorization
+
+We can Log and authorize the action,
+
+- if it false auth, doesn't reach the root reducer
 
 ### Lesson 3 Creating Middleware
 
