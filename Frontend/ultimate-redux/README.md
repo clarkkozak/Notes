@@ -1008,6 +1008,31 @@ The changes to the backend, will NOT be saved
 
 ### Lesson 3 The Approach
 
+By dispatching a function we can cause side effects like calling an API
+
+We don't want to have side effects in our reducers as they are supposed to be a PURE function
+
+- No side effects
+- No API calls
+- No DOM manipulation
+
+We put the side effects in the actionCreator
+
+```js
+const actionCreator = () => (dispatch, _getState) => {
+  // Call API that returns a promise
+  // Resolved: dispatch(success), return updated state
+  // Rejected: dispatch(error)
+};
+```
+
+This pattern gets repetitive, so we can use middleware to reduce code duplication
+
+Naming can be done in the present tense or past tense.
+
+- GET_BUGS_REQUEST vs bugsRequested
+- GET_BUGS_FAIL vs bugRequestFailed
+
 ### Lesson 4 API Middleware
 
 ### Lesson 5 Actions
