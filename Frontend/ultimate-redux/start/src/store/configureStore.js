@@ -12,10 +12,7 @@ export default function () {
     reducer,
     middleware: [
       ...getDefaultMiddleware(),
-      logger('console'),
-      toast,
       api,
-      // func
     ]
   })
 }
