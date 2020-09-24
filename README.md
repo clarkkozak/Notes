@@ -34,6 +34,9 @@ A repo to store all of the code and notes for courses and books regards programm
 
 ## ETC
 
+- [YouTube Video Notes](https://github.com/clarkkozak/Notes/tree/master/YouTube)
+- [C Notes](https://github.com/clarkkozak/Notes/tree/master/C)
+
 ## Disclaimer
 
 Note that I do not take credit for the code. I do this to keep my own notes on the project and to provide other coders advice on if the course is worth taking.
