@@ -1048,6 +1048,22 @@ Create an action creator to not hard code the string value
 
 ### Lesson 6 Restructuring the Store
 
+before
+
+```js
+  initialState: [],
+```
+
+after
+
+```js
+  initialState: {
+    list: [],
+    loading: false, // UI component,
+    lastFetch: null, // used for caching
+  },
+```
+
 ### Lesson 7 Getting Data from the Server
 
 ### Lesson 8 Loading Indicators
