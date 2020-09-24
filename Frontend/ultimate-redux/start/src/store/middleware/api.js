@@ -1,5 +1,7 @@
 import axios from 'axios'
-/*
+import * as actions from '../api'
+
+ /*
 const action = {
   type: 'apiCallBegan',
   payload: {
@@ -15,7 +17,7 @@ const action = {
 */
 
 const api = ({ dispatch }) => next => async action => {
-  if (action.type !== 'apiCallBegan') {
+  if (action.type !== actions.apiCallBegan.type) {
     return next(action)
   } else {
     const { url, method, data, onSuccess, onError } = action.payload
@@ -30,9 +32,15 @@ const api = ({ dispatch }) => next => async action => {
         data
       })
 
-      dispatch({ type: onSuccess, payload: res.data})
+      // General
+      dispatch(actions.apiCallSuccess(res.data))
+      // Specific 
+      if (onSuccess) dispatch({ type: onSuccess, payload: res.data})
     } catch (err) {
-      dispatch({ type: onError, payload: err})
+      // General
+      dispatch(actions.apiCallFailed(err))
+      // Specific
+     if (onError) dispatch({ type: onError, payload: err})
     }
       
   }

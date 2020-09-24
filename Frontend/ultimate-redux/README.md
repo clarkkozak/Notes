@@ -1039,6 +1039,13 @@ See middleware/api.js
 
 ### Lesson 5 Actions
 
+Problems with this approach:
+
+- Hard coding the `action.type` to be `apiCallBegan`
+- apiCall vs apiRequest -> inconsistent naming
+
+Create an action creator to not hard code the string value
+
 ### Lesson 6 Restructuring the Store
 
 ### Lesson 7 Getting Data from the Server
