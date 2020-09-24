@@ -993,3 +993,37 @@ See middleware/toast.js
 ### Lesson 7 Solution
 
 Same answer!
+
+## Section 9 Consuming APIs
+
+### Lesson 1 Introduction
+
+Calling APIs is very important to frontend applications
+
+### Lesson 2 Setting Up the Backend
+
+### Lesson 3 The Approach
+
+### Lesson 4 API Middleware
+
+### Lesson 5 Actions
+
+### Lesson 6 Restructuring the Store
+
+### Lesson 7 Getting Data from the Server
+
+### Lesson 8 Loading Indicators
+
+### Lesson 9 Caching
+
+### Lesson 10 Saving Data to the Server
+
+### Lesson 11 Exercise
+
+### Lesson 12 Solution - Resolving Bugs
+
+### Lesson 13 Solution - Assigning a Bug to a User
+
+### Lesson 14 Reducing Coupling
+
+### Lesson 15 Cohesion
