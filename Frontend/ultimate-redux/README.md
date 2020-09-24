@@ -1035,6 +1035,8 @@ Naming can be done in the present tense or past tense.
 
 ### Lesson 4 API Middleware
 
+See middleware/api.js
+
 ### Lesson 5 Actions
 
 ### Lesson 6 Restructuring the Store
