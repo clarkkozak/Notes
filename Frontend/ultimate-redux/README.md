@@ -1002,6 +1002,10 @@ Calling APIs is very important to frontend applications
 
 ### Lesson 2 Setting Up the Backend
 
+Get the fake backend from the given `code.zip` file
+
+The changes to the backend, will NOT be saved
+
 ### Lesson 3 The Approach
 
 ### Lesson 4 API Middleware
