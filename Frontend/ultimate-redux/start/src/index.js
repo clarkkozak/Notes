@@ -8,6 +8,10 @@ const store = configureStore()
 // }) // cannot dispatch functions
 
 store.dispatch({
-  type: 'error',
-  payload: { message: 'Bread Burns on Broil'}
+  type: 'apiCallBegan',
+  payload: {
+    url: '/bugs',
+    onSuccess: 'apiReceived',  // String -> Serializable. a func is not
+    onError: 'apiRequestFailed' // String -> Serializable. a func is not
+  }
 })
