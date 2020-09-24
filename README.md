@@ -1,14 +1,8 @@
-# Overview
+# Table of Content
 
 A repo to store all of the code and notes for courses and books regards programming.
 
-## Table of Content
-
-=================
-
 ## Frontend
-
-=================
 
 - [Gatsby JS: Build PWA Blog With GraphQL And React + WordPress](https://github.com/clarkkozak/Notes/tree/master/Frontend/gatsby-graphql-wordpress)
 - [A virtual map of: JavaScript: The Weird Parts](https://github.com/clarkkozak/Notes/tree/master/Frontend/js-vym-map)
@@ -20,8 +14,6 @@ A repo to store all of the code and notes for courses and books regards programm
 - [Firebase Notes](https://github.com/clarkkozak/Notes/tree/master/Fullstack/Firebase)
 
 ## Backend
-
-=================
 
 - [Learn Blockchain By Building Your Own In JavaScript](https://github.com/clarkkozak/Notes/tree/master/Backend/js_blockchain)
 - [GraphQL: Learning GraphQL with Node.Js](https://github.com/clarkkozak/Notes/tree/master/Backend/grahpql-with-nodejs)
