@@ -1066,6 +1066,16 @@ after
 
 ### Lesson 7 Getting Data from the Server
 
+Implementing a new reducers to putting data from the server into the store
+
+Be careful of the name spacing: 'bugs/bugsReceived' vs 'bugsReceived'
+
+UI Layer: `store.dispatch(loadBugs())`
+
+We don't want to know what _url to request_ nor what _action to dispatch_ on success
+
+We want to make sure that these details aren't in more than one place.
+
 ### Lesson 8 Loading Indicators
 
 ### Lesson 9 Caching
