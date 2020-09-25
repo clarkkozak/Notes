@@ -20,7 +20,9 @@ const api = ({ dispatch }) => next => async action => {
   if (action.type !== actions.apiCallBegan.type) {
     return next(action)
   } else {
-    const { url, method, data, onSuccess, onError } = action.payload
+    const { url, method, data, onSuccess, onError, onStart } = action.payload
+
+    if (onStart) dispatch({ type: onStart })
 
     next(action) // If this is not called, then the initial action, `apiCallBegan`, will be swallowed
 
@@ -38,9 +40,9 @@ const api = ({ dispatch }) => next => async action => {
       if (onSuccess) dispatch({ type: onSuccess, payload: res.data})
     } catch (err) {
       // General
-      dispatch(actions.apiCallFailed(err))
+      dispatch(actions.apiCallFailed(err.message)) // err.message is serializable 
       // Specific
-     if (onError) dispatch({ type: onError, payload: err})
+     if (onError) dispatch({ type: onError, payload: err.message})
     }
       
   }
