@@ -1078,6 +1078,14 @@ We want to make sure that these details aren't in more than one place.
 
 ### Lesson 8 Loading Indicators
 
+Steps to implement to set the loading indictor in the store for state:
+
+action: bugsRequested
+reducer: loading = true
+middleware: dispatch a new action
+
+see bugs.js and api.js
+
 ### Lesson 9 Caching
 
 ### Lesson 10 Saving Data to the Server
