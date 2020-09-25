@@ -1088,6 +1088,10 @@ see bugs.js and api.js
 
 ### Lesson 9 Caching
 
+We don't want to refetch data too often.
+
+See index.js and bugs.js
+
 ### Lesson 10 Saving Data to the Server
 
 ### Lesson 11 Exercise

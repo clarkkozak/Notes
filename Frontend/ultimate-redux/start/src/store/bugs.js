@@ -1,5 +1,6 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit"
-import { apiCallBegan } from "./api";
+import { apiCallBegan } from "./api"
+import moment from 'moment'
 
 let lastId = 0;
 const bugSlice = createSlice({
@@ -21,6 +22,7 @@ const bugSlice = createSlice({
     bugsReceived: (state, action) => {
       state.list = action.payload
       state.loading = false
+      state.lastFetch = Date.now() // timestamp is serializable 
     },
     bugsRequested: (state) => {
       state.loading = true
@@ -62,12 +64,22 @@ export const getBugsByUser = userId => createSelector(
 
 // Action Creators
 const url = '/bugs'
-export const loadBugs = () => apiCallBegan({
-  url,
-  onStart: bugsRequested.type,
-  onSuccess: bugsReceived.type, 
-  onError: bugsRequestFailed.type,
-});
+
+export const loadBugs = () => (dispatch, getState) => {
+  const { lastFetch } = getState().entities.bugs
+
+  const diffInMinutes = moment().diff(moment(lastFetch), 'minutes')
+  console
+  if (diffInMinutes < 10) return; // Store the number value in a config file
+
+  dispatch(apiCallBegan({
+    url,
+    onStart: bugsRequested.type,
+    onSuccess: bugsReceived.type, 
+    onError: bugsRequestFailed.type,
+  }))
+      
+}
 
 export const { bugAdded, bugResolved, bugsReceived, bugsRequested, bugsRequestFailed, assignedBugToUser } = bugSlice.actions
 export default bugSlice.reducer
