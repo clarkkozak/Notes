@@ -1150,3 +1150,15 @@ Redux:
 Now, when we try to import from `store/bugs`; the autocomplete is cleaner and exposes what we want2
 
 ### Lesson 15 Cohesion
+
+Why not break down the file?
+
+We will have to export the actions
+
+Cohesion -> things that are highly related should be in the same module
+
+If you put them in different modules, than it will increase coupling
+
+These principles are guide lines
+
+Know the pros and cons
