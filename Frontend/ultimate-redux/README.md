@@ -1104,6 +1104,16 @@ We can take advantage of our middleware/api.js
 
 ### Lesson 11 Exercise
 
+Save the data when:
+
+- Assigning a bug to a user
+- Resolving a Bug
+
+Initial problem
+
+- what to do with those reducers?
+  - Answer: `state.list`
+
 ### Lesson 12 Solution - Resolving Bugs
 
 ### Lesson 13 Solution - Assigning a Bug to a User
