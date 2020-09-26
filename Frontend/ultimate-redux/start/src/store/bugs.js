@@ -1,8 +1,8 @@
+// @ts-nocheck
 import { createSelector, createSlice } from "@reduxjs/toolkit"
 import { apiCallBegan } from "./api"
 import moment from 'moment'
 
-let lastId = 0;
 const bugSlice = createSlice({
   name: 'bugs',
   initialState: {
@@ -13,11 +13,7 @@ const bugSlice = createSlice({
   reducers: {
     // This function calls `createAction` and `createReducer`
     bugAdded: (state, action) => {
-      state.list.push({
-        id: ++lastId,
-        description: action.payload.description,
-        resolved: false,
-      })
+      state.list.push(action.payload)
     },
     bugsReceived: (state, action) => {
       state.list = action.payload
@@ -63,7 +59,7 @@ export const getBugsByUser = userId => createSelector(
 )
 
 // Action Creators
-const url = '/bugs'
+const url = '/bugs' // this should be in a config file
 
 export const loadBugs = () => (dispatch, getState) => {
   const { lastFetch } = getState().entities.bugs
@@ -80,6 +76,13 @@ export const loadBugs = () => (dispatch, getState) => {
   }))
       
 }
+
+export const addBug = bug => apiCallBegan({
+  url, 
+  method: 'post',
+  data: bug,
+  onSuccess: bugAdded.type,
+})
 
 export const { bugAdded, bugResolved, bugsReceived, bugsRequested, bugsRequestFailed, assignedBugToUser } = bugSlice.actions
 export default bugSlice.reducer

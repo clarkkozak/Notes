@@ -1094,6 +1094,14 @@ See index.js and bugs.js
 
 ### Lesson 10 Saving Data to the Server
 
+Similar to getting data from the server:
+Make an API call
+
+- Promise resolved => `dispatch(success)`
+- Promise rejected => `dispatch(error)`
+
+We can take advantage of our middleware/api.js
+
 ### Lesson 11 Exercise
 
 ### Lesson 12 Solution - Resolving Bugs
