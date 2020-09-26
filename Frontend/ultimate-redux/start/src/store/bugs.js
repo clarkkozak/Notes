@@ -58,7 +58,10 @@ export const getBugsByUser = userId => createSelector(
   bugs => bugs.filter(bug => bug.userId === userId)
 )
 
+const { bugAdded, bugResolved, bugsReceived, bugsRequested, bugsRequestFailed, assignedBugToUser } = bugSlice.actions
+
 // Action Creators
+
 const url = '/bugs' // this should be in a config file
 
 export const loadBugs = () => (dispatch, getState) => {
@@ -102,5 +105,4 @@ export const assignBug = (bugId, userId) => apiCallBegan({
   onSuccess: assignedBugToUser.type,
 })
 
-export const { bugAdded, bugResolved, bugsReceived, bugsRequested, bugsRequestFailed, assignedBugToUser } = bugSlice.actions
 export default bugSlice.reducer

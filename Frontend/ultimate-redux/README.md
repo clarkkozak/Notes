@@ -1116,8 +1116,37 @@ Initial problem
 
 ### Lesson 12 Solution - Resolving Bugs
 
+resolveBug - bugResolved
+command - event
+
+[DDD](https://en.wikipedia.org/wiki/Domain-driven_design)? [CQRS](https://www.ibm.com/cloud/architecture/architectures/event-driven-cqrs-pattern/)?
+
+I got it right!
+
 ### Lesson 13 Solution - Assigning a Bug to a User
 
+I got it right!
+
 ### Lesson 14 Reducing Coupling
+
+Remote Control Principles
+
+Think of a remote control - Complex internals
+
+Changing of the internals shouldn't matter
+
+We shouldn't expose the internals so that we don't make our software complex
+
+We would be "tightly coupling" it
+
+The internals are the implementation details.
+
+Redux:
+
+- In The UI layer, we don't need to dispatch actions
+  - if we use `bugAdded` we don't update data on the server
+    - so why expose it?
+
+Now, when we try to import from `store/bugs`; the autocomplete is cleaner and exposes what we want2
 
 ### Lesson 15 Cohesion
