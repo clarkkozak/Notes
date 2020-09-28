@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { createSelector, createSlice } from "@reduxjs/toolkit"
 import { apiCallBegan } from "./api"
+import axios from 'axios'
 import moment from 'moment'
 
 const bugSlice = createSlice({
@@ -86,6 +87,17 @@ export const addBug = bug => apiCallBegan({
   data: bug,
   onSuccess: bugAdded.type,
 })
+
+// Another implantation of addBug
+// Behavior works, although test failed.
+// export const addBug = bug => {
+//   try {
+//     const res = await axios.post(url, bug)
+//     dispatch(bugAdded(bug))
+//   } catch (err) {
+//     dispatch({ type: 'error'})
+//   }
+// }
 
 export const resolveBug = bugId => apiCallBegan({
   url: `${url}/${bugId}`, 
