@@ -1173,6 +1173,26 @@ Here is a proper way of doing so. Watch each video! Lots of misconceptions.
 
 ### Lesson 2 What is Automated Testing
 
+Code that tests our code
+
+Quicker than manual testing; yet it doesn't remove manual (regression) testing
+
+- Unit
+  - Test without its external dependies
+    - web services, databases, files
+    - mock object or service
+      - we want these tests to be FAST
+- Integration
+  - Slower, give us more confidence
+  - test with external resources
+- End to End test
+  - driving through UI, and connect to database
+  - fragile, slow
+
+Unit is whatever you want, just make sure it doesn't touch external resources
+
+Test units during developers
+
 ### Lesson 3 Setting Up the Testing Environment
 
 ### Lesson 4 Your First Unit Test
