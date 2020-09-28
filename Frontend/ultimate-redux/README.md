@@ -1162,3 +1162,37 @@ If you put them in different modules, than it will increase coupling
 These principles are guide lines
 
 Know the pros and cons
+
+## Session 10 Testing Redux Applications
+
+### Lesson 1 Introduction
+
+Most understood area; lots of bad information out there.
+
+Here is a proper way of doing so. Watch each video! Lots of misconceptions.
+
+### Lesson 2 What is Automated Testing
+
+### Lesson 3 Setting Up the Testing Environment
+
+### Lesson 4 Your First Unit Test
+
+### Lesson 5 Unit Testing Redux Applications
+
+### Lesson 6 Solitary Tests
+
+### Lesson 7 Social Tests
+
+### Lesson 8 Mocking HTTP Calls
+
+### Lesson 9 Writing Clean Tests
+
+### Lesson 10 Test Coverage
+
+### Lesson 11 Exercises
+
+### Lesson 12 Solution - getUnresolvedBugs
+
+### Lesson 13 Solution - resolveBug
+
+### Lesson 14 Solution - loadingBugs
