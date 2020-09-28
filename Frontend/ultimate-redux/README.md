@@ -1195,6 +1195,8 @@ Test units during developers
 
 ### Lesson 3 Setting Up the Testing Environment
 
+Jest and Babel set up. See commit
+
 ### Lesson 4 Your First Unit Test
 
 ### Lesson 5 Unit Testing Redux Applications
