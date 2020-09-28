@@ -1248,6 +1248,15 @@ see bugs.js and bugs.test.js
 
 ### Lesson 8 Mocking HTTP Calls
 
+Unit tests shouldn't take to external resources:
+
+- it slows it down.
+- It may not be available
+
+Make a mock or fake function
+
+Using axios mock library to return a test object
+
 ### Lesson 9 Writing Clean Tests
 
 ### Lesson 10 Test Coverage
