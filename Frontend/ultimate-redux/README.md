@@ -1203,6 +1203,39 @@ See math.spec.js
 
 ### Lesson 5 Unit Testing Redux Applications
 
+A unit test can test single or multiple object; as long as it doesn't touch external resources
+
+Testing things by themselves (Solitary / Lonely):
+
+- actions
+- reducers
+- middleware
+
+These tests get coupled with implementation (details)
+
+KILL our productivity
+
+The problem isn't unit testing, it's how you practice it
+
+SHOULD NOT test implementation, yet behavior
+
+Think of a microwave -> we don't care of the physics of the timer.
+
+Not reliable; doesn't show confidence.
+
+Forget UI of redux; how does REdux work?
+
+Social tets:
+
+- test all of them. What do we care about?
+- dispatch(action) -> update store
+- less fragile
+- cheaper (time) to write
+- cheaper to maintain
+- more reliable
+
+Solidary tests aren't even. It depends on the complexity of the block. Redux, has simple blocks that are tested already.
+
 ### Lesson 6 Solitary Tests
 
 ### Lesson 7 Social Tests
