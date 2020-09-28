@@ -58,7 +58,7 @@ export const getBugsByUser = userId => createSelector(
   bugs => bugs.filter(bug => bug.userId === userId)
 )
 
-const { bugAdded, bugResolved, bugsReceived, bugsRequested, bugsRequestFailed, assignedBugToUser } = bugSlice.actions
+export const { bugAdded, bugResolved, bugsReceived, bugsRequested, bugsRequestFailed, assignedBugToUser } = bugSlice.actions
 
 // Action Creators
 

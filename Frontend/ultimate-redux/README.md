@@ -1238,6 +1238,8 @@ Solidary tests aren't even. It depends on the complexity of the block. Redux, ha
 
 ### Lesson 6 Solitary Tests
 
+While going forward with this approach, we can comment out the api middleware and our test still passes
+
 ### Lesson 7 Social Tests
 
 ### Lesson 8 Mocking HTTP Calls
