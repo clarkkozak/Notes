@@ -1242,6 +1242,10 @@ While going forward with this approach, we can comment out the api middleware an
 
 ### Lesson 7 Social Tests
 
+Because we are testing with the backend in this lesson, this is an integration test
+
+see bugs.js and bugs.test.js
+
 ### Lesson 8 Mocking HTTP Calls
 
 ### Lesson 9 Writing Clean Tests

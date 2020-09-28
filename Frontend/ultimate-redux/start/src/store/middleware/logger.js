@@ -21,7 +21,7 @@ const logger = param => store => next => action => {
   //   "name": "clarkkozak"
   // }
 
-  next(action) // If we don't call this WITH the action, it won't go into our reducer or next middleware
+  return next(action) // If we don't call this WITH the action, it won't go into our reducer or next middleware
 }
 
 export default logger

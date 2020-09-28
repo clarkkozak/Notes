@@ -59,7 +59,7 @@ export const getBugsByUser = userId => createSelector(
   bugs => bugs.filter(bug => bug.userId === userId)
 )
 
-export const { bugAdded, bugResolved, bugsReceived, bugsRequested, bugsRequestFailed, assignedBugToUser } = bugSlice.actions
+const { bugAdded, bugResolved, bugsReceived, bugsRequested, bugsRequestFailed, assignedBugToUser } = bugSlice.actions
 
 // Action Creators
 
@@ -87,6 +87,21 @@ export const addBug = bug => apiCallBegan({
   data: bug,
   onSuccess: bugAdded.type,
 })
+
+// Another implementation that passes the test
+// export const addBug = bug => async dispatch => {
+//   try {
+//     const res = await axios.request({
+//       baseURL: 'http://localhost:9001/api',
+//       url: '/bugs',
+//       data: bug,
+//       method: 'post',
+//     })
+//     dispatch(bugAdded(res.data))
+//   } catch (err) {
+//     dispatch({ type: 'error'})
+//   }
+// }
 
 // Another implantation of addBug
 // Behavior works, although test failed.
