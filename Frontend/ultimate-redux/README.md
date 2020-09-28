@@ -1199,6 +1199,8 @@ Jest and Babel set up. See commit
 
 ### Lesson 4 Your First Unit Test
 
+See math.spec.js
+
 ### Lesson 5 Unit Testing Redux Applications
 
 ### Lesson 6 Solitary Tests
