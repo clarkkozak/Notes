@@ -42,9 +42,7 @@
       <section v-if="gameStart" class="row controls">
         <div class="small-12 columns">
           <button @click="attack" id="attack">ATTACK</button>
-          <button @click="specialAttack" id="special-attack">
-            SPECIAL ATTACK
-          </button>
+          <button @click="specialAttack" id="special-attack">SPECIAL ATTACK</button>
           <button @click="heal" id="heal">HEAL</button>
           <button @click="giveUp" id="give-up">GIVE UP</button>
         </div>
@@ -52,23 +50,18 @@
       <section class="row log">
         <div class="small-12 columns">
           <ul>
-            <li
-              v-for="log in logs"
-              :key="log.message"
-              :class="`${log.player}-turn`"
-            >
-              {{ log.player }} {{ log.action }} {{ log.target }} FOR {{
-              log.value }}
+            <li v-for="log in logs" :key="log.message" :class="`${log.player}-turn`">
+              {{ log.player }} {{ log.action }} {{ log.target }} FOR {{ log.value }}
             </li>
           </ul>
         </div>
       </section>
     </div>
     <script>
-      function randomWholeNumber (min, max) {
-        const minimum = Math.ceil(min)
-        const maximum = Math.floor(max)
-        return Math.floor(Math.random() * (maximum - minimum + 1)) + minimum
+      function randomWholeNumber(min, max) {
+        const minimum = Math.ceil(min);
+        const maximum = Math.floor(max);
+        return Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
       }
       new Vue({
         el: '#app',
@@ -76,120 +69,125 @@
           myHealth: 50,
           monsterHealth: 50,
           logs: [],
-          gameStart: true,
-          winner: ''
+          gameStart: false,
+          winner: '',
         },
         watch: {
           myHealth: function (value) {
-            if (value === 0) {
-              this.gameStart = false
-              this.winner = 'Monster'
+            if (value <= 0) {
+              this.myHealth = 0;
+              this.gameStart = false;
+              this.winner = 'Monster';
             }
           },
           monsterHealth: function (val, oldValue) {
-            if (val === 0) {
-              this.gameStart = false
-              this.winner = 'Player'
+            if (val <= 0) {
+              this.monsterHealth = 0;
+              this.gameStart = false;
+              this.winner = 'Player';
             }
 
-            if (this.myHealth === 0) return
+            if (this.myHealth === 0) return;
 
             if (this.myHealth < 9) {
-              this.myHealth = 0
-              return
+              this.myHealth = 0;
+              return;
             }
-            const randomAttack = randomWholeNumber(5, 15)
-            this.myHealth -= randomAttack
+            const randomAttack = randomWholeNumber(5, 15);
+            this.myHealth -= randomAttack;
             this.logs.push({
               player: 'monster',
               value: randomAttack,
-              action: 'attacks'
-            })
+              action: 'attacks',
+            });
           },
           gameStart: function (val) {
             if (!this.gameStart) {
-              alert(`This ${this.winner} has won!`)
+              alert(`This ${this.winner} has won!`);
             }
-          }
+          },
         },
         computer: {},
         methods: {
-          attack () {
-            if (this.monsterHealth === 0) return
+          attack() {
+            if (this.monsterHealth === 0) return;
 
             if (this.monsterHealth < 9) {
-              this.monsterHealth = 0
-              return
+              this.monsterHealth = 0;
             }
 
-            const randomAttack = randomWholeNumber(5, 10)
+            const randomAttack = randomWholeNumber(5, 10);
 
-            this.monsterHealth -= randomAttack
+            this.monsterHealth -= randomAttack;
             this.logs.push({
               player: 'player',
               value: randomAttack,
-              action: 'attacks'
-            })
+              action: 'attacks',
+            });
           },
-          giveUp () {
-            const answer = window.confirm('Are you sure you want to give up?')
+          giveUp() {
+            const answer = window.confirm('Are you sure you want to give up?');
             if (answer) {
-              this.myHealth = 0
-              this.gameStart = false
+              this.myHealth = 0;
+              this.gameStart = false;
               this.logs.push({
                 player: 'monster',
                 action: 'ate',
                 target: 'player',
-                value: 'giving up'
-              })
+                value: 'giving up',
+              });
             }
-            return
+            return;
           },
-          specialAttack () {
-            if (this.monsterHealth === 0) return
+          specialAttack() {
+            if (this.monsterHealth === 0) return;
 
-            if (this.monsterHealth < 9) {
-              this.monsterHealth = 0
-              return
+            if (this.monsterHealth < 19) {
+              this.monsterHealth = 0;
             }
 
-            const randomSpecialAttack = randomWholeNumber(1, 20)
+            const randomSpecialAttack = randomWholeNumber(1, 20);
             this.monsterHealth -= this.logs.push({
               player: 'player',
               value: randomSpecialAttack,
-              action: 'smashes'
-            })
+              action: 'smashes',
+            });
           },
-          heal () {
-            if (this.myHealth === 100) return
-
-            if (this.myHealth > 90 && this.myHealth < 100) {
-              this.myHealth = 100
+          heal() {
+            if (this.myHealth >= 100) {
+              alert('Health is full');
+              return;
+            } else {
+              const healValue = 15;
+              this.myHealth += healValue;
+              this.logs.push({
+                player: 'player',
+                target: 'themselves',
+                value: healValue,
+                action: 'smashes',
+              });
             }
 
-            const healValue = 10
-            this.myHealth += healValue
+            const randomAttack = randomWholeNumber(5, 15);
+            this.myHealth -= randomAttack;
             this.logs.push({
-              player: 'player',
-              target: 'themselves',
-              value: healValue,
-              action: 'smashes'
-            })
+              player: 'monster',
+              value: randomAttack,
+              action: 'attacks',
+            });
           },
-          newGame () {
-            const answer = window.confirm(
-              'Are you sure you want to start a new game?'
-            )
+          newGame() {
+            const answer = window.confirm('Are you sure you want to start a new game?');
             if (answer) {
-              this.gameStart = true
-              this.myHealth = 100
-              this.monsterHealth = 100
-              this.logs = []
+              this.gameStart = true;
+              this.myHealth = 100;
+              this.monsterHealth = 100;
+              this.logs = [];
             }
-            return
-          }
-        }
-      })
+            return;
+          },
+        },
+      });
     </script>
   </body>
 </html>
