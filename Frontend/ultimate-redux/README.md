@@ -1277,6 +1277,10 @@ So it seems that I've written the tests as mosh did, yet breaking the `addBug` f
 
 ### Lesson 10 Test Coverage
 
+We need to know what part of the code needs to be tested
+
+Use `jest --coverage` to see more
+
 ### Lesson 11 Exercises
 
 ### Lesson 12 Solution - getUnresolvedBugs
