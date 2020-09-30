@@ -1291,6 +1291,12 @@ Test for the following:
 
 ### Lesson 12 Solution - getUnresolvedBugs
 
+What I didn't do
+
+- Define a group for selectors
+- Didn't need to make a `mockStore` variable since it's only used once. However, I like the readability
+- We can create an Object Factory for `mockStore`s objects
+
 ### Lesson 13 Solution - resolveBug
 
 ### Lesson 14 Solution - loadingBugs
