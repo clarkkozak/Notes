@@ -8,20 +8,30 @@ describe('BugSlice', () => {
   // These variables will always be used
   let fakeAxios
   let store;
+  const url = '/bugs'
 
   beforeEach(() => {
     fakeAxios = new MockAdapter(axios)
     store = configureStore()
   })
 
+  // We use functions to create a new object in memory 
+  // This way we do not pollute other test 
   const bugSlice = () => store.getState().entities.bugs
+  const createBugList = () => ({
+    entities: {
+      bugs: {
+        list: []
+      }
+    }
+  })
 
   describe('actionCreator', () => {
     describe('addBug', () => {
       test('add the bug to the store if it is saved to the server', async () => {
         const bug = { description: 'a'}
         const savedBug = { ...bug, id: 1}
-        fakeAxios.onPost('/bugs').reply(200, savedBug)
+        fakeAxios.onPost(url).reply(200, savedBug)
         
         await store.dispatch(addBug(bug)) // addBug is an async operator
         
@@ -30,7 +40,7 @@ describe('BugSlice', () => {
       
       test('does not add the bug to the store if it is not saved to the server', async () => {
         const bug = { description: 'a'}
-        fakeAxios.onPost('/bugs').reply(500)
+        fakeAxios.onPost(url).reply(500)
         
         await store.dispatch(addBug(bug)) // addBug is an async operator
         
@@ -48,46 +58,43 @@ describe('BugSlice', () => {
     })
     
     describe('resolveBug', () => {
-      test.todo('updates the bug in the store if it is updated on the server')
+      test('updates the bug in the store if it is updated on the server', async () => {
+        const bug = { id: 1, resolved: false }
+
+        const updatedBug = { ...bug, resolved: true }
+
+        fakeAxios.onPatch(`/bugs/${bug.id}`).reply(200, updatedBug)
+        
+        const resolvedBug = await store.dispatch(resolveBug(bug.id))
+
+        expect(resolvedBug.resolved).toBe(true)
+      })
 
       test.todo('does not update the bug in the store if it is not updated on the server')
       
     })
+  })
 
-    describe('getUnResovledBugs', () => {
-      test('gets undefined bugs from the store', () => {
-        // Assign
-        const mockStore = {
-          entities: {
-            bugs: {
-              list: [
-                {
-                  resolved: true
-                },
-                {
-                  resolved: false
-                },
-                {
-                  resolved: false
-                },
-              ]
-              }
-            }
-          }
-          
-          // Act
-          const unResolvedBug = getUnResolvedBugs(mockStore)
-          
+      describe('Selectors', () => {
+      
+      describe('getUnResovledBugs', () => {
+        test('gets undefined bugs from the store', () => {
+          // Assign
+          const mockStore = createBugList()
+          mockStore.entities.bugs.list = [
+            { resolved: true },
+            { resolved: false },
+            { resolved: false },
+          ]
+        
+        // Act
+        const unResolvedBug = getUnResolvedBugs(mockStore)
+        
         // Assert
         expect(unResolvedBug).toHaveLength(2)
-      
+        
       })
     })
-    
-    
-      
-
-    
   })
   
 })
