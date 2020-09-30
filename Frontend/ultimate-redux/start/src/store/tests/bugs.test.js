@@ -39,23 +39,49 @@ describe('BugSlice', () => {
     })
 
     describe('loadBugs', () => {
-      test('get bugs from server and save them to the store')
+      test.todo('get bugs from server and save them to the store')
       
-      test('no 2nd api call if call is made within 10 minutes')
+      test.todo('no 2nd api call if call is made within 10 minutes')
 
-      test('does not update the store if the api call fails')
+      test.todo('does not update the store if the api call fails')
       
     })
     
     describe('resolveBug', () => {
-      test('updates the bug in the store if it is updated on the server')
+      test.todo('updates the bug in the store if it is updated on the server')
 
-      test('does not update the bug in the store if it is not updated on the server')
+      test.todo('does not update the bug in the store if it is not updated on the server')
       
     })
 
     describe('getUnResovledBugs', () => {
-      test('gets undefined bugs from the store')
+      test('gets undefined bugs from the store', () => {
+        // Assign
+        const mockStore = {
+          entities: {
+            bugs: {
+              list: [
+                {
+                  resolved: true
+                },
+                {
+                  resolved: false
+                },
+                {
+                  resolved: false
+                },
+              ]
+              }
+            }
+          }
+          
+          // Act
+          const unResolvedBug = getUnResolvedBugs(mockStore)
+          
+        // Assert
+        expect(unResolvedBug).toHaveLength(2)
+      
+      })
     })
     
     
