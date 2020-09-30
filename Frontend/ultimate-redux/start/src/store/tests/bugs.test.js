@@ -71,7 +71,18 @@ describe('BugSlice', () => {
         expect(bugSlice().list[0].resolved).toBe(true)
       })
 
-      test.todo('does not update the bug in the store if it is not updated on the server')
+      test('does not update the bug in the store if it is not updated on the server', async () => {
+                /// Arrange
+        fakeAxios.onPost(`/bugs`).reply(200, { id: 1, resolved: false })
+        fakeAxios.onPatch(`/bugs/1`).reply(500)
+        
+        // Act
+        await store.dispatch(addBug({ /* nothing */}))
+        await store.dispatch(resolveBug(1))
+
+        // Assert
+        expect(bugSlice().list[0].resolved).toBe(false)
+      })
       
     })
   })
