@@ -1259,6 +1259,22 @@ Using axios mock library to return a test object
 
 ### Lesson 9 Writing Clean Tests
 
+Tests are very important. Write clean and maintainable tests.
+
+DO NOT delete the failing test.
+
+AAA
+
+- Arrange
+- Action
+- Assert
+
+Define global variables
+
+Make helper functions for long repeated functions (and if it helps for self-commented code)
+
+So it seems that I've written the tests as mosh did, yet breaking the `addBug` function did not fail either test. For example, I can set line 88 of bug.js to `null` and it works just the same, yet nothing is actually saved.
+
 ### Lesson 10 Test Coverage
 
 ### Lesson 11 Exercises
