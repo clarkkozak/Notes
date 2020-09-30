@@ -1283,6 +1283,12 @@ Use `jest --coverage` to see more
 
 ### Lesson 11 Exercises
 
+Test for the following:
+
+- resolve a bug
+- loading bug
+- getting unresolved bug
+
 ### Lesson 12 Solution - getUnresolvedBugs
 
 ### Lesson 13 Solution - resolveBug
