@@ -69,7 +69,7 @@ export const loadBugs = () => (dispatch, getState) => {
   const { lastFetch } = getState().entities.bugs
 
   const diffInMinutes = moment().diff(moment(lastFetch), 'minutes')
-  console
+  
   if (diffInMinutes < 10) return; // Store the number value in a config file
 
   dispatch(apiCallBegan({
