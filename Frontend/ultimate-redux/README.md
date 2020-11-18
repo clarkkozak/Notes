@@ -1304,5 +1304,6 @@ What I didn't do
 - use `addBug` because we needed a bug in the store
 - to check the store, i didn't use `bugSlice()` and tried to only check the value of the bug itself. `resovleBug` doesn't return the bug resolved.
 - Use less variables
+- use `.not` in tests
 
 ### Lesson 14 Solution - loadingBugs
