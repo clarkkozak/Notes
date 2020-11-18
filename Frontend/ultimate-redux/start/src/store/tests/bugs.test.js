@@ -49,11 +49,26 @@ describe('BugSlice', () => {
     })
 
     describe('loadBugs', () => {
-      test.todo('get bugs from server and save them to the store')
-      
-      test.todo('no 2nd api call if call is made within 10 minutes')
+      test('get bugs from server and save them to the store', async () => {
+        fakeAxios.onGet("/bugs").reply(200, [ { id: 1 }])
 
-      test.todo('does not update the store if the api call fails')
+        await store.dispatch(loadBugs())
+        
+        expect(bugSlice().list).toHaveLength(1)
+      })
+      
+      
+      // test('does not update the store if the api call fails', async () => {
+      //   fakeAxios.onGet(url).reply(500)
+      //   fakeAxios.onPost(`/bugs`).reply(200, { id: 1 })
+
+      //   await store.dispatch(addBug({ /* nothing */}))
+      //   const bugs = await store.dispatch(loadBugs())
+
+      //   expect(bugs).toHaveLength(0)
+      // })
+
+      test.todo('no 2nd api call if call is made within 10 minutes')
       
     })
     
@@ -73,7 +88,7 @@ describe('BugSlice', () => {
 
       test('does not update the bug in the store if it is not updated on the server', async () => {
                 /// Arrange
-        fakeAxios.onPost(`/bugs`).reply(200, { id: 1, resolved: false })
+        fakeAxios.onPost(`/bugs`).reply(200, { id: 1 })
         fakeAxios.onPatch(`/bugs/1`).reply(500)
         
         // Act
@@ -81,7 +96,7 @@ describe('BugSlice', () => {
         await store.dispatch(resolveBug(1))
 
         // Assert
-        expect(bugSlice().list[0].resolved).toBe(false)
+        expect(bugSlice().list[0].resolved).not.toBe(true)
       })
       
     })
