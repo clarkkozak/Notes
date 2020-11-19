@@ -1,0 +1,6 @@
+{
+  "files.associations": {
+    ".eslintignore": "javascriptreact",
+    "cctype": "cpp"
+  }
+}
