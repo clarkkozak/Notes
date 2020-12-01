@@ -14,6 +14,13 @@
 \% 	print a percent sign
 */
 
+
+// From the bug section in the main pages
+// Code such as printf(foo); often indicates a bug, since foo may  contain
+// a  % character.  If foo comes from untrusted user input, it may contain
+// %n, causing the printf() call to write to memory and creating  a  security hole.
+
+
 int main(int argc, char const *argv[])
 {
   printf("%d\n", argc);
