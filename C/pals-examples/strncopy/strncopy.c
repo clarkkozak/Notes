@@ -19,6 +19,7 @@ int main()
 
   char toBuf[129] = {0};
   char toBuf2[129] = {0};
+  char toBuf3[129] = {0};
   
   printf("%s\n", toBuf);
 
@@ -33,9 +34,19 @@ int main()
   
   // snprintf doesn't work this way.
   // It always writes the last byte into the string as a null so you just give it the max buffer size directly and it's safe
-  snprintf(toBuf2, sizeof(toBuf2), toBuf);
+  // You can do it this way. But some compilers will warn you with sufficient warnings enabled about doing it this way
+  snprintf(toBuf2, sizeof(toBuf2), fromBuf);
   printf("%s\n", toBuf2);
 
+ // Instead
+ // This guarantees the safety of copying a string into another no matter what is in fromBuf in my example here
+  snprintf(toBuf3, sizeof(toBuf3), "%s", fromBuf);
+  printf("%s\n", toBuf3);
+
+
+  // Man page of snprintf
+  // "The functions snprintf() and vsnprintf() write at most size bytes 
+  // (including the terminating null byte ('\0')) to str"
 
   // As you can see the extremely tiny details matter a lot in this language. 
   // It's either a form of hell or a thing of beauty for perfectionists like us lol
