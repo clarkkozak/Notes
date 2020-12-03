@@ -7,5 +7,7 @@
 int main(void)
 {
   printf("Hello, World!\n");
-  return 1;
+
+  // Returning 0 means it ran successfully
+  return 0;
 }
