@@ -58,5 +58,7 @@ int main(int argc, char const *argv[])
   // Zero filled
   printf("Zeros %03d\n", 0);
 
+  perror("This is a perror test");
+
   return 0;
 }
