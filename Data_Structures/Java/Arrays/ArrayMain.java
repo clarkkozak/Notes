@@ -1,6 +1,5 @@
 package Arrays;
 
-import java.util.Arrays;
 
 /**
  * ArrayMain
@@ -8,11 +7,15 @@ import java.util.Arrays;
 public class ArrayMain {
   
   public static void main(String[] args) {
-    // int[] num = new int[3]; 
-    int[] numbers = { 10, 20, 30 }; // short hand if you know the values
-    numbers[0] = 5; // setting a value
-    System.out.println(numbers); // prints the address in memory
-    System.out.println(Arrays.toString(numbers)); // prints the address in memory
-    System.out.println(numbers.length); // Doesn't change dynamically. A Fixed number.
+    // Exercise create an dynamic Array Class
+    // var numbers = new Array(3);
+    // numbers.insert(10);
+    // numbers.insert(20);
+    // numbers.insert(30);
+    // numbers.removeAt(3);
+    // numbers.print();
+    // System.out.println(numbers.indexOf(10));// 0 
+    // System.out.println(numbers.indexOf(100)); // -1
+
   }
 }
