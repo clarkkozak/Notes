@@ -16,3 +16,21 @@ management is done by the compiler.
 2. Arrays are static; hence, the size must be known in advance.
 3. Elements in the array are stored in consecutive memory locations which may
 or may not be available.
+
+
+## Address of an Array item
+Q. An array is given intmarks[6] = { 34, 53, 87, 100, 98, 65 } calculate the address of marks[3] if the base address is 3000.
+
+My A. 3020                               
+
+Correct answer = 3004. int are 2 bytes, not 4. 
+
+wait the book is wrong too. They start their index at 1, not zero. So the actual correct answer would be 3006
+
+## Operations
+
+- Traversing an array
+- Inserting an element in an array
+- Deleting an element in an array
+- Searching an element in an array
+- Merging of two array
