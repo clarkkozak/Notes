@@ -11,16 +11,15 @@ public class Array {
   }
 
   public void insert(int number) {
-    if (size > index) {
+    if (size > index)
       resize();
-    }
+
     array[index++] = number;
   }
 
   public void print() {
-    for (int i = 0; i < index; i++) {
+    for (int i = 0; i < index; i++)
       System.out.println(array[i]);
-    }
   }
 
   public int size() {
@@ -41,9 +40,9 @@ public class Array {
 
   private void resize() {
     int[] newArray = new int[size * 2];
-    for (int i = 0; i < array.length; i++) {
+
+    for (int i = 0; i < array.length; i++)
       newArray[i] = array[i];
-    }
     
     this.array = newArray;
   }
