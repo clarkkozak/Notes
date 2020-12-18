@@ -48,4 +48,13 @@ public class Array {
     array = newArray;
   }
 
+  public int max() {
+    int max = array[0];
+    
+    for (int i = 1; i < count; i++)
+      if (max < array[i])
+        max = array[i];
+
+    return max;
+  } 
 }
