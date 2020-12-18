@@ -13,9 +13,9 @@ public class ArrayMain {
     numbers.insert(20);
     numbers.insert(30);
     numbers.insert(40);
-    numbers.removeAt(3);
-    System.out.println(numbers.indexOf(10));// 0 
-    System.out.println(numbers.indexOf(100)); // -1
+    numbers.removeAt(0);
+    // System.out.println(numbers.indexOf(10));// 0 
+    // System.out.println(numbers.indexOf(100)); // -1
     numbers.print(); // 10, 20, 30
 
   }
