@@ -22,26 +22,11 @@ public class Array {
 
   // [0, 1, 2]
   public void removeAt(int index) {
-    int[] newArray = new int[array.length];
-    boolean targetFound = false;
     if (index >= count || index < 0)
       throw new IllegalArgumentException();
     
-    for (int i = 0; i < newArray.length - 1 ; i++) {
-      if (i == index) {
-        targetFound = true;
-      } 
-
-      if (targetFound) {
-        newArray[i] = array[i + 1];
-      } else {
-        newArray[i] = array[i];
-      }
-
-
-    }
-
-    array = newArray;
+    for (int i = index; i < count; i++)
+        array[i] = array[i + 1];
 
     count--;
   }
