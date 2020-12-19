@@ -8,7 +8,7 @@
  
 struct timeval start, last;
  
-inline int64_t tv_to_u(struct timeval s)
+int64_t tv_to_u(struct timeval s)
 {
 	return s.tv_sec * 1000000 + s.tv_usec;
 }
