@@ -16,13 +16,19 @@ int main()
 
 
   // getchar reads the next input character from a text stream and returns that as its value.
-  c = getchar(); 
   // EOF ,for ``end of file''.
-  while(c != EOF) {
+  while((c = getchar()) != EOF) {
     // prints the contents of the integer variable c as a character, usually on the screen.
-    putchar(c);
-    c = getchar();
+    // putchar(c);
+    // printf("%d\n", c != EOF); // Exercise 1-6
   }
+    // printf("%d\n", c != EOF); // Exercise 1-6
+
+
+  // printf("%x\n", EOF); // Exercise 1-7
+  // printf("%o\n", EOF); // Exercise 1-7
+  // printf("%f\n", EOF); // Exercise 1-7
+  // printf("%c\n", EOF); // Exercise 1-7
 
   return 0;
 }
