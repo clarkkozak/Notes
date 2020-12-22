@@ -2,13 +2,12 @@
 
 // Exercise 1-8
 int main() {
-  int c, nl, tabs, blanks;
+  //
+  int c;
+  size_t nl = 0;
+  size_t tabs = 0;
+  size_t blanks = 0;
 
-  // I don't fully understand why I have to initals these
-  nl = tabs = blanks = 0;
-  // Oh I think I know why. Otherwise the compiler thinks they are undefined
-  // Therefore, if they aren't incremented the compiler guesses the largest or smallest integer
-     
   // Here what pal says:
   // Oh Jesus. Always initialize your variables on the stack or they'll be garbage random values from memory
   // Generally we space things out, one declaration and initialization per line. 
@@ -19,12 +18,17 @@ int main() {
   // or even better, size_t which is designed to hold sizes or counts of things 
 
   while ((c = getchar()) != EOF) {
+    // pre-increment instead post. 
+    // postincrement without optimization creates a copy of the variable.
+    // if you're not assigning anything while using the increment operator,
+    //    it should just be preincrement
+    // https://stackoverflow.com/a/2020205/2176143 for more reading
     if (c == '\n') 
-      nl++; 
+      ++nl; 
     if (c == '\t') 
-      tabs++;      
+      ++tabs;      
     if (c == ' ') 
-      blanks++;     
+      ++blanks;     
   }
      
   printf("%d\n", nl);
