@@ -3,7 +3,7 @@ package Arrays;
 public class Array {
   private int count;
   private int[] array;
-  
+
   public Array(int length) {
     this.array = new int[length];
   }
@@ -24,13 +24,13 @@ public class Array {
     return count;
   }
 
-  // [0, 1, 2]
   public void removeAt(int index) {
     if (index >= count || index < 0)
       throw new IllegalArgumentException();
     
+    // left shift
     for (int i = index; i < count; i++)
-        array[i] = array[i + 1];
+      array[i] = array[i + 1];
 
     count--;
   }
@@ -39,7 +39,7 @@ public class Array {
     for (int i = 0; i < array.length; i++)
       if (value == array[i])
         return i;
-    
+
     return -1;
   }
 
@@ -48,13 +48,13 @@ public class Array {
 
     for (int i = 0; i < array.length; i++)
       newArray[i] = array[i];
-    
+
     array = newArray;
   }
 
   public int max() {
     int max = array[0];
-    
+
     for (int i = 1; i < count; i++)
       if (max < array[i])
         max = array[i];
@@ -71,9 +71,9 @@ public class Array {
 
   public boolean contains(int value) {
     for (int i = 0; i < array.length; i++)
-    if (value == array[i])
-      return true;
-  
+      if (value == array[i])
+        return true;
+
     return false;
   }
 
@@ -102,5 +102,22 @@ public class Array {
       newArray[j] = array[i];
 
     array = newArray;
+  }
+
+  public void insertAt(int item, int index) {
+    if (index < 0 || index > count)
+      throw new IllegalArgumentException();
+
+    if (array.length == count)
+      resize();
+
+    // right shift
+    for (int i = count; i >= index; i--) {
+      array[i + 1] = array[i];
+    }
+
+    array[index] = item;
+
+    count++;
   }
 }
