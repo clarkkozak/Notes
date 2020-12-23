@@ -94,4 +94,13 @@ public class Array {
 
     return intersectArray;
   }
+
+  public void reverse() {
+    var newArray = new int[array.length];
+
+    for (int j = 0, i = array.length - 1; j < newArray.length; i--, j++)
+      newArray[j] = array[i];
+
+    array = newArray;
+  }
 }
