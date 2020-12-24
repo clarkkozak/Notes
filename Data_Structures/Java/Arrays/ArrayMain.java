@@ -12,7 +12,12 @@ public class ArrayMain {
     numbers.insert(3); 
     numbers.insert(4);
 
-    numbers.insertAt(2, 1);
+    numbers.print();
+
+    System.out.println("\n");
+
+    numbers.insertAt(0, 0);
+    numbers.insertAt(5, 4);
     numbers.print();
   }
 }
