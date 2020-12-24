@@ -43,3 +43,23 @@ See the [Big O Cheat Sheet](https://github.com/clarkkozak/Notes/blob/master/Data
 
 #### Arrays in Java
   See [ArrayMain.java](https://github.com/clarkkozak/Notes/blob/master/Data_Structures%2FJava%2FArrays%2FArrayMain.java#L10)
+
+
+### Linked Lists
+#### Runtime Complexity
+- Lookup
+  - Index -> O(1)
+  - Value -> O(1)
+ 
+- Insertion
+  - Start -> O(1)
+  - Middle -> O(n)
+  - End -> O(1)
+ 
+- Removal
+  - Start -> O(1) # assign pointer to null and reassign head
+  - Middle -> O(n) 
+  - End -> O(n) # We need to find the 2nd to last node for a singly linked list
+
+#### Arrays in Java
+Checkout [this file at this commit](https://github.com/clarkkozak/Notes/blob/master/Data_Structures/Java/LinkedLists/LinkedListMain.java)
