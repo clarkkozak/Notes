@@ -1,6 +1,22 @@
 package LinkedLists;
 
 public class LinkedList {
+
+  // I knew it!!! I thought it would be best to have this as a private class!
+  private class Node {
+    private int value;
+    private Node next;
+  
+    public Node(int value) {
+      this.value = value;
+    }
+  
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+  }
+
   private Node first;
   private Node last;
 
@@ -35,21 +51,34 @@ public class LinkedList {
 
   // addLast
   public void addLast(int value) {
+    // if (isEmpty()) {
+    //   first = new Node(value); // declared new Node twice
+    //   last = first;
+    //   return;
+    // }
+
+    // var current = first;
+
+        
+
+    // while (current != null) { // unnecessary loop
+    //   if (current == last) {
+    //     current.next = new Node(value); // declared new Node twice
+    //     last = current.next;
+    //     break;
+    //   }
+    //   current = current.next;
+    // }
+
+    // Oh lord his is much better
+    Node node = new Node(value);
+
     if (isEmpty()) {
-      first = new Node(value);
-      last = first;
-      return;
-    }
-
-    var current = first;
-
-    while (current != null) {
-      if (current == last) {
-        current.next = new Node(value);
-        last = current.next;
-        break;
-      }
-      current = current.next;
+      
+      first = last = node; // assigning on the same line 
+    } else {
+      last.next = node; // taking advantage of the last reference
+      last = node;
     }
   }
 
