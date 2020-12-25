@@ -35,16 +35,26 @@ public class LinkedList {
 
   // addFirst
   public void addFirst(int value) {
-    if (isEmpty()) {
-      first = new Node(value);
-      last = first;
-    } else {
-      var temp = first;
-      first = new Node(value);
-      first.next = temp;
-    }
+    // if (isEmpty()) {
+    //   first = new Node(value);
+    //   last = first;
+    // } else {
+    //   var temp = first;
+    //   first = new Node(value);
+    //   first.next = temp;
+    // }
+
+      Node node = new Node(value); // extract new Node
+      if (isEmpty()) {
+        first = last = node; // assigns on same line
+      } else {
+        node.next = first; // use new nodes properties
+        first = node;
+      }
+    
   }
 
+  // hmm. Why not have it public? private is okay, yet I see this as fine.
   public boolean isEmpty() {
     return first == null && last == null;
   }
@@ -77,7 +87,7 @@ public class LinkedList {
       
       first = last = node; // assigning on the same line 
     } else {
-      last.next = node; // taking advantage of the last reference
+      last.next = node; // taking advantage of the last 
       last = node;
     }
   }
