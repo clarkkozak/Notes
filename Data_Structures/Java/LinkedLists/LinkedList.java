@@ -11,7 +11,7 @@ public class LinkedList {
 
   public void print() {
     var current = first;
-    while(current != null) {
+    while (current != null) {
       System.out.println(current.value);
       current = current.next;
     }
@@ -22,11 +22,10 @@ public class LinkedList {
     if (isEmpty()) {
       first = new Node(value);
       last = first;
-    }
-    else {
+    } else {
       var temp = first;
       first = new Node(value);
-      first.next = temp; 
+      first.next = temp;
     }
   }
 
@@ -43,8 +42,8 @@ public class LinkedList {
     }
 
     var current = first;
-    
-    while(current != null) {
+
+    while (current != null) {
       if (current == last) {
         current.next = new Node(value);
         last = current.next;
@@ -52,7 +51,6 @@ public class LinkedList {
       }
       current = current.next;
     }
-    
   }
 
   // deleteFirst
@@ -63,19 +61,19 @@ public class LinkedList {
     first = first.next;
   }
 
-
   // deleteLast
   public void deleteLast() {
     if (isEmpty())
       throw new IllegalArgumentException();
-     
+
     if (first.next == null) {
       first = null;
       return;
-    }  
+    }
 
     var current = first;
     Node previous = null;
+
     while (current != null) {
       if (current == last) {
         previous.next = null;
@@ -86,7 +84,7 @@ public class LinkedList {
     }
 
   }
-  
+
   // contains
   public boolean contains(int value) {
     return indexOf(value) != -1;
@@ -94,9 +92,6 @@ public class LinkedList {
 
   // indexOf
   public int indexOf(int value) {
-    if (isEmpty())
-     return -1;
-      
     var current = first;
     int count = 0;
 
