@@ -1,6 +1,11 @@
 package LinkedLists;
 
 public class Node {
-  private int value;
-  private Node next;
+  public int value;
+  public Node next;
+
+  @Override
+  public String toString() {
+    return String.valueOf(value);
+  }
 }
