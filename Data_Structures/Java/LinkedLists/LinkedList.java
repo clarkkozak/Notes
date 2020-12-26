@@ -1,5 +1,7 @@
 package LinkedLists;
 
+import java.util.NoSuchElementException;
+
 public class LinkedList {
 
   // I knew it!!! I thought it would be best to have this as a private class!
@@ -56,7 +58,7 @@ public class LinkedList {
 
   // hmm. Why not have it public? private is okay, yet I see this as fine.
   public boolean isEmpty() {
-    return first == null && last == null;
+    return first == null;  // if first is null, so is last.
   }
 
   // addLast
@@ -95,18 +97,29 @@ public class LinkedList {
   // deleteFirst
   public void deleteFirst() {
     if (isEmpty())
-      throw new IllegalArgumentException();
+      throw new NoSuchElementException();
 
-    first = first.next;
+
+    // What if it only has one item? We need to reset next and let
+    if (hasOneItem()) {
+      first = last = null;
+      return;
+    }
+
+    // If I don't remove this link, then the Garbage Collector won't remove it from memory
+    // I forgot to remove the link from the first head
+    var second = first.next;
+    first.next = null; 
+    first = second;
   }
 
   // deleteLast
   public void deleteLast() {
     if (isEmpty())
-      throw new IllegalArgumentException();
+      throw new NoSuchElementException();
 
-    if (first.next == null) {
-      first = null;
+    if (hasOneItem()) {
+      first = last = null; 
       return;
     }
 
@@ -124,6 +137,10 @@ public class LinkedList {
 
   }
 
+  private boolean hasOneItem() {
+    return first == last;
+  }
+
   // contains
   public boolean contains(int value) {
     return indexOf(value) != -1;
@@ -132,14 +149,14 @@ public class LinkedList {
   // indexOf
   public int indexOf(int value) {
     var current = first;
-    int count = 0;
+    int index = 0;
 
     while (current != null) {
       if (current.value == value)
-        return count;
+        return index;
 
       current = current.next;
-      ++count;
+      ++index;
     }
 
     return -1;
