@@ -8,7 +8,6 @@ public class LinkedList {
   private class Node {
     private int value;
     private Node next;
-  
     public Node(int value) {
       this.value = value;
     }
@@ -21,6 +20,7 @@ public class LinkedList {
 
   private Node first;
   private Node last;
+  private int size;
 
   public LinkedList() {
     this.first = null;
@@ -53,7 +53,7 @@ public class LinkedList {
         node.next = first; // use new nodes properties
         first = node;
       }
-    
+    size++;
   }
 
   // hmm. Why not have it public? private is okay, yet I see this as fine.
@@ -92,6 +92,7 @@ public class LinkedList {
       last.next = node; // taking advantage of the last 
       last = node;
     }
+    size++;
   }
 
   // deleteFirst
@@ -99,18 +100,17 @@ public class LinkedList {
     if (isEmpty())
       throw new NoSuchElementException();
 
-
     // What if it only has one item? We need to reset next and let
     if (hasOneItem()) {
       first = last = null;
-      return;
+    } else {
+      // If I don't remove this link, then the Garbage Collector won't remove it from memory
+      // I forgot to remove the link from the first head
+      var second = first.next;
+      first.next = null; 
+      first = second;
     }
-
-    // If I don't remove this link, then the Garbage Collector won't remove it from memory
-    // I forgot to remove the link from the first head
-    var second = first.next;
-    first.next = null; 
-    first = second;
+    size--;
   }
 
   // deleteLast
@@ -120,21 +120,25 @@ public class LinkedList {
 
     if (hasOneItem()) {
       first = last = null; 
-      return;
+    } else {
+      // My implementation is correct, yet his creates a reusable method + is more readable.
+      Node previous = getPrevious(last); // abstract logic to a reusable method
+      last = previous;
+      last.next = null;
     }
 
-    var current = first;
-    Node previous = null;
+    size--;
+  }
 
+  private Node getPrevious(Node node) {
+    var current = first;
     while (current != null) {
-      if (current == last) {
-        previous.next = null;
-        last = previous;
+      if (current.next == node) {
+        return current;
       }
-      previous = current;
       current = current.next;
     }
-
+    return null;
   }
 
   private boolean hasOneItem() {
@@ -160,6 +164,23 @@ public class LinkedList {
     }
 
     return -1;
+  }
+
+  public int size() {
+    return this.size;
+  }
+
+  public int[] toArray() {
+    int[] array = new int[size];
+    int index = 0;
+    var current = first;
+
+    while (current != null) {
+      array[index++] = current.value;
+      current = current.next;
+    }
+
+    return array;
   }
 
 }
