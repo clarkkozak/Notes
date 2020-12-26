@@ -61,5 +61,21 @@ See the [Big O Cheat Sheet](https://github.com/clarkkozak/Notes/blob/master/Data
   - Middle -> O(n) 
   - End -> O(n) # We need to find the 2nd to last node for a singly linked list
 
-#### Arrays in Java
+#### LinkedLists in Java
 Checkout [this file at this commit](https://github.com/clarkkozak/Notes/blob/master/Data_Structures/Java/LinkedLists/LinkedListMain.java)
+
+#### Linked Lists vs Arrays
+
+What problem are trying to solve?
+
+- Space Complexity
+  - Static arrays have a fixed size
+  - Dynamic arrays grow by 50-100%
+  - Linked Lists don't waste memory (although they use more)
+  - Use an array if you know how many items you need to store
+    - new ArrayList(100)
+
+- Runtime Complexity
+  - Arrays Look up by index is O(1), LL is O(n)
+  - LL insertion at the beginning or end is O(1), Arrays is O(n) to shift values
+  - Singly LL deleteFirst O(1), Array O(n)
