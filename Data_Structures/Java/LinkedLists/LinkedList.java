@@ -183,7 +183,8 @@ public class LinkedList {
     return array;
   }
 
-
+  // So I don't mind his answer
+  // Although, It made me want to adjust mine.
   public void reverse() {
     // I considered throwing an exception here.
     // I don't see the need. 
@@ -197,16 +198,16 @@ public class LinkedList {
     Node current = first;
     Node next = current.next;
 
-    while (next != null) {
+    while (current != null) {
 
       current.next = previous;
+
+      if (next == null) break;
 
       previous = current;
       current = next;
       next = next.next;
     }
-
-    current.next = previous;
 
     var temp = first;
     first = last;
