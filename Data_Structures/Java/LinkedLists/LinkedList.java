@@ -183,4 +183,34 @@ public class LinkedList {
     return array;
   }
 
+
+  public void reverse() {
+    // I considered throwing an exception here.
+    // I don't see the need. 
+    if (isEmpty() || hasOneItem())
+      return;
+    
+    // I considered using getPrevious.
+    // However, by not using it,
+    // we don't need extra traversals on the list
+    Node previous = null;
+    Node current = first;
+    Node next = current.next;
+
+    while (next != null) {
+
+      current.next = previous;
+
+      previous = current;
+      current = next;
+      next = next.next;
+    }
+
+    current.next = previous;
+
+    var temp = first;
+    first = last;
+    last = temp;
+  }
+
 }
