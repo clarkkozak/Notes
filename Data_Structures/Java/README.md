@@ -79,3 +79,15 @@ What problem are trying to solve?
   - Arrays Look up by index is O(1), LL is O(n)
   - LL insertion at the beginning or end is O(1), Arrays is O(n) to shift values
   - Singly LL deleteFirst O(1), Array O(n)
+
+#### Types of Linked Lists
+  - Singly 
+  - Doubly
+    - Delete from End is O(1)
+    - Takes more memory
+  
+  - Circular
+    - Last item points to the first item
+    - Examples:
+      - playlists
+      - tab cycles 
