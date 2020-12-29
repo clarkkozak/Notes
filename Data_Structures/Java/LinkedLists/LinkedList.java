@@ -214,4 +214,27 @@ public class LinkedList {
     last = temp;
   }
 
+  public int kthNodeFromTheEnd(int k) {
+
+    if (k > this.size || this.size == 0 || k <= 0) {
+      throw new IllegalArgumentException();
+    }
+
+    Node current = first;
+    Node kthNode = current;
+
+    // Set current k nodes apart from kthNode
+    for (int i = 0; i < k; i++) {
+      current = current.next;
+    }
+
+    // Move both pointers till current is at the end
+    while (current != null) {
+      kthNode = kthNode.next;
+      current = current.next;
+    }
+
+    return kthNode.value;
+  }
+
 }
