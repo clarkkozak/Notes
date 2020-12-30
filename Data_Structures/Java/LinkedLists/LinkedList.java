@@ -198,10 +198,12 @@ public class LinkedList {
     Node current = first;
     Node next = current.next;
 
-    while (current != null) {
+    // This condition is irrelevant because we need to update current.next until next is null.
+    while (true) {
 
       current.next = previous;
 
+      // This is our true condition, yet we need to do the previously one more time.
       if (next == null) break;
 
       previous = current;
@@ -235,6 +237,47 @@ public class LinkedList {
     }
 
     return kthNode.value;
+  }
+
+  // Find the middle of a linked list in one pass.
+  // If the list has an even number of nodes, there would be two middle nodes. 
+  // (Note: Assume that you don’t know the size of the list ahead of time.) 
+  public void printMiddle() {
+
+    if (isEmpty()) {
+      return;
+    }
+
+    if (hasOneItem() || hasTwoItems()) {
+      this.print();
+      return;
+    }
+
+    Node current = first;
+    Node middle = current;
+    int count = 0;
+
+    // Find the size or end of the list
+    while (current != null) {
+      count++;
+      current = current.next;
+    }
+    
+    // Move middle note to the middle
+    for (int i = 1; i < count / 2; i++) {
+      middle = middle.next;
+    }
+
+    // If the size if even, print out the first of the two middle
+    if (count % 2 == 0)  {
+      System.out.println(middle.value);  
+    }
+    
+    System.out.println(middle.next.value);      
+  }
+
+  private boolean hasTwoItems() {
+    return first.next == last;
   }
 
 }
