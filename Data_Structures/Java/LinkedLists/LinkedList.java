@@ -243,6 +243,7 @@ public class LinkedList {
   // If the list has an even number of nodes, there would be two middle nodes. 
   // (Note: Assume that you don’t know the size of the list ahead of time.) 
   public void printMiddle() {
+  // Technical this solution is wrong because I do it in 1 and a half passes.
 
     if (isEmpty()) {
       return;
@@ -278,6 +279,32 @@ public class LinkedList {
 
   private boolean hasTwoItems() {
     return first.next == last;
+  }
+
+  // Check to see if a linked list has a loop.
+  // Hint: use two pointers (slow and fast) to traverse the list.
+  // Move the slow pointer one step forward and the fast pointer two steps forward.
+  // If there’s a loop, at some point, the fast pointer will meet the slow pointer and overtake it.
+  // Draw this on a paper and see it for yourself.
+  // This algorithm is called Floyd’s Cycle-finding Algorithm.
+  public boolean hasLoop() {
+
+    if (size == 0) return false;
+
+    Node slow = first;
+    Node fast = slow.next;
+
+    while(true) {
+      if (slow == fast) return true;
+      if (fast == null || fast.next == null) return false;
+      slow = slow.next;
+      fast = fast.next.next;
+    }
+  }
+
+  // Created this method to test hasLoop
+  public void createLoop() {
+    last.next = first;
   }
 
 }

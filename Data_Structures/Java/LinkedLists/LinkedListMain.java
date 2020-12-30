@@ -9,9 +9,9 @@ public class LinkedListMain {
     list.addLast(10);
     list.addLast(20);
     list.addLast(30);
-    list.addLast(40);
-    list.addLast(50);
-
-    list.printMiddle();
+    
+    list.createLoop();
+    var temp = list.hasLoop();
+    System.out.println(temp);
   }
 }
