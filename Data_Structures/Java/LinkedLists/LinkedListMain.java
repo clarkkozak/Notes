@@ -9,7 +9,9 @@ public class LinkedListMain {
     list.addLast(10);
     list.addLast(20);
     list.addLast(30);
-  
-    System.out.println(list.kthNodeFromTheEnd(3));
+    list.addLast(40);
+    list.addLast(50);
+
+    list.printMiddle();
   }
 }
