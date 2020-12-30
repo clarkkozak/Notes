@@ -218,6 +218,8 @@ public class LinkedList {
 
   public int kthNodeFromTheEnd(int k) {
 
+    // His solution separates these 
+    // Thus more descriptive errors
     if (k > this.size || this.size == 0 || k <= 0) {
       throw new IllegalArgumentException();
     }
