@@ -91,3 +91,28 @@ What problem are trying to solve?
     - Examples:
       - playlists
       - tab cycles 
+
+## Stacks
+Overview:
+  - Structure of Stacks
+  - Runtime Complexity
+  - Solving Real World problems
+  - Building a Stack
+
+### Use Cases
+- Implement Undo Feature
+- Build compilers (eg syntax checking)
+- Evaluate expression (eg 1 + 2 * 3)
+- Build navigation (forward/back)
+
+### Structure of a Stack
+- Think of a stack of books
+- Last in Last Out (LIFO)
+- A stack is a wrapper around a linked list or an array
+
+#### Operations
+  - push(item) // put an item on the stack
+  - pop() // remove + return the first item
+  - isEmpty() // bool
+  - peak() // return the first item, yet don't remove it
+  - All operations are of them are O(1)
