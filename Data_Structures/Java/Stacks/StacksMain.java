@@ -9,9 +9,8 @@ public class StacksMain {
     // System.out.println(name);
     // System.out.println(reverseName);
 
-    String expression = "[<>{}()";
+    String expression = "<()<>>";
     System.out.println(isBalanced(expression));
-
 
   }
 
@@ -42,40 +41,47 @@ public class StacksMain {
   }
 
   public static boolean isBalanced(String str) {
-    if (str == null) {
-      throw new IllegalArgumentException();
-    }
+
+    if (str == null) throw new IllegalArgumentException();
+
+    if (str == "" ) return false;
+    
     Stack<Character> stack = new Stack<>();
     String openingBrackets = "[{<(";
     String closingBrackets = "]}>)";
-    boolean result = false;
-  
+
     for (char ch : str.toCharArray()) {
-      var closingBracketIndex = closingBrackets.indexOf(ch);
-      if (openingBrackets.indexOf(ch) != -1) {
-        result = false;
-      } 
-      if (closingBracketIndex != -1) {
+      // load up the stack
+      stack.push(ch);
+
+      // if there's a closing bracket
+      if (closingBrackets.indexOf(ch) != -1) {
+        // then unload the stack to check for next bracket
         while (!stack.isEmpty()) {
           char possibleBracket = stack.pop();
-          var openingBracketIndex = openingBrackets.indexOf(possibleBracket);
-          if (openingBracketIndex != -1) {
-            if (openingBracketIndex == closingBracketIndex) {
-              result = true;
-              break;
-            } else {
-              return false;
-            }
+          // if we have the right bracket balanced 
+          if (openingBrackets.indexOf(possibleBracket) == closingBrackets.indexOf(ch)) {
+            // then get out of the loop
+            break;
           }
-          result = false;
-        }
+
+          // if it isn't the right bracket
+          if (openingBrackets.indexOf(possibleBracket) != -1) {
+            // then it isn't balanced
+            return false;
+          }
+        }    
       }
-            
-      stack.push(ch);
     }
-    
-    
-    return result;    
+
+    // If there's still something in the stack
+    while(!stack.isEmpty()) {
+      // check if it has a opening bracket without a closing bracket
+      if (openingBrackets.indexOf(stack.pop()) != -1) {
+        return false;
+      }
+    }
+    return true;    
   }
 
 }
