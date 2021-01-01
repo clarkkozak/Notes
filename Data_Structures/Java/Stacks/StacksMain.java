@@ -3,14 +3,16 @@ package Stacks;
 import java.util.Stack;
 
 public class StacksMain {
+
   public static void main(String[] args) {
     // String name = "Clark";
     // String reverseName = reverse(name);
     // System.out.println(name);
     // System.out.println(reverseName);
 
-    String expression = "([]>";
-    System.out.println(isBalancedAns(expression));
+    String string = "{([])";
+    Expression expr = new Expression();
+    System.out.println(expr.isBalancedAns(string));
 
   }
 
@@ -84,46 +86,5 @@ public class StacksMain {
       }
     }
     return true;
-  }
-
-  public static boolean isBalancedAns(String str) {
-    Stack<Character> stack = new Stack<>();
-
-    for (char ch : str.toCharArray()) {
-      // why push anything but the chars we are looking for?
-      if (isLeftBracket(ch)) {
-        stack.push(ch);
-      }
-
-      if (isRightBracket(ch)) {
-        if (stack.isEmpty()) {
-          return false;
-        }
-
-        char top = stack.pop();
-
-        if (bracketsMatch(ch, top)) {
-          return false;
-        }
-
-      }
-    }
-
-    return stack.isEmpty();
-  }
-
-  private static boolean bracketsMatch(char right, char left) {
-    return (right == ')' && left != '(') ||
-    (right == '>' && left != '<') || 
-    (right == ']' && left != '[') ||
-    (right == '}' && left != '{');
-  }
-
-  private static boolean isRightBracket(char ch) {
-    return ch == ')' || ch == '>' || ch == ']' || ch == '}';
-  }
-
-  private static boolean isLeftBracket(char ch) {
-    return ch == '(' || ch == '<' || ch == '[' || ch == '{';
   }
 }
