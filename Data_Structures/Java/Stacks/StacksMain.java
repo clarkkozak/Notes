@@ -91,23 +91,18 @@ public class StacksMain {
 
     for (char ch : str.toCharArray()) {
       // why push anything but the chars we are looking for?
-      if (ch == '(' || ch == '<' || ch == '[' || ch == '{') {
+      if (isLeftBracket(ch)) {
         stack.push(ch);
       }
 
-      if (ch == ')' || ch == '>' || ch == ']' || ch == '}') {
+      if (isRightBracket(ch)) {
         if (stack.isEmpty()) {
           return false;
         }
 
         char top = stack.pop();
-        
-        if (
-          (ch == ')' && top != '(') ||
-          (ch == '>' && top != '<') || 
-          (ch == ']' && top != '[') ||
-          (ch == '}' && top != '{')
-        ) {
+
+        if (bracketsMatch(ch, top)) {
           return false;
         }
 
@@ -115,5 +110,20 @@ public class StacksMain {
     }
 
     return stack.isEmpty();
+  }
+
+  private static boolean bracketsMatch(char right, char left) {
+    return (right == ')' && left != '(') ||
+    (right == '>' && left != '<') || 
+    (right == ']' && left != '[') ||
+    (right == '}' && left != '{');
+  }
+
+  private static boolean isRightBracket(char ch) {
+    return ch == ')' || ch == '>' || ch == ']' || ch == '}';
+  }
+
+  private static boolean isLeftBracket(char ch) {
+    return ch == '(' || ch == '<' || ch == '[' || ch == '{';
   }
 }
