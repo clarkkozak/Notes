@@ -9,8 +9,8 @@ public class StacksMain {
     // System.out.println(name);
     // System.out.println(reverseName);
 
-    String expression = "<()<>>";
-    System.out.println(isBalanced(expression));
+    String expression = ")(()";
+    System.out.println(isBalancedAns(expression));
 
   }
 
@@ -84,4 +84,21 @@ public class StacksMain {
     return true;    
   }
 
+  public static boolean isBalancedAns(String str) {
+    Stack<Character> stack = new Stack<>();
+
+  
+    for (char ch : str.toCharArray()) {
+      // why push anything but the chars we are looking for?
+      if (ch == '(') {
+        stack.push(ch);
+      }
+      if (ch == ')') {
+        if (stack.isEmpty()) return false;
+        stack.pop();
+      }
+    }
+
+    return stack.isEmpty();
+  }
 }
