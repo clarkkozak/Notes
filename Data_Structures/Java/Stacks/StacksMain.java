@@ -1,7 +1,5 @@
 package Stacks;
 
-import java.util.Stack;
-
 public class StacksMain {
 
   public static void main(String[] args) {
@@ -13,16 +11,21 @@ public class StacksMain {
     // String string = "{([])";
     // Expression expr = new Expression();
     // System.out.println(expr.isBalancedAns(string));
-    Stack stack = new Stack();
+    TwoStack twoStack = new TwoStack(3);
 
-    stack.push(30);
-    stack.push(20);
-    stack.push(10);
-    System.out.println(stack);
-    System.out.println(stack.peek());
-    stack.pop();
-    System.out.println(stack);
-    System.out.println(stack.pop());
+  
+    System.out.println(twoStack.isEmpty1());
+    System.out.println(twoStack.isEmpty2());
+    twoStack.push1(1);
+    twoStack.push2(2);
+    twoStack.push1(3);
+    twoStack.push2(4);
+    twoStack.push1(5);
+    twoStack.push2(6);
+
+    System.out.println(twoStack.isFull1());
+    System.out.println(twoStack.isFull2());
+
 
   }
 }
