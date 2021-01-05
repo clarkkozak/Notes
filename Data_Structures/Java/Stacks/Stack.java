@@ -3,16 +3,17 @@ package Stacks;
 import java.util.Arrays;
 
 public class Stack {
-  private int[] array;
+  private int[] items;
   private int top;
 
   public Stack(int size) {
-    this.array = new int[size];
+    this.items = new int[size];
   }
 
   @Override
   public String toString() {
-    return Arrays.toString(array);
+    var content = Arrays.copyOfRange(items, 0, top);
+    return Arrays.toString(content);
   }
 
   public void push(int item) {
@@ -20,7 +21,7 @@ public class Stack {
       throw new StackOverflowError();
     }
 
-    array[top++] = item;
+    items[top++] = item;
   }
 
   public int pop() {
@@ -28,7 +29,7 @@ public class Stack {
       throw new EmptyStackException();
     }
 
-    return array[--top];
+    return items[--top];
   }
 
   public int peek() {
@@ -36,11 +37,11 @@ public class Stack {
       throw new EmptyStackException();
     }
 
-    return array[top - 1];
+    return items[top - 1];
   }
 
   public boolean isFull() {
-    return array.length == top;
+    return items.length == top;
   }
 
   public boolean isEmpty() {
