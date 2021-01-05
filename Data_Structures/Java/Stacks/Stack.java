@@ -1,6 +1,7 @@
 package Stacks;
 
 import java.util.Arrays;
+import java.util.EmptyStackException;
 
 public class Stack {
   private int[] items;
