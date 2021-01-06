@@ -28,6 +28,13 @@ import java.util.EmptyStackException;
   Instead, I'm gonna multiple it by 2 and see where I get.
 */
 
+ // In the answer, 
+ // One stack went in the front, the other went in the back.
+ // That was another implementation i was thinking...
+ // but i didn't do it.
+ // I blame the instructions, cuz isFull1 = isFull2 in the answer.
+ // yet we all want to blame the instruction with hidden outcomes.
+
 public class TwoStack {
   private int items[];
   private int size;
@@ -35,8 +42,13 @@ public class TwoStack {
   private int topOfStack2 = 1; // 1, 3, 5, 7, 9 ...
 
   public TwoStack(int size) {
+    // Error checking in constructor
+    if (size <= 0)
+      throw new IllegalArgumentException("size must be 1 or greater.");
+
     this.size = size;
-    this.items = new int[size * 2];
+    this.items = new int[size * 2]; 
+   
   }
 
   public void push1(int item) {
@@ -58,18 +70,25 @@ public class TwoStack {
     
   }
 
-  public void pop1() {
+  public int pop1() {
     if (isEmpty1()) {
       throw new EmptyStackException();
     }
     
-    
+    // lol i didn't implement pop
+    int item = items[topOfStack1];
+    topOfStack1 -= 2;
+    return item;
   }
-  public void pop2() {
+  public int pop2() {
     if (isEmpty2()) {
       throw new EmptyStackException();
     }
     
+    // lol i didn't implement pop
+    var item = items[topOfStack2];
+    topOfStack2 -= 2;
+    return item;
   }
   
   public boolean isFull1() {
