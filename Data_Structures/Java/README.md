@@ -116,3 +116,21 @@ Overview:
   - isEmpty() // bool
   - peak() // return the first item, yet don't remove it
   - All operations are of them are O(1)
+
+## Queues
+
+Metaphor: people waiting on a line to get to a bus
+
+### Examples:
+  - Printers
+  - OS (processing to wait to run)
+  - Web Server (requests coming in)
+  - Live support system (wait for your time to talk to someone)
+
+### Operations:
+  - enque -> add to back
+  - deque  -> remove from front
+  - peek
+  - isEmpty
+  - isFull
+  - All O(1)
