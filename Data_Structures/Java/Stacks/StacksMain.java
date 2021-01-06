@@ -37,16 +37,27 @@ public class StacksMain {
     // minStack.pop();
     // System.out.println(minStack);
 
-    StackLL stackLL = new StackLL();
-    System.out.println(stackLL.isEmpty());
-    stackLL.push(10);
-    System.out.println(stackLL.isEmpty());
-    stackLL.push(20);
-    stackLL.push(30);
-    System.out.println(stackLL);
-    System.out.println(stackLL.pop());
-    System.out.println(stackLL);
-    System.out.println(stackLL.peek());
+    // StackLL stackLL = new StackLL();
+    // System.out.println(stackLL.isEmpty());
+    // stackLL.push(10);
+    // System.out.println(stackLL.isEmpty());
+    // stackLL.push(20);
+    // stackLL.push(30);
+    // System.out.println(stackLL);
+    // System.out.println(stackLL.pop());
+    // System.out.println(stackLL);
+    // System.out.println(stackLL.peek());
+
+    var minStack = new MinStack();
+
+    minStack.push(5);
+    minStack.push(2);
+    minStack.push(10);
+    minStack.push(1);
+
+    System.out.println(minStack.min());
+    minStack.pop();
+    System.out.println(minStack.min());
 
   }
 }
