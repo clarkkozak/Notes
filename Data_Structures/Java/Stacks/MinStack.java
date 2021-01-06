@@ -23,40 +23,45 @@ yet i don't think Mosh would try to do that as that's in his part 2
 So, I think it's an array now, with some type of index magic.
 */
 
+/*
+
+Okay I looked up the answer. Yet it makes sense to me now and i'm going to try to type it out from memory
+
+*/
+
 package Stacks;
 
-import java.util.EmptyStackException;
-import java.util.LinkedList;
+import java.util.Stack;
 
 public class MinStack {
-  private LinkedList<Integer> items;
+  private Stack<Integer> stack;
+  private Stack<Integer> minStack;
 
   public MinStack() {
-    this.items = new LinkedList<Integer>();
-  }
-
-  @Override
-  public String toString() {
-    return items.toString();
-  }
-
-  public int min() {
-    return items.getFirst();
+    this.stack = new Stack<Integer>();
+    this.minStack = new Stack<Integer>();
   }
 
   public void push(int item) {
-    items.push(item);; 
+    stack.push(item);
+
+    if (minStack.isEmpty() || item < min()) {
+      minStack.push(item);
+    }
   }
 
   public int pop() {
-    if (isEmpty()) {
-      throw new EmptyStackException();
+    var value = stack.pop();
+    
+    if (value == min()) {
+      minStack.pop();
     }
 
-    return items.pop();
+    return value;
   }
 
-  public boolean isEmpty() {
-    return items.isEmpty();
+  public int min() {
+    return minStack.peek();
   }
+
 }
