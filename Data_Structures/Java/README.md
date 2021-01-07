@@ -121,6 +121,8 @@ Overview:
 
 Metaphor: people waiting on a line to get to a bus
 
+Implementation can be in an Array, Stack, or LinkedList
+
 ### Examples:
   - Printers
   - OS (processing to wait to run)
