@@ -3,8 +3,8 @@ package Queues;
 import java.util.Arrays;
 
 public class ArrayQueue {
-  private int head;
-  private int tail;
+  private int front;
+  private int rear;
   private int count;
   private int[] items;
 
@@ -18,8 +18,7 @@ public class ArrayQueue {
 
   @Override
   public String toString() {
-    var content = Arrays.copyOfRange(items, head, tail);
-    return Arrays.toString(content);
+    return Arrays.toString(items);
   }
 
 
@@ -29,16 +28,23 @@ public class ArrayQueue {
     }
     
     // this seems like cheating yet why not?
-    if (isEmpty()) {
-      head = 0;
-      tail = 0;
-    }
+    // he used a *circular array* to fix this. 
+    // which makes sense because an Array Out of bounds error is still possible
+    // with this implementation
+    // if (isEmpty()) {
+    //   front = 0;
+    //   rear = 0;
+    // }
 
-    items[count++] = item;
+    // items[count++] = item;
 
-    if (count >= 1){
-      tail++;
-    }
+    // if (count >= 1){
+    //   rear++;
+    // }
+
+    items[rear] = item;
+    rear = (rear + 1) % items.length;
+    count++;
 
   }
 
@@ -46,9 +52,12 @@ public class ArrayQueue {
     if (isEmpty()) {
       throw new IllegalArgumentException();
     }
-    
+
+    var item = items[front];
+    items[front] = 0;
+    front = (front + 1) % items.length;
     count--;
-    return items[head++];
+    return item;
   }
 
   public boolean isEmpty() {
@@ -56,7 +65,7 @@ public class ArrayQueue {
   }
 
   public int peek() {
-    return items[head];
+    return items[front];
   }
   //  T = 2
   // [10, 20, 30]
@@ -64,6 +73,6 @@ public class ArrayQueue {
   //  C = 3
 
   public boolean isFull() {
-    return items.length == tail;
+    return items.length == count;
   }
 }
