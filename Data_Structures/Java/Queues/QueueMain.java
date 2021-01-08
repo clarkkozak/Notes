@@ -13,14 +13,22 @@ public class QueueMain {
     queue.enqueue(10);
     queue.enqueue(20);
     queue.enqueue(30);
+    queue.enqueue(40);
+    queue.enqueue(50);
     System.out.println(queue);
-    reverse(queue);
-    System.out.println(queue);
+    // reverse(queue);
+    // System.out.println(queue);
 
-
+    QueueStack sQueue = new QueueStack();
+    sQueue.enqueue(10);
+    sQueue.enqueue(20);
+    sQueue.enqueue(30);
+    System.out.println(sQueue.dequeue());
+    reverse(sQueue);
+    System.out.println(sQueue.dequeue());
   }
 
-  public static void reverse(ArrayQueue queue) {
+  public static void reverse(QueueStack queue) {
     Stack<Integer> stack = new Stack<>();
 
     while(!queue.isEmpty()) {
