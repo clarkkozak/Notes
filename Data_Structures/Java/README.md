@@ -136,3 +136,7 @@ Implementation can be in an Array, Stack, or LinkedList
   - isEmpty
   - isFull
   - All O(1)
+
+### Priority Queue
+
+- Processing data based on their priority rather than when they were added

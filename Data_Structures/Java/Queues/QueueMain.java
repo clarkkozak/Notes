@@ -1,5 +1,7 @@
 package Queues;
 
+import java.util.PriorityQueue;
+
 // import java.util.Queue;
 
 import java.util.Stack;
@@ -23,9 +25,20 @@ public class QueueMain {
     sQueue.enqueue(10);
     sQueue.enqueue(20);
     sQueue.enqueue(30);
-    System.out.println(sQueue.dequeue());
-    reverse(sQueue);
-    System.out.println(sQueue.dequeue());
+    // System.out.println(sQueue.dequeue());
+    // reverse(sQueue);
+    // System.out.println(sQueue.dequeue());
+
+    PriorityQueue<Integer> pQueue = new PriorityQueue<>();
+    pQueue.add(5); 
+    pQueue.add(3); 
+    pQueue.add(1); 
+    pQueue.add(4); 
+
+    while (!pQueue.isEmpty()){
+      System.out.println(pQueue.remove());
+    }
+  
   }
 
   public static void reverse(QueueStack queue) {
