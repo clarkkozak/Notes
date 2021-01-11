@@ -1,7 +1,6 @@
 package Queues;
 
-import java.util.PriorityQueue;
-
+// import java.util.PriorityQueue;
 // import java.util.Queue;
 
 import java.util.Stack;
@@ -17,7 +16,7 @@ public class QueueMain {
     queue.enqueue(30);
     queue.enqueue(40);
     queue.enqueue(50);
-    System.out.println(queue);
+    // System.out.println(queue);
     // reverse(queue);
     // System.out.println(queue);
 
@@ -29,16 +28,28 @@ public class QueueMain {
     // reverse(sQueue);
     // System.out.println(sQueue.dequeue());
 
-    PriorityQueue<Integer> pQueue = new PriorityQueue<>();
-    pQueue.add(5); 
-    pQueue.add(3); 
-    pQueue.add(1); 
-    pQueue.add(4); 
+    // PriorityQueue<Integer> pQueue = new PriorityQueue<>();
+    // pQueue.add(5); 
+    // pQueue.add(3); 
+    // pQueue.add(1); 
+    // pQueue.add(4); 
 
-    while (!pQueue.isEmpty()){
-      System.out.println(pQueue.remove());
+    // while (!pQueue.isEmpty()){
+    //   System.out.println(pQueue.remove());
+    // }
+    
+    PriorityQueue myPriorityQueue = new PriorityQueue();
+    System.out.println(myPriorityQueue.isEmpty());
+    myPriorityQueue.enqueue(5);
+    myPriorityQueue.enqueue(2);
+    System.out.println(myPriorityQueue.peek());
+    myPriorityQueue.enqueue(1);
+    myPriorityQueue.enqueue(19);
+
+    while (!myPriorityQueue.isEmpty()){
+      System.out.println(myPriorityQueue.dequeue());
     }
-  
+
   }
 
   public static void reverse(QueueStack queue) {
