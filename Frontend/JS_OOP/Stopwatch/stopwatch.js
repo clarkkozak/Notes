@@ -1,43 +1,48 @@
 function Stopwatch() {
   let active = false;
-  let start = 0;
+  let start;
+  let end;
   let duration = 0;
 
   this.start = () => {
     if (active) {
       throw new Error('Already Active')
-    } else {
-      start = Date.now()
-      active = true;
     }
+
+    active = true
+
+    start = Date.now()
   }
 
   this.stop = () => {
     if (!active) {
       throw new Error('Cannot stop if not active')
-    } else {
-      duration = (Date.now() - start) / 1000;
-      active = false;
     }
+
+    active = false
+
+    end = Date.now()
+
+    seconds = (end - start) / 1000
+    duration += seconds
   }
 
   this.reset = () => {
-    if (active) {
-      throw new Error('Unable to reset while active')
-    }
-
-    duration = 0;
+    start = null
+    end = null
+    active = false
+    duration = 0
   }
 
   Object.defineProperty(this, 'duration', {
     get: () => {
       if (active) {
-        return (Date.now() - start) / 1000;
-      } else {
-        return duration;
+        return duration + (Date.now() - start) / 1000;
       }
+
+      return duration
     }
   })
 }
 
-let sw = new Stopwatch();
+let sw = new Stopwatch()
