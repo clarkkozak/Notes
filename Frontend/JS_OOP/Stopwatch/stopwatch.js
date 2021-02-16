@@ -1,8 +1,28 @@
+// Your Object should always be in a reliable state!
+// Premature optimization is the root of all evils
+
 function Stopwatch() {
-  this.active = false;
-  this.startTime;
-  this.endTime;
-  this.duration = 0;
+  let startTime, endTime, active, duration = 0;
+
+  Object.defineProperty(this, 'duration', {
+    get: function() { return duration },
+    set: function(value) { duration = value }
+  })
+
+  Object.defineProperty(this, 'active', {
+    get: function() { return active },
+    set: function(value) { active = value },
+  })
+
+  Object.defineProperty(this, 'startTime', {
+    get: function() { return startTime },
+    set: function(value) { startTime = value }
+  })
+
+  Object.defineProperty(this, 'endTime', {
+    get: function() { return endTime },
+    set: function(value) { endTime = value }
+  })
 }
 
 Stopwatch.prototype.start = function() {
@@ -36,4 +56,3 @@ Stopwatch.prototype.reset = function() {
 }
 
 let sw = new Stopwatch()
-
