@@ -1,48 +1,39 @@
 function Stopwatch() {
-  let active = false;
-  let start;
-  let end;
-  let duration = 0;
+  this.active = false;
+  this.startTime;
+  this.endTime;
+  this.duration = 0;
+}
 
-  this.start = () => {
-    if (active) {
-      throw new Error('Already Active')
-    }
-
-    active = true
-
-    start = Date.now()
+Stopwatch.prototype.start = function() {
+  if (this.active) {
+    throw new Error('Already Active')
   }
 
-  this.stop = () => {
-    if (!active) {
-      throw new Error('Cannot stop if not active')
-    }
+  this.active = true
 
-    active = false
+  this.startTime = Date.now()
+}
 
-    end = Date.now()
-
-    seconds = (end - start) / 1000
-    duration += seconds
+Stopwatch.prototype.stop = function() {
+  if (!this.active) {
+    throw new Error('Cannot stop if not active')
   }
 
-  this.reset = () => {
-    start = null
-    end = null
-    active = false
-    duration = 0
-  }
+  this.active = false
 
-  Object.defineProperty(this, 'duration', {
-    get: () => {
-      if (active) {
-        return duration + (Date.now() - start) / 1000;
-      }
+  this.endTime = Date.now()
 
-      return duration
-    }
-  })
+  seconds = (this.endTime - this.startTime) / 1000
+  this.duration += seconds
+}
+
+Stopwatch.prototype.reset = function() {
+  this.startTime = null
+  this.endTime = null
+  this.active = false
+  this.duration = 0
 }
 
 let sw = new Stopwatch()
+
