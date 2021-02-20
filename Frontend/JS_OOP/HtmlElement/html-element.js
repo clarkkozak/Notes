@@ -1,27 +1,28 @@
 function HtmlElement() {
-   this.click = function () {
-      console.log('click')
-   }
+  this.click = function () {
+     console.log('click')
+  }
 }
 
 HtmlElement.prototype.focus = function () {
-  console.log('focus')
+ console.log('focus')
 }
 
-function HtmlElementSelect(initialItems) {
-  let items = initialItems || []
+function HtmlElementSelect(initialItems = []) {
+ let items = initialItems
 
-  this.addItem = function(value) {
-    items[items.length] = value
-  }
+ this.addItem = function(item) {
+   items[items.length] = item
+ }
 
-  this.removeItem = function(value) {
-    items = items.filter(item => value !== item)
-  }
+ this.removeItem = function(item) {
+   items.splice(this.items.indexOf(item), 1)
+ }
 
-  Object.defineProperty(this, 'items', {
-    get: function() { return items } 
-  })
+ Object.defineProperty(this, 'items', {
+   get: function() { return items } 
+ })
 }
 
-HtmlElementSelect.prototype = Object.create(HtmlElement)
+HtmlElementSelect.prototype = new HtmlElement()
+HtmlElementSelect.prototype.constructor = HtmlElementSelectq
