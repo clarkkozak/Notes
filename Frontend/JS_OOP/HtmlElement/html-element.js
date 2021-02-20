@@ -8,6 +8,10 @@ HtmlElement.prototype.focus = function () {
  console.log('focus')
 }
 
+HtmlElement.prototype.render = function() {
+  console.log('default render')
+}
+
 function HtmlElementSelect(initialItems = []) {
  let items = initialItems
 
@@ -25,4 +29,32 @@ function HtmlElementSelect(initialItems = []) {
 }
 
 HtmlElementSelect.prototype = new HtmlElement()
-HtmlElementSelect.prototype.constructor = HtmlElementSelectq
+HtmlElementSelect.prototype.constructor = HtmlElementSelect
+
+HtmlElementSelect.prototype.render = function() {
+  let itemsWrappedInOption = this.items.map((item) => {
+    return `  <option>${item}</option>`
+  })
+
+  return "<select>\n" + `${itemsWrappedInOption.join('\n')}` + "\n</select>"
+}
+
+
+function HtmlElementImg(src = "") {
+  this.src = src;
+}
+
+HtmlElementImg.prototype = new HtmlElement()
+HtmlElementImg.prototype.constructor = HtmlElementSelect
+
+HtmlElementImg.prototype.render = function() {
+  return `<img src="${this.src}"/>`
+}
+
+const elements = [
+  new HtmlElementSelect([1, 2, 3]),
+  new HtmlElementImg('https://google.com')
+]
+
+for (let element of elements) 
+  console.log(element.render())
