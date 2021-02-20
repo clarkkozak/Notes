@@ -32,11 +32,7 @@ HtmlElementSelect.prototype = new HtmlElement()
 HtmlElementSelect.prototype.constructor = HtmlElementSelect
 
 HtmlElementSelect.prototype.render = function() {
-  let itemsWrappedInOption = this.items.map((item) => {
-    return `  <option>${item}</option>`
-  })
-
-  return "<select>\n" + `${itemsWrappedInOption.join('\n')}` + "\n</select>"
+  return "<select>\n" + `${this.items.map((item) => `  <option>${item}</option>`).join('\n')}` + "\n</select>"
 }
 
 
