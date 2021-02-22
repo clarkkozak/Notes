@@ -10,8 +10,9 @@ class Stack {
   }
 
   push(value) {
-    _items.set(this, [...this.items, value]);
-    this.count++;
+    let newStack = this.items
+    newStack[this.count++] = value;
+    _items.set(this, newStack);
   }
 
   pop() {
@@ -19,13 +20,9 @@ class Stack {
       throw new Error('Stack is Empty');
     }
 
-    let topIndex = this.count--;
-    let topItem = this.items[topIndex];
-
-    let newStack = this.items.splice(0, topIndex)
-
-    _items.set(this, newStack);
+    let topItem = this.items[this.count--];
     
+    _items.set(this, this.items.slice(0 , this.count))
     return topItem;
   }
 
