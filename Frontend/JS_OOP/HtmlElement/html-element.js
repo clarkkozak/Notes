@@ -36,12 +36,12 @@ HtmlElementSelect.prototype.render = function() {
 }
 
 
-function HtmlElementImg(src = "") {
-  this.src = src;
+function HtmlElementImg(src) {
+  this.src = src
 }
 
 HtmlElementImg.prototype = new HtmlElement()
-HtmlElementImg.prototype.constructor = HtmlElementSelect
+HtmlElementImg.prototype.constructor = HtmlElementImg
 
 HtmlElementImg.prototype.render = function() {
   return `<img src="${this.src}"/>`
