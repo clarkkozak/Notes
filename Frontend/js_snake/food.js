@@ -8,7 +8,6 @@ export function update() {
     expandSnake(EXPANSION_RATE) 
     food = getRandomFoodPosition()
   }
-
 }
 
 export function render(gameBoard) {
