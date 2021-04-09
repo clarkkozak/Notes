@@ -1,5 +1,7 @@
+import { SNAKE_SPEED, render as renderSnake, update as updateSnake  } from "./snake.js";
 let lastRenderTime = 0
-const SNAKE_SPEED = 2
+const gameBoard = document.getElementById('game-board')
+
 
 function main(currentTime) {
   window.requestAnimationFrame(main)
@@ -15,11 +17,11 @@ function main(currentTime) {
 }
 
 function update() {
-  
+  updateSnake()
 }
 
 function render() {
-  
+  renderSnake(gameBoard)
 }
 
 window.requestAnimationFrame(main)
