@@ -8,7 +8,10 @@ let gameOver = false
 
 function main(currentTime) {
   if (gameOver) {
-    return alert('you lose')
+    if(confirm('You lost! Press okay to Play Again!')) {
+      window.location = '/' 
+    }
+    return;
   }
   
   window.requestAnimationFrame(main)
