@@ -16,12 +16,13 @@ function main(currentTime) {
   render()
 }
 
+window.requestAnimationFrame(main)
+
 function update() {
   updateSnake()
 }
 
 function render() {
+  gameBoard.innerHTML = ''
   renderSnake(gameBoard)
 }
-
-window.requestAnimationFrame(main)
