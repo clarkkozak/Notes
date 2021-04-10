@@ -1,0 +1,61 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.34.4.
+--
+-- see: https://github.com/sol/hpack
+
+name:           my-first-stack-project
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/githubuser/my-first-stack-project#readme>
+homepage:       https://github.com/githubuser/my-first-stack-project#readme
+bug-reports:    https://github.com/githubuser/my-first-stack-project/issues
+author:         Author name here
+maintainer:     example@example.com
+copyright:      2021 Author name here
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/githubuser/my-first-stack-project
+
+library
+  exposed-modules:
+      Lib
+      Test
+  other-modules:
+      Paths_my_first_stack_project
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+  default-language: Haskell2010
+
+executable my-first-stack-project-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_my_first_stack_project
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , my-first-stack-project
+  default-language: Haskell2010
+
+test-suite my-first-stack-project-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_my_first_stack_project
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , my-first-stack-project
+  default-language: Haskell2010
