@@ -1,8 +1,17 @@
 <script>
 	export let name;
+	import Nested from "./Nested.svelte";
+	import Info from "./Info.svelte"
 
 	let count = 0;
 	let numbers = [1, 2, 3, 4]
+	
+	const pkg = {
+		name: 'svelte',
+		version: 3,
+		speed: 'blazing',
+		website: 'https://svelte.dev'
+	};
 
 	$: if (count >= 10) { // We're not limited to declaring reactive values — we can also run arbitrary statements reactively.
 		alert(`count is dangerously high`);
@@ -40,6 +49,9 @@
 	<button on:click={addNumber}>
 		Add a number
 	</button>
+	<Nested answer={42}/>
+	<Info {...pkg} />
+
 </main>
 
 <style>
