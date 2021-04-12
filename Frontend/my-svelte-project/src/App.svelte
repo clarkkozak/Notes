@@ -3,6 +3,11 @@
 	import Nested from "./Nested.svelte";
 	import Info from "./Info.svelte";
 	import Thing from "./Thing.svelte";
+	import Outer from './Outer.svelte'
+	import CustomButton from './CustomButton.svelte'
+	import Menu from './Menu.svelte'
+	import Textarea from './Textarea.svelte'
+	import Html from './Html.svelte'
 
 	let count = 0;
 	let numbers = [1, 2, 3, 4];
@@ -20,13 +25,17 @@
 		{ id: 5, color: "gold" },
 	];
 	let promise = getRandomNumber();
-
+	let mouse = { x: 0, y: 0 };
 	const pkg = {
 		name: "svelte",
 		version: 3,
 		speed: "blazing",
 		website: "https://svelte.dev",
 	};
+	let firstName = 'world';
+	let a = 1;
+	let b = 2;
+	let yes = false;
 
 	$: if (count >= 15) {
 		// We're not limited to declaring reactive values — we can also run arbitrary statements reactively.
@@ -69,9 +78,14 @@
 		promise = getRandomNumber();
 	}
 
+  function handleMousemove(event) {
+		mouse.x = event.clientX;
+		mouse.y = event.clientY;
+	}
+
 </script>
 
-<main>
+<main on:mousemove={handleMousemove}>
 	<h1>Hello {name}!</h1>
 	<p>
 		Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn
@@ -137,6 +151,52 @@
 	{:catch error}
 		<p style="color: red">{error.message}</p>
 	{/await}
+	
+  <hr>
+	<p>Thse mouse position is {mouse.x} x {mouse.y}</p>
+	<div on:mousemove="{e => mouse= { x: e.clientX, y: e.clientY }}">
+		The mouse position is {mouse.x} x {mouse.y}
+	</div>
+	<button on:click|once="{() => alert('clicked')}">Only One Alert</button>
+	<Outer on:myevent={(event) => alert(event.detail.text)}/>
+	<CustomButton on:click={() => alert('Event Forward to custom components')}/>
+  <hr>
+	<p>Hello {firstName}!</p>
+	<input bind:value={firstName} />
+
+  <label>
+		<input type="number" bind:value={a} min=0 max=10>
+		<input type="range" bind:value={a} min=0 max=10>
+	</label>
+
+  <label>
+		<input type="number" bind:value={b} min=0 max=10>
+		<input type="range" bind:value={b} min=0 max=10>
+	</label>
+	
+	<p>{a} + {b} = {a + b}</p>
+
+	<label>
+		<input type=checkbox bind:checked={yes}>
+		Yes! Send me regular email spam
+	</label>
+	
+	{#if yes}
+		<p>Thank you. We will bombard your inbox and sell your personal details.</p>
+	{:else}
+		<p>You must opt in to continue. If you're not paying, you're the product.</p>
+	{/if}
+	
+	<button disabled={!yes}>
+		Subscribe
+	</button>
+	
+	<Menu />
+	
+	<Textarea />
+	
+	<Html />
+
 </main>
 
 <style>
