@@ -2,7 +2,11 @@
 
 ---
 
-# svelte app
+# The Svelte Tutorial
+
+This entire project here is from the Svetlte Tutorial: https://svelte.dev/tutorial/
+
+I like having all of the code in one place so that I can learn and refer to what I did.
 
 This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
 
