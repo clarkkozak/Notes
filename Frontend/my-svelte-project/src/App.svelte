@@ -1,18 +1,18 @@
 <script>
 	export let name;
-	import Nested from "./Nested.svelte";
-	import Info from "./Info.svelte";
-	import Thing from "./Thing.svelte";
-	import Outer from "./Outer.svelte";
-	import CustomButton from "./CustomButton.svelte";
-	import Menu from "./Menu.svelte";
-	import Textarea from "./Textarea.svelte";
-	import Html from "./Html.svelte";
+	import Nested from "./events/Nested.svelte";
+	import Info from "./props/Info.svelte";
+	import Thing from "./logic/Thing.svelte";
+	import Outer from "./events/Outer.svelte";
+	import CustomButton from "./events/CustomButton.svelte";
+	import Menu from "./bindings/Menu.svelte";
+	import Textarea from "./bindings/Textarea.svelte";
+	import Html from "/bindings/Html.svelte";
 	import Todo from "./Todo.svelte";
 	import Video from "./Video.svelte";
-	import Dimensions from "./Dimensions.svelte";
-	import Logo from "./Logo.svelte";
-import Keypad from "./Keypad.svelte";
+	import Dimensions from "./bindings/Dimensions.svelte"
+	import Logo from "./bindings/Logo.svelte";
+	import Keypad from "./bindings/Keypad.svelte";
 
 	let count = 0;
 	let numbers = [1, 2, 3, 4];
