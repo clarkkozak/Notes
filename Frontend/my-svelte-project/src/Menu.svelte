@@ -1,12 +1,8 @@
 <script>
   let scoops = 1;
   let flavours = ["Mint choc chip"];
-  
-	let menu = [
-		'Cookies and cream',
-		'Mint choc chip',
-		'Raspberry ripple'
-	];
+
+  let menu = ["Cookies and cream", "Mint choc chip", "Raspberry ripple"];
 
   function join(flavours) {
     if (flavours.length === 1) return flavours[0];
@@ -36,11 +32,11 @@
 <h2>Flavours</h2>
 
 <select multiple bind:value={flavours}>
-	{#each menu as flavour}
-		<option value={flavour}>
-			{flavour}
-		</option>
-	{/each}
+  {#each menu as flavour}
+    <option value={flavour}>
+      {flavour}
+    </option>
+  {/each}
 </select>
 
 <label>

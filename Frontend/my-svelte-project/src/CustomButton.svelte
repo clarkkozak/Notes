@@ -1,3 +1,5 @@
+<button on:click> Click me </button>
+
 <style>
 	button {
 		height: 4rem;
@@ -16,7 +18,3 @@
 		color: #aaa;
 	}
 </style>
-
-<button on:click>
-	Click me
-</button>
