@@ -1,12 +1,15 @@
 <script>
-	import marked from 'marked';
+	import marked from "marked";
 	let value = `Some words are *italic*, some are **bold**`;
 </script>
 
-<style>
-	textarea { width: 50%; height: 200px; }
-</style>
-
-<textarea bind:value={value}></textarea>
+<textarea bind:value />
 
 {@html marked(value)}
+
+<style>
+	textarea {
+		width: 50%;
+		height: 200px;
+	}
+</style>

@@ -3,11 +3,16 @@
 	import Nested from "./Nested.svelte";
 	import Info from "./Info.svelte";
 	import Thing from "./Thing.svelte";
-	import Outer from './Outer.svelte'
-	import CustomButton from './CustomButton.svelte'
-	import Menu from './Menu.svelte'
-	import Textarea from './Textarea.svelte'
-	import Html from './Html.svelte'
+	import Outer from "./Outer.svelte";
+	import CustomButton from "./CustomButton.svelte";
+	import Menu from "./Menu.svelte";
+	import Textarea from "./Textarea.svelte";
+	import Html from "./Html.svelte";
+	import Todo from "./Todo.svelte";
+	import Video from "./Video.svelte";
+	import Dimensions from "./Dimensions.svelte";
+	import Logo from "./Logo.svelte";
+import Keypad from "./Keypad.svelte";
 
 	let count = 0;
 	let numbers = [1, 2, 3, 4];
@@ -32,10 +37,11 @@
 		speed: "blazing",
 		website: "https://svelte.dev",
 	};
-	let firstName = 'world';
+	let firstName = "world";
 	let a = 1;
 	let b = 2;
 	let yes = false;
+	let pin;
 
 	$: if (count >= 15) {
 		// We're not limited to declaring reactive values — we can also run arbitrary statements reactively.
@@ -46,6 +52,9 @@
 	$: doubled = count * 2;
 
 	$: sum = numbers.reduce((t, n) => t + n, 0);
+	
+	$: view = pin ? pin.replace(/\d(?!$)/g, '•') : 'enter your pin';
+
 
 	function handleClick() {
 		count += 1;
@@ -73,19 +82,24 @@
 			throw new Error(text);
 		}
 	}
-	
+
 	function handlePromiseClick() {
 		promise = getRandomNumber();
 	}
 
-  function handleMousemove(event) {
+	function handleMousemove(event) {
 		mouse.x = event.clientX;
 		mouse.y = event.clientY;
 	}
-
+	
+	function handlePin() {
+		alert(`submitted ${pin}`);
+	}
 </script>
 
 <main on:mousemove={handleMousemove}>
+	<Logo />
+
 	<h1>Hello {name}!</h1>
 	<p>
 		Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn
@@ -129,7 +143,7 @@
 			{/each}
 		</ul>
 	</div>
-	<hr>
+	<hr />
 	<h3>
 		<a href="https://svelte.dev/tutorial/keyed-each-blocks">Keyed Each Block</a>
 	</h3>
@@ -138,12 +152,10 @@
 	{#each things as thing (thing.id)}
 		<Thing current={thing.color} />
 	{/each}
-	<hr>
+	<hr />
 
-	<button on:click={handlePromiseClick}>
-		generate random number
-	</button>
-	
+	<button on:click={handlePromiseClick}> generate random number </button>
+
 	{#await promise}
 		<p>...awaiting</p>
 	{:then number}
@@ -151,51 +163,61 @@
 	{:catch error}
 		<p style="color: red">{error.message}</p>
 	{/await}
-	
-  <hr>
+
+	<hr />
 	<p>Thse mouse position is {mouse.x} x {mouse.y}</p>
-	<div on:mousemove="{e => mouse= { x: e.clientX, y: e.clientY }}">
+	<div on:mousemove={(e) => (mouse = { x: e.clientX, y: e.clientY })}>
 		The mouse position is {mouse.x} x {mouse.y}
 	</div>
-	<button on:click|once="{() => alert('clicked')}">Only One Alert</button>
-	<Outer on:myevent={(event) => alert(event.detail.text)}/>
-	<CustomButton on:click={() => alert('Event Forward to custom components')}/>
-  <hr>
+	<button on:click|once={() => alert("clicked")}>Only One Alert</button>
+	<Outer on:myevent={(event) => alert(event.detail.text)} />
+	<CustomButton on:click={() => alert("Event Forward to custom components")} />
+	<hr />
 	<p>Hello {firstName}!</p>
 	<input bind:value={firstName} />
 
-  <label>
-		<input type="number" bind:value={a} min=0 max=10>
-		<input type="range" bind:value={a} min=0 max=10>
+	<label>
+		<input type="number" bind:value={a} min="0" max="10" />
+		<input type="range" bind:value={a} min="0" max="10" />
 	</label>
 
-  <label>
-		<input type="number" bind:value={b} min=0 max=10>
-		<input type="range" bind:value={b} min=0 max=10>
+	<label>
+		<input type="number" bind:value={b} min="0" max="10" />
+		<input type="range" bind:value={b} min="0" max="10" />
 	</label>
-	
+
 	<p>{a} + {b} = {a + b}</p>
 
 	<label>
-		<input type=checkbox bind:checked={yes}>
+		<input type="checkbox" bind:checked={yes} />
 		Yes! Send me regular email spam
 	</label>
-	
+
 	{#if yes}
 		<p>Thank you. We will bombard your inbox and sell your personal details.</p>
 	{:else}
-		<p>You must opt in to continue. If you're not paying, you're the product.</p>
+		<p>
+			You must opt in to continue. If you're not paying, you're the product.
+		</p>
 	{/if}
-	
-	<button disabled={!yes}>
-		Subscribe
-	</button>
-	
+
+	<button disabled={!yes}> Subscribe </button>
+
 	<Menu />
-	
+
 	<Textarea />
-	
+
 	<Html />
+
+	<Todo />
+
+	<Video />
+
+	<Dimensions />
+	
+	<h3 style="color: {pin ? '#333' : '#ccc'}">{view}</h3>
+	
+	<Keypad bind:value={pin} on:submit={handlePin} />
 
 </main>
 
