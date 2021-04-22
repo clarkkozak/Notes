@@ -4,17 +4,17 @@
 calcFibs :: Int -> [Int]
 calcFibs 0  = [1]
 calcFibs 1  = [1]
-calcFibs n 
-  | n > 1 = (sumLastTwo n) : xs 
-  | otherwise = (last $ calcFibs 1) : xs
- where xs = []
+calcFibs n = xs ++ [sum (takeLast2 xs)] 
+  where xs = calcFibs (n - 1)
 
-lastTwoElems :: Int -> [Int]
-lastTwoElems n = (calcFibs (n - 2)) ++ (calcFibs ((n - 1)))
+takeLast2 :: [Int] -> [Int]
+takeLast2 = reverse . take 2 . reverse 
 
-sumLastTwo n = sum $ lastTwoElems n
+isLessThan4Mil :: Int -> Bool
+isLessThan4Mil x = x < 4000000
 
-calcFibsList :: Int -> [Int]
-calcFibsList 0 = [1]
-calcFibsList 1 = [1]
-calcFibsList n = calcFibsList(n - 1) ++ calcFibs(n)
+fibsLessThan4MilAndEven :: [Int]
+fibsLessThan4MilAndEven = filter even $ filter isLessThan4Mil $ calcFibs 50
+
+solve :: Int
+solve = sum $ filter even $ filter isLessThan4Mil $ calcFibs 50
