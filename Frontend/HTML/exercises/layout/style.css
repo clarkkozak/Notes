@@ -1,46 +1,41 @@
 body {
-  margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
 }
 
 nav {
-  padding: 16px 0;
+  padding: 4px 0;
   background-color: black;
 }
 
-ul {
+nav ul {
   display: flex;
-  margin: 12px 0;
-  padding: 0;
-  text-align: center;
-  justify-content: center;
   flex-direction: column;
-  list-style-type: none;
+  list-style: none;
+  padding-left: 0;
+  text-align: center;
 }
 
-li {
-  list-style-type: none;
-  padding: 6px 0;
+nav li {
+  margin: 6px 0;
 }
 
-li > a {
-  color: white;
+nav a {
+  color: #ccc;
   text-decoration: none;
 }
 
-li:hover {
+nav a:hover {
+  color: #fff;
   cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
-  ul {
+  nav ul {
     flex-direction: row;
     justify-content: flex-end;
-    margin: 0px;
   }
 
-  li {
-    padding: 6px 12px;
+  nav li {
+    margin: 6px 12px;
   }
 }
