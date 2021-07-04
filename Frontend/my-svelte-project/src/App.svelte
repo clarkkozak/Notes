@@ -8,8 +8,8 @@
 	import Menu from "./bindings/Menu.svelte";
 	import Textarea from "./bindings/Textarea.svelte";
 	import Html from "/bindings/Html.svelte";
-	import Todo from "./Todo.svelte";
-	import Video from "./Video.svelte";
+	import Todo from "/bingings/Todo.svelte";
+	import Video from "/bindings/Video.svelte";
 	import Dimensions from "./bindings/Dimensions.svelte"
 	import Logo from "./bindings/Logo.svelte";
 	import Keypad from "./bindings/Keypad.svelte";
@@ -207,7 +207,7 @@
 
 	<Textarea />
 
-	<Html />
+	<!-- <Html /> -->
 
 	<Todo />
 
