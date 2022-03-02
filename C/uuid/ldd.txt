@@ -1,0 +1,4 @@
+	linux-vdso.so.1 (0x00007fffc3b94000)
+	libuuid.so.1 => /usr/lib/libuuid.so.1 (0x00007f88121d2000)
+	libc.so.6 => /usr/lib/libc.so.6 (0x00007f8812006000)
+	/lib64/ld-linux-x86-64.so.2 => /usr/lib64/ld-linux-x86-64.so.2 (0x00007f881220b000)

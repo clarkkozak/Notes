@@ -1,0 +1,9 @@
+                 w __cxa_finalize@GLIBC_2.2.5
+                 w __gmon_start__
+                 w _ITM_deregisterTMCloneTable
+                 w _ITM_registerTMCloneTable
+                 U __libc_start_main@GLIBC_2.2.5
+                 U printf@GLIBC_2.2.5
+                 U __stack_chk_fail@GLIBC_2.4
+                 U uuid_generate_random@UUID_1.0
+                 U uuid_unparse@UUID_1.0
