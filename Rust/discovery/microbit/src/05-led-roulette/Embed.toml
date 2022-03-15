@@ -2,8 +2,12 @@
 chip = "nrf52833_xxAA" # uncomment this line for micro:bit V2
 # chip = "nrf51822_xxAA" # uncomment this line for micro:bit V1
 
+#[default.probe]
+# The speed in kHz of the data link to the target.
+#speed = 500
+
 [default.reset]
-halt_afterwards = true
+halt_afterwards = false
 
 [default.rtt]
 enabled = false
