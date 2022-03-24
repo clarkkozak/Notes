@@ -2,51 +2,59 @@
 #![no_main]
 #![no_std]
 
+#[allow(unused_imports)]
+use micromath::F32Ext;
+
 use cortex_m_rt::entry;
-use rtt_target::{rtt_init_print, rprintln};
 use panic_rtt_target as _;
+use rtt_target::rtt_init_print;
 
-use microbit::hal::prelude::*;
-
-#[cfg(feature = "v1")]
 use microbit::{
-    hal::twi,
-    pac::twi0::frequency::FREQUENCY_A,
-};
-
-#[cfg(feature = "v2")]
-use microbit::{
-    hal::twim,
+    display::blocking::Display, hal::prelude::*, hal::timer::Timer, hal::twim,
     pac::twim0::frequency::FREQUENCY_A,
 };
 
-const ACCELEROMETER_ADDR: u8 = 0b0011001;
-const MAGNETOMETER_ADDR: u8 = 0b0011110;
-
-const ACCELEROMETER_ID_REG: u8 = 0x0f;
-const MAGNETOMETER_ID_REG: u8 = 0x4f;
+use lsm303agr::{AccelOutputDataRate, Lsm303agr, Measurement};
 
 #[entry]
 fn main() -> ! {
     rtt_init_print!();
     let board = microbit::Board::take().unwrap();
 
+    let i2c = { twim::Twim::new(board.TWIM0, board.i2c_internal.into(), FREQUENCY_A::K100) };
 
-    #[cfg(feature = "v1")]
-    let mut i2c = { twi::Twi::new(board.TWI0, board.i2c.into(), FREQUENCY_A::K100) };
+    let mut timer = Timer::new(board.TIMER0);
 
-    #[cfg(feature = "v2")]
-    let mut i2c = { twim::Twim::new(board.TWIM0, board.i2c_internal.into(), FREQUENCY_A::K100) };
+    let mut display = Display::new(board.display_pins);
 
-    let mut acc = [0];
-    let mut mag = [0];
+    let full_board = [
+        [1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1],
+    ];
 
-    // First write the address + register onto the bus, then read the chip's responses
-    i2c.write_read(ACCELEROMETER_ADDR, &[ACCELEROMETER_ID_REG], &mut acc).unwrap();
-    i2c.write_read(MAGNETOMETER_ADDR, &[MAGNETOMETER_ID_REG], &mut mag).unwrap();
+    // Code from documentation
+    let mut sensor = Lsm303agr::new_with_i2c(i2c);
+    sensor.init().unwrap();
+    sensor.set_accel_odr(AccelOutputDataRate::Hz50).unwrap();
+    loop {
+        if sensor.accel_status().unwrap().xyz_new_data {
+            let data = sensor.accel_data().unwrap();
+            let acceleration_in_g = get_overall_acceleration(data);
 
-    rprintln!("The accelerometer chip's id is: {:#b}", acc[0]);
-    rprintln!("The magnetometer chip's id is: {:#b}", mag[0]);
+            if acceleration_in_g > 2000.0 {
+                display.show(&mut timer, full_board, 500);
+            }
+        }
+    }
+}
 
-    loop {}
+fn get_overall_acceleration(data: Measurement) -> f32 {
+    let x = data.x.pow(2);
+    let y = data.y.pow(2);
+    let z = data.z.pow(2);
+    let agg = (x + y + z) as f32;
+    return agg.abs().sqrt();
 }
