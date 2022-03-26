@@ -10,7 +10,21 @@ mod calibration;
 use crate::calibration::calc_calibration;
 use crate::calibration::calibrated_measurement;
 
+mod led;
+use crate::led::direction_to_led;
+use crate::led::Direction;
+
+// You'll find this useful ;-)
+use core::f32::consts::{FRAC_PI_2, FRAC_PI_4, PI};
+use libm::atan2f;
+
 use microbit::{display::blocking::Display, hal::Timer};
+
+const PI_THREE_FORTH: f32 = FRAC_PI_2 + FRAC_PI_4;
+const NEGATIVE_PI: f32 = -PI;
+const NEGATIVE_THREE_FORTH: f32 = -PI_THREE_FORTH;
+const NEGATIVE_FRAC_PI_2: f32 = -FRAC_PI_2;
+const NEGATIVE_FRAC_PI_4: f32 = -FRAC_PI_4;
 
 #[cfg(feature = "v1")]
 use microbit::{hal::twi, pac::twi0::frequency::FREQUENCY_A};
@@ -47,6 +61,22 @@ fn main() -> ! {
         while !sensor.mag_status().unwrap().xyz_new_data {}
         let mut data = sensor.mag_data().unwrap();
         data = calibrated_measurement(data, &calibration);
-        rprintln!("x: {}, y: {}, z: {}", data.x, data.y, data.z);
+
+        // use libm's atan2f since this isn't in core yet
+        // Range is -PI to PI
+        let theta = atan2f(data.y as f32, data.x as f32);
+
+        let dir = match theta {
+            x if 0.0 >= x && x <= FRAC_PI_4 => Direction::North,
+            x if FRAC_PI_4 > x && x <= FRAC_PI_2 => Direction::NorthWest,
+            x if FRAC_PI_2 > x && x <= PI_THREE_FORTH => Direction::West,
+            x if PI_THREE_FORTH > x && x <= PI => Direction::SouthWest,
+            x if NEGATIVE_PI >= x && x <= NEGATIVE_THREE_FORTH => Direction::South,
+            x if NEGATIVE_THREE_FORTH > x && x <= NEGATIVE_FRAC_PI_2 => Direction::SouthEast,
+            x if NEGATIVE_FRAC_PI_2 > x && x <= NEGATIVE_FRAC_PI_4 => Direction::East,
+            _ => Direction::NorthEast,
+        };
+
+        display.show(&mut timer, direction_to_led(dir), 100);
     }
 }
