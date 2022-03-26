@@ -1,8 +1,6 @@
 #![no_main]
 #![no_std]
 
-use core::str;
-
 use cortex_m_rt::entry;
 use panic_rtt_target as _;
 use rtt_target::{rprintln, rtt_init_print};
@@ -23,11 +21,7 @@ use microbit::{
     pac::twim0::frequency::FREQUENCY_A,
 };
 
-use core::fmt::Write;
-use heapless::Vec;
-use lsm303agr::{AccelOutputDataRate, Lsm303agr, MagOutputDataRate};
-use microbit::hal::prelude::*;
-use nb::block;
+use lsm303agr::{Lsm303agr, MagOutputDataRate};
 
 #[cfg(feature = "v2")]
 mod serial_setup;
@@ -50,7 +44,7 @@ fn main() -> ! {
     };
 
     #[cfg(feature = "v2")]
-    let mut serial = {
+    let _serial = {
         let serial = uarte::Uarte::new(
             board.UARTE0,
             board.uart.into(),
@@ -68,54 +62,11 @@ fn main() -> ! {
 
     let mut sensor = Lsm303agr::new_with_i2c(i2c);
     sensor.init().unwrap();
-    sensor.set_accel_odr(AccelOutputDataRate::Hz50).unwrap();
     sensor.set_mag_odr(MagOutputDataRate::Hz50).unwrap();
     let mut sensor = sensor.into_mag_continuous().ok().unwrap();
 
     loop {
-        let mut buffer: Vec<u8, 32> = Vec::new();
-
-        loop {
-            let byte = block!(serial.read()).unwrap();
-
-            if byte == 13 {
-                break;
-            }
-
-            if buffer.push(byte).is_err() {
-                write!(serial, "error: buffer full\r\n").unwrap();
-                break;
-            }
-
-            write!(serial, "{}\r\n", byte as char).unwrap();
-        }
-
-        if str::from_utf8(&buffer).unwrap().trim() == "a" {
-            while !sensor.accel_status().unwrap().xyz_new_data {}
-
-            let data = sensor.accel_data().unwrap();
-            write!(
-                serial,
-                "Accelerometer: x {} y {} z {}\r\n",
-                data.x, data.y, data.z
-            )
-            .unwrap();
-
-            rprintln!("Accelerometer: x {} y {} z {}", data.x, data.y, data.z);
-        } else if str::from_utf8(&buffer).unwrap().trim() == "m" {
-            while !sensor.mag_status().unwrap().xyz_new_data {}
-
-            let data = sensor.mag_data().unwrap();
-            write!(
-                serial,
-                "Magnetometer: x {} y {} z {}\r\n",
-                data.x, data.y, data.z
-            )
-            .unwrap();
-
-            rprintln!("Magnetometer: x {} y {} z {}", data.x, data.y, data.z);
-        } else {
-            write!(serial, "error: command not detected\r\n").unwrap();
-        }
+        let data = sensor.mag_data().unwrap();
+        rprintln!("Magnetometer: x {} y {} z {}", data.x, data.y, data.z);
     }
 }
