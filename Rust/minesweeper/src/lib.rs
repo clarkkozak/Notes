@@ -31,9 +31,16 @@ impl Display for Minesweeper {
                 // Get board position
                 let pos = (x, y);
 
-                // If the board position is closed, display a purple square
+                // If the board position is closed
                 if !self.open_fields.contains(&pos) {
-                    f.write_str("🟪 ")?; // Return result, must catch
+                    // and it contains a flag, display a flag
+                    if self.flagged_fields.contains(&pos) {
+                        f.write_str("🚩 ")?;
+                    }
+                    // otherwise, display a purple square
+                    else {
+                        f.write_str("🟪 ")?; // Return result, must catch
+                    }
                 }
                 // If the position is open and contains a mine, display a bomb
                 else if self.mines.contains(&pos) {
@@ -94,15 +101,34 @@ impl Minesweeper {
     }
 
     // Action: Open the provided position
-    pub fn open(&mut self, position: Position) -> OpenResult {
+    pub fn open(&mut self, position: Position) -> Option<OpenResult> {
+        if self.flagged_fields.contains(&position) {
+            return None;
+        }
+
         self.open_fields.insert(position);
 
         let is_mine = self.mines.contains(&position);
 
         if is_mine {
-            OpenResult::Mine
+            Some(OpenResult::Mine)
         } else {
-            OpenResult::NoMine(0)
+            Some(OpenResult::NoMine(0))
+        }
+    }
+
+    // Action: Toggle flag
+    pub fn toggle_flag(&mut self, pos: Position) {
+        // If the field is already open, skip
+        if self.open_fields.contains(&pos) {
+            return;
+        }
+
+        // Toggle flag
+        if self.flagged_fields.contains(&pos) {
+            self.flagged_fields.remove(&pos);
+        } else {
+            self.flagged_fields.insert(pos);
         }
     }
 }
@@ -116,6 +142,7 @@ mod tests {
         let mut ms = Minesweeper::new(10, 10, 20);
 
         ms.open((5, 5));
+        ms.toggle_flag((6, 6));
 
         println!("{}", ms);
     }
