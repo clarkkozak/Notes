@@ -10,12 +10,12 @@
     <div id="root"></div>
 
     <script type="module">
-      import init, { greet } from './pkg/minesweeper.js';
+      import init, { getState } from './pkg/minesweeper.js';
 
       async function main() {
         await init();
 
-        greet('companion');
+        console.log(getState());
       }
 
       main();
