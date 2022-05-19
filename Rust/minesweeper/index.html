@@ -15,7 +15,14 @@
       async function main() {
         await init();
 
-        console.log(getState());
+        render(getState());
+      }
+
+      // This is JS now. No more type...
+      function render(state) {
+        let root = document.getElementById('root');
+
+        root.innerText = state;
       }
 
       main();
