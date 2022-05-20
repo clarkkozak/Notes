@@ -88,7 +88,7 @@ impl Minesweeper {
 
         // Go through each neighbor of the provided position
         (x.max(1) - 1..=(x + 1).min(width - 1))
-            .flat_map(move |i| (x.max(y) - 1..=(y + 1).min(height - 1)).map(move |j| (i, j)))
+            .flat_map(move |i| (y.max(1) - 1..=(y + 1).min(height - 1)).map(move |j| (i, j)))
             .filter(move |&pos| pos != (x, y))
     }
 
