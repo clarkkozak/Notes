@@ -20,6 +20,7 @@ pub struct Minesweeper {
     open_fields: HashSet<Position>,
     mines: HashSet<Position>, // Not an optimal data structure
     flagged_fields: HashSet<Position>,
+    lost: bool,
 }
 
 impl Display for Minesweeper {
@@ -58,7 +59,6 @@ impl Display for Minesweeper {
 }
 
 impl Minesweeper {
-    // Constructor?
     pub fn new(width: usize, height: usize, mine_count: usize) -> Minesweeper {
         Minesweeper {
             width,
@@ -76,6 +76,7 @@ impl Minesweeper {
                 mines
             },
             flagged_fields: HashSet::new(),
+            lost: false,
         }
     }
 
@@ -101,7 +102,7 @@ impl Minesweeper {
 
     // Action: Open the provided position
     pub fn open(&mut self, position: Position) -> Option<OpenResult> {
-        if self.flagged_fields.contains(&position) {
+        if self.lost || self.flagged_fields.contains(&position) {
             return None;
         }
 
@@ -110,6 +111,7 @@ impl Minesweeper {
         let is_mine = self.mines.contains(&position);
 
         if is_mine {
+            self.lost = true;
             Some(OpenResult::Mine)
         } else {
             Some(OpenResult::NoMine(0))
@@ -118,8 +120,8 @@ impl Minesweeper {
 
     // Action: Toggle flag
     pub fn toggle_flag(&mut self, pos: Position) {
-        // If the field is already open, skip
-        if self.open_fields.contains(&pos) {
+        // If you hit a mine and the field is already open, skip
+        if self.lost || self.open_fields.contains(&pos) {
             return;
         }
 
