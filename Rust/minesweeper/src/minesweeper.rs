@@ -111,7 +111,28 @@ impl Minesweeper {
 
     // Action: Open the provided position
     pub fn open(&mut self, pos: Position) -> Option<OpenResult> {
-        if self.lost || self.open_fields.contains(&pos) || self.flagged_fields.contains(&pos) {
+        if self.open_fields.contains(&pos) {
+            let mine_count = self.neighboring_mines(pos);
+            let flag_count = self
+                .iter_neighbors(pos)
+                .filter(|neighbor| self.flagged_fields.contains(neighbor))
+                .count() as u8;
+
+            // Auto flag
+            if mine_count == flag_count {
+                for neighbor in self.iter_neighbors(pos) {
+                    if !self.flagged_fields.contains(&neighbor)
+                        && !self.open_fields.contains(&neighbor)
+                    {
+                        self.open(neighbor);
+                    }
+                }
+            }
+
+            return None;
+        }
+
+        if self.lost || self.flagged_fields.contains(&pos) {
             return None;
         }
 
@@ -127,7 +148,9 @@ impl Minesweeper {
 
             if mine_count == 0 {
                 for neighbor in self.iter_neighbors(pos) {
-                    self.open(neighbor);
+                    if !self.open_fields.contains(&neighbor) {
+                        self.open(neighbor);
+                    }
                 }
             }
 
