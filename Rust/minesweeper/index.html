@@ -24,7 +24,11 @@
     <div id="root"></div>
 
     <script type="module">
-      import init, { getState, openField } from './pkg/minesweeper.js';
+      import init, {
+        getState,
+        openField,
+        toggleFlag,
+      } from './pkg/minesweeper.js';
 
       async function main() {
         await init();
@@ -61,6 +65,13 @@
 
               console.log('click');
               openField(x, y);
+              render();
+            });
+
+            element.addEventListener('contextmenu', (evt) => {
+              evt.preventDefault();
+
+              toggleFlag(x, y);
               render();
             });
 

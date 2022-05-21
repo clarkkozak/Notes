@@ -31,3 +31,11 @@ pub fn open_field(x: usize, y: usize) {
         ms.borrow_mut().open((x, y));
     })
 }
+
+// Only strings and numbers for WASM; no tuples
+#[wasm_bindgen(js_name = toggleFlag)]
+pub fn toggle_flag(x: usize, y: usize) {
+    MINESWEEPER.with(|ms| {
+        ms.borrow_mut().toggle_flag((x, y));
+    })
+}
