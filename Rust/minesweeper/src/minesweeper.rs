@@ -33,8 +33,11 @@ impl Display for Minesweeper {
 
                 // If the board position is closed
                 if !self.open_fields.contains(&pos) {
+                    if self.lost && self.mines.contains(&pos) {
+                        f.write_str("💣 ")?;
+                    }
                     // and it contains a flag, display a flag
-                    if self.flagged_fields.contains(&pos) {
+                    else if self.flagged_fields.contains(&pos) {
                         f.write_str("🚩 ")?;
                     }
                     // otherwise, display a purple square
@@ -48,7 +51,13 @@ impl Display for Minesweeper {
                 }
                 // If the position is open and not a mine, display the number of neighboring mines
                 else {
-                    write!(f, " {} ", self.neighboring_mines(pos))?;
+                    let mine_count = self.neighboring_mines(pos);
+
+                    if mine_count > 0 {
+                        write!(f, " {} ", mine_count)?;
+                    } else {
+                        f.write_str("⬜ ")?;
+                    }
                 }
             }
 
