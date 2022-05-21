@@ -101,19 +101,27 @@ impl Minesweeper {
     }
 
     // Action: Open the provided position
-    pub fn open(&mut self, position: Position) -> Option<OpenResult> {
-        if self.lost || self.flagged_fields.contains(&position) {
+    pub fn open(&mut self, pos: Position) -> Option<OpenResult> {
+        if self.lost || self.open_fields.contains(&pos) || self.flagged_fields.contains(&pos) {
             return None;
         }
 
-        self.open_fields.insert(position);
+        self.open_fields.insert(pos);
 
-        let is_mine = self.mines.contains(&position);
+        let is_mine = self.mines.contains(&pos);
 
         if is_mine {
             self.lost = true;
             Some(OpenResult::Mine)
         } else {
+            let mine_count = self.neighboring_mines(pos);
+
+            if mine_count == 0 {
+                for neighbor in self.iter_neighbors(pos) {
+                    self.open(neighbor);
+                }
+            }
+
             Some(OpenResult::NoMine(0))
         }
     }
